@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "moreThanFiveRateableAttorneys_Lawyers"
+	dialect "mvel"
+
+	when moreThanFiveRateableAttorneys : Firm(totalRatedAttornyes>5)
+	then
+		moreThanFiveRateableAttorneys.setId("moreThanFiveRateableAttorneys_Lawyers");
+		moreThanFiveRateableAttorneys.setDescription("More than 5 full time attorneys outside the program authority");
+		moreThanFiveRateableAttorneys.setTooltip("Need C & F approval.");
+end

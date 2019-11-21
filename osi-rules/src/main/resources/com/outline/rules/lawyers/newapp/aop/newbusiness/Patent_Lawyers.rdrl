@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AopNew;
+
+rule "Patent_Lawyers"
+	dialect "mvel"
+	when
+		Patent : AopNew( patentAOPPercentage > 0 )
+	then
+		Patent.setId( "Patent_Lawyers" );
+		Patent.setDescription( "Outside of our authority." );
+		Patent.setTooltip( "Outside of our authority." );
+end

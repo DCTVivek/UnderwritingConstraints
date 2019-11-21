@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checkinvestmentCounselorServices_Lawyers"
+	dialect "mvel"
+	when
+		checkinvestmentCounselorServices : Tax( investmentCounselorServices > 0 )
+	then
+		checkinvestmentCounselorServices.setId( "checkinvestmentCounselorServices_Lawyers" );
+		checkinvestmentCounselorServices.setDescription( "Tax - providing investment counseling" );
+		checkinvestmentCounselorServices.setTooltip( "Decline." );
+end

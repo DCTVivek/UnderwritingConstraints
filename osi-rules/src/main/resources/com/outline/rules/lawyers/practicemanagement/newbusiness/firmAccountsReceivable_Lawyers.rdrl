@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.practicemanagement.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PracticeManagement;
+
+rule "firmAccountsReceivable_Lawyers"
+	dialect "mvel"
+	when
+		firmAccountsReceivable : PracticeManagement( percentofApplAcctRcbl > 100 )
+	then
+		firmAccountsReceivable.setId( "firmAccountsReceivable_Lawyers" );
+		firmAccountsReceivable.setDescription( "Accounts receivable above 35%" );
+		firmAccountsReceivable.setTooltip( "Review the AOP's as some are more prone to receivables, such as Family Law.  Get a description of why the accounts receivable is so high." );
+end

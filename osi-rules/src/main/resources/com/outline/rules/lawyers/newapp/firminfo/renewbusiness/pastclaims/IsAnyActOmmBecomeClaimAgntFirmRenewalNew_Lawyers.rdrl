@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.firminfo.renewbusiness.pastclaims;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "IsAnyActOmmBecomeClaimAgntFirmRenewalNew_Lawyers"
+	dialect "mvel"
+	when
+		IsAnyActOmmBecomeClaimAgntFirm : Coverage( isAnyActOmmBecomeClaimAgntFirm == "Y" )
+	then
+		IsAnyActOmmBecomeClaimAgntFirm.setId( "IsAnyActOmmBecomeClaimAgntFirmRenewalNew_Lawyers" );
+		IsAnyActOmmBecomeClaimAgntFirm.setDescription( "Claims or regulatory issues." );
+		IsAnyActOmmBecomeClaimAgntFirm.setTooltip( "Get a complete claims supplement along with a through description of the claim and when it was reported.  If " );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.morepracticemanagement.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.MorePracticeManagementNewApp;
+
+rule "IsFirmServedCEO_Lawyers"
+	dialect "mvel"
+	when
+		IsFirmServedCEO : MorePracticeManagementNewApp( isFirmServedCEO == "Y" )
+	then
+		IsFirmServedCEO.setId( "IsFirmServedCEO_Lawyers" );
+		IsFirmServedCEO.setDescription( "Services are outside of C&F Authority (Referral required for exception)" );
+		IsFirmServedCEO.setTooltip( "Referral to C& F" );
+end

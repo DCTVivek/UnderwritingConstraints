@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "anyAccountantsProfessionalLiabilityClaimsMadeAgainstFirmRenew_Accountant"
+	dialect "mvel"
+
+	when anyAccountantsProfessionalLiabilityClaimsMadeAgainstFirmRenew : BasicInfoAcc(isAwarenessOfAnyProfLiability=="Y")
+	then
+		anyAccountantsProfessionalLiabilityClaimsMadeAgainstFirmRenew.setId("anyAccountantsProfessionalLiabilityClaimsMadeAgainstFirmRenew_Accountant");
+		anyAccountantsProfessionalLiabilityClaimsMadeAgainstFirmRenew.setDescription("Reported Claim.");
+		anyAccountantsProfessionalLiabilityClaimsMadeAgainstFirmRenew.setTooltip("Make sure the supplement is complete.");
+end

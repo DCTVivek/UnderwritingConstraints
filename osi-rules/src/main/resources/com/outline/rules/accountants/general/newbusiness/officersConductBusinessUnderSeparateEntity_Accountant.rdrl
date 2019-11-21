@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "officersConductBusinessUnderSeparateEntity_Accountant"
+	dialect "mvel"
+
+	when officersConductBusinessUnderSeparateEntity : GeneralAcc(isFirmRenderingServices=="Y")
+	then
+		officersConductBusinessUnderSeparateEntity.setId("officersConductBusinessUnderSeparateEntity_Accountant");
+		officersConductBusinessUnderSeparateEntity.setDescription("Firm providing services under separate entity name. ");
+		officersConductBusinessUnderSeparateEntity.setTooltip("Separate Entity: Get and explaination of what it is and what does and why the need for the separate entity.  Does it have its own insurance.  Need to understand the relationship.");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "checkPriorActDateWithEstablishDate_Lawyers"
+	dialect "mvel"
+
+	when checkPriorActDateWithEstablishDate : Coverage(yearOfFirmEstablished<priorActDateYear )
+	then
+		checkPriorActDateWithEstablishDate.setId("checkPriorActDateWithEstablishDate_Lawyers");
+		checkPriorActDateWithEstablishDate.setDescription("Firm prior acts year is prior to the firm establised year   Potential career coverage issue.");
+		checkPriorActDateWithEstablishDate.setTooltip("  ");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "anySolePractitionerAccountingFirm_Accountant"
+	dialect "mvel"
+
+	when anySolePractitionerAccountingFirm : GeneralAcc(isAnyFirmMeargedOrAcquired=="Y")
+	then
+		anySolePractitionerAccountingFirm.setId("anySolePractitionerAccountingFirm_Accountant");
+		anySolePractitionerAccountingFirm.setDescription("Firm has mergered or acquired a firm.");
+		anySolePractitionerAccountingFirm.setTooltip("Review details with client to determine if the acquired firm is  covered with a tail or if they are included in the prior acts?  Need to understand the other firms practice.");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.litigationsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.LitigationSupplement;
+
+rule "massTortOrClassActionNewAppRenew_Lawyers"
+	dialect "mvel"
+	when
+		massTortOrClassActionNewApp : LitigationSupplement( massTortOrClassAction == "Y" )
+	then
+		massTortOrClassActionNewApp.setId( "massTortOrClassActionNewAppRenew_Lawyers" );
+		massTortOrClassActionNewApp.setDescription( "Lead counsel on mass tort" );
+		massTortOrClassActionNewApp.setTooltip( "In the last year, how many class actions was the insured lead or co-lead counsel on? In the last year, how many mass tort and or toxic tort cases has the insured handled?" );
+end

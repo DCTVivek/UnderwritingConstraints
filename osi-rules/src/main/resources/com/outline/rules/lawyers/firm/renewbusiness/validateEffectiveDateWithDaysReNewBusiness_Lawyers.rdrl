@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "validateEffectiveDateWithDaysReNewBusiness_Lawyers"
+	dialect "mvel"
+
+		when validateEffectiveDateWithDaysReNewBusiness : Firm(daysDifferenceForEfectiveDate>90 )
+then
+		validateEffectiveDateWithDaysReNewBusiness.setId("validateEffectiveDateWithDaysReNewBusiness_Lawyers");
+		validateEffectiveDateWithDaysReNewBusiness.setDescription("Effective date cannot be more than 90 days prior to the current date for renewal.");
+		validateEffectiveDateWithDaysReNewBusiness.setTooltip("    ");
+end

@@ -1,0 +1,46 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+import com.util.Context;
+
+
+rule "attorneyHoursChange_Lawyers_old"
+	when ctx : Context(this["attorneyCount"]==0)
+	then
+		ctx.put("question","Multiple attorneys without one working 1000 hours.");
+		ctx.put("hint","Need C & F approval");
+end
+
+
+rule "soloAttorneyAndHoursChange_Lawyers_old"
+	when ctx : Context(this["annualWorkedHours"]<500)
+	then
+		ctx.put("question","Solo with less than 500 hours.  Must be approved by C & F");
+		ctx.put("hint","Why have they reduced their hours.  Are they getting ready to retire?");
+end
+
+rule "ratedAttorneysRenew_Lawyers_old"
+	when ctx : Context(this["currentRatedAttorneyCount"]>5)
+	then
+		ctx.put("question","Added attorney's to make it more than  5 full time attorneys. Organic growth and need C & F clearance.");
+		ctx.put("hint","Need C & F clearance for organic growth");
+end
+
+rule "nonRatedAttorneyAdded_Lawyers_old"
+	when ctx : Context(this["nonratedAttorneyCount"]>0)
+	then
+		ctx.put("question","Added Non-rated attorney.");
+		ctx.put("hint","Needs approval by UW.");
+end
+
+rule "addedAttorneyIsLiscenseIndomicile_Lawyers_old"
+	when ctx : Context(this["isLiscenseIndomicile"]=="N")
+	then
+		ctx.put("question","New attorney not licensed in the state of domicle.");
+		ctx.put("hint","Attorneys need to have a valid license in the state of domicile.  If not, why not.");
+end
+
+rule "stateChange_Lawyers_old"
+	when ctx : Context(this["StateDesc"]!=this["PriorStateDesc"])
+	then
+		ctx.put("question","Changes of State requires review of why and may need a new application.");
+		ctx.put("hint","Change of state in address.  Get a detailed explaination of why.");
+end

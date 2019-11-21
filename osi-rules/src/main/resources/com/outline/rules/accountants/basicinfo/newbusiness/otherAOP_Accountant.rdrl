@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "otherAOP_Accountant"
+	dialect "mvel"
+
+		when otherAOP : BasicInfoAcc(aop_Percentage_20>0 )
+	then
+		otherAOP.setId("otherAOP_Accountant");
+		otherAOP.setDescription("Other AOP above 0% - review description");
+		otherAOP.setTooltip("Other AOP: Review description and if it belongs in another category contact insured and talk to them about where it belongs.Anything in Other AOP has to be reviewed by UW.");
+end

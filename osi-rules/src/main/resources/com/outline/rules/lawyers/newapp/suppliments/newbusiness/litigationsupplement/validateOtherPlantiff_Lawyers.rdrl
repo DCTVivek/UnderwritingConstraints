@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.litigationsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "validateOtherPlantiff_Lawyers"
+	dialect "mvel"
+	when
+		OtherPlantiff : PlaintiffSupp( otherAol > 0 )
+	then
+		OtherPlantiff.setId( "validateOtherPlantiff_Lawyers" );
+		OtherPlantiff.setDescription( "Plaintiff Other" );
+		OtherPlantiff.setTooltip( "Move to appropriate category if applicable." );
+end

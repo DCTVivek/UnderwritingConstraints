@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "providedManagementServicesForInvestmentVentures_Accountant"
+	dialect "mvel"
+
+	when providedManagementServicesForInvestmentVentures : GeneralAcc(isManagementServiceProvided=="Y")
+	then
+		providedManagementServicesForInvestmentVentures.setId("providedManagementServicesForInvestmentVentures_Accountant");
+		providedManagementServicesForInvestmentVentures.setDescription("Firm is providing management services for investment ventures and therefore is outside the UW appetite of the program. Decline");
+		providedManagementServicesForInvestmentVentures.setTooltip("Firm is providing management services for investment ventures and therefore is outside the UW appetite of the program. Decline");
+end

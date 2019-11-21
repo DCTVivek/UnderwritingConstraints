@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.familylaw;
+
+import java.lang.Number;
+import com.outline.rules.pojo.FamilyLawSupplement;
+
+rule "validateFamilyLawRenew_Lawyers"
+	dialect "mvel"
+	when
+		FamilyLaw : FamilyLawSupplement( familyLawPercentage > 0 || surrogacy > 0 || assistedReproductive > 0 || divorceAssetsOver > 0 )
+	then
+		FamilyLaw.setId( "validateFamilyLawRenew_Lawyers" );
+		FamilyLaw.setDescription( "Review Family law supplement" );
+		FamilyLaw.setTooltip( "No explanation required" );
+end

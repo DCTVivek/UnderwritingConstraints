@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "governmentRenewAOP_Lawyers"
+	dialect "mvel"
+
+	when governmentRenewAOP : AOP(currentgovernmentPercentage>priorYeargovernmentPercentage)
+	then
+		governmentRenewAOP.setId("governmentRenewAOP_Lawyers");
+		governmentRenewAOP.setDescription("1.The services are provided for any government or government agency where the town or city has a population equal to or greater than 1,000,000 2.The attorney is providing bond work or 3.The attorney is providing legal services involving eminent domain");
+		governmentRenewAOP.setTooltip("What services are they providing to the municipality or government?  What is the population of the town or municipality?");
+end

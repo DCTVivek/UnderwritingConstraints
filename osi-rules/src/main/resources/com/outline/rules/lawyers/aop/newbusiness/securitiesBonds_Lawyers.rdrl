@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "securitiesBonds_Lawyers"
+	dialect "mvel"
+	when
+		securitiesBonds : AOP( securitiesBondsAOPPercentage > 0 )
+	then
+		securitiesBonds.setId( "securitiesBonds_Lawyers" );
+		securitiesBonds.setDescription( "Work in Securities and Bonds is a decline" );
+		securitiesBonds.setTooltip( "Decline (Outside of C&F Authority Guidelines)." );
+end

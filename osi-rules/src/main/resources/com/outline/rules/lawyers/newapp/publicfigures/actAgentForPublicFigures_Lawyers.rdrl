@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.publicfigures;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PublicFiguresAjaxExpansions;
+
+rule "actAgentForPublicFigures_Lawyers"
+	dialect "mvel"
+	when
+		actAgentForPublicFigures : PublicFiguresAjaxExpansions( actAgentForPublicFigures == "Y" )
+	then
+		actAgentForPublicFigures.setId( "actAgentForPublicFigures_Lawyers" );
+		actAgentForPublicFigures.setDescription( "Acting a an agent for a public figure." );
+		actAgentForPublicFigures.setTooltip( "Decline (Outside of C&F Authority Guidelines)" );
+end

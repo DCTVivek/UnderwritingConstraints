@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.businessmanagement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BusinessManagementAcc;
+
+rule "provideBusinessManagementFamilyOfficeServices_Accountant"
+	dialect "mvel"
+	when
+		provideBusinessManagementFamilyOfficeServices : BusinessManagementAcc( isControlFundsForBusinessAndEntimentFc == "Y" )
+	then
+		provideBusinessManagementFamilyOfficeServices.setId( "provideBusinessManagementFamilyOfficeServices_Accountant" );
+		provideBusinessManagementFamilyOfficeServices.setDescription( "Firm provided management services for investment ventures." );
+		provideBusinessManagementFamilyOfficeServices.setTooltip( "Firm provided management services for investment ventures." );
+end

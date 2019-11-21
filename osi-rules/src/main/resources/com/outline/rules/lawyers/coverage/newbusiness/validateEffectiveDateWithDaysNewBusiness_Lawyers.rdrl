@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "validateEffectiveDateWithDaysNewBusiness_Lawyers"
+	dialect "mvel"
+	when
+		effectiveDateWithDays : Coverage( daysDifferenceForEfectiveDate > 60 )
+	then
+		effectiveDateWithDays.setId( "validateEffectiveDateWithDaysNewBusiness_Lawyers" );
+		effectiveDateWithDays.setDescription( "Effective date cannot be more than 60 days prior to the current date for New Business" );
+		effectiveDateWithDays.setTooltip( "    " );
+end

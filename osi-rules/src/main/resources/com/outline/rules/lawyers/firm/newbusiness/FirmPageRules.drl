@@ -1,0 +1,92 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+import com.util.Context;
+
+rule "validateFirmAddress_Lawyers_old"
+	when ctx : Context(this["containsPOBOXInAddress"]=="true")
+	then
+		ctx.put("question","The address must be a physical address not a PO box.");
+		ctx.put("hint","In addition to the PO box, get a physical address.");
+end
+
+rule "multipleAttorneyAtleastHaveThousandHours_Lawyers_old"
+	when ctx : Context(this["attorneysCountHave1000Hours"]<1)
+	then
+		ctx.put("question","Multiple attorneys without one working 1000 hours.");
+		ctx.put("hint","Need C & F approval.");
+end
+
+rule "soloAtorneyHoursLessThanFiveHundred_Lawyers_old"
+	when ctx : Context(this["AnnualWorkedHours"]<500)
+	then
+		ctx.put("question","Solo attorney required to work 500 hours or more or we need C & F approval");
+		ctx.put("hint","Need C & F approval.");
+end
+
+rule "moreThanFiveRateableAttorneys_Lawyers_old"
+	when ctx : Context(this["totalRatedAttornyes"]>5)
+	then
+		ctx.put("question","More than 5 full time attorneys outside the program authority");
+		ctx.put("hint","Need C & F approval.");
+end
+
+rule "anyNonRatedAttorney_Lawyers_old"
+	when ctx : Context(this["IsNonRatedAttorney"]=="Y")
+	then
+		ctx.put("question","Non-rated attorney.");
+		ctx.put("hint","Needs approval by UW.");
+end
+
+rule "isOfficeInOtherThanStateOfDomicile_Lawyers_old"
+//FPLStateCode: Firm Practice Location, StateDesc: State Of Domicile
+	when ctx : Context(this["FPLStateCode"]!=this["StateDesc"])
+	then
+		ctx.put("question","Offices in other states must be approved for licensing and hours worked in a state other than the state of domicile.");
+		ctx.put("hint","Review.  if continguous states okay, f not need to know what they are doing in the other states.  Are they licensend in those states?");
+end
+
+rule "soloAttorneyAndNoBackup_Lawyers_old"
+	when ctx : Context(this["IsFirmHaveBackupAttorney"]!="Y")
+	then
+		ctx.put("question","Backup required for solo attorney");
+		ctx.put("hint","Need Backup attorney name and address.");
+end
+
+rule "attorneySupportStaffRatio_Lawyers_old"
+    //totalAttornyes: Total Number Of Attorneys in firm, TotalNumOfNonAttorneyStaff: Support Staff
+	when ctx : Context(this["totalAttornyes"]*3<this["TotalNumOfNonAttorneyStaff"])
+	then
+		ctx.put("question","Staff to attorney ratio greater than 3 to 1");
+		ctx.put("hint","Why is such a large staff required?");
+end
+
+
+rule "isFirmOperateUnderOtherLegalName_Lawyers_old"
+    //Is Firm Practice Under Other Legal Name 
+    //FPLStateCode: Firm Practice Location, StateDesc: State Of Domicile
+	when ctx : Context(this["IsApplFirmWithDifferentLegalName"]=="Y")
+	then
+		ctx.put("question","Practicing under a name other than the firm name must be approved. Why does the firm have another name.");
+		ctx.put("hint","Need a description of why and what they are doing, and understand the relationship.");
+end
+
+rule "averageRevenuePerAttorney_Lawyers_old"
+    //If revenue is greater than $400,000 per attorney 
+    //FPLStateCode: Firm Practice Location, StateDesc: State Of Domicile
+	when ctx : Context(this["averageRevenuePerAttorney"]>400000)
+	then
+		ctx.put("question","The revenue per attorney is higher than $400,000.");
+		ctx.put("hint","Why is the revenue per attorney so high. Please explain.");
+end
+
+rule "isApplicantProvidesLegalServices_Lawyers_old"
+   	when ctx : Context(this["IsApplicantProvidesLegalServices"]=="Y")
+	then
+		ctx.put("question","If a firm is providing legal services under an entity other than the firm, it must be approved. What are they doing and why.");
+		ctx.put("hint","Explain what it is and what does it do and what do you do and do they have separate coverage.  Need to understand the relationship.");
+end
+rule "attorneysNotLicensedIndomicile_Lawyers_old"
+   	when ctx : Context(this["isLiscenseIndomicile"]=="N")
+	then
+		ctx.put("question","The attorney's must be licensed in the state of domicle.");
+		ctx.put("hint","Attorneys need to have a valid license in the state of domicile.  If not, why not?");
+end

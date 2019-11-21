@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "discretionaryAssetManagementServicesRenew_Accountant"
+	dialect "mvel"
+
+	when discretionaryAssetManagementServicesRenew : InvestmentAcc(isDiscretionaryAssetMangt=="Y")
+	then
+		discretionaryAssetManagementServicesRenew.setId("discretionaryAssetManagementServicesRenew_Accountant");
+		discretionaryAssetManagementServicesRenew.setDescription("Firm is providing discretionary asset management services.");
+		discretionaryAssetManagementServicesRenew.setTooltip("Review supplement for completeness and determine for how many clients, amounts and the circumstances and under what condiitons and controls.");
+end

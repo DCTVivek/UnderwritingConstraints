@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AopNew;
+
+rule "MedicalMalpracticePlaintiff_Lawyers"
+	dialect "mvel"
+	when
+		MedicalPracticeAOP : AopNew( medicalMalpracticePlaintiffAOPPercentage > 25 )
+	then
+		MedicalPracticeAOP.setId( "MedicalMalpracticePlaintiff_Lawyers" );
+		MedicalPracticeAOP.setDescription( "Medical Malpractice more that 25%." );
+		MedicalPracticeAOP.setTooltip( "No explanation needed." );
+end

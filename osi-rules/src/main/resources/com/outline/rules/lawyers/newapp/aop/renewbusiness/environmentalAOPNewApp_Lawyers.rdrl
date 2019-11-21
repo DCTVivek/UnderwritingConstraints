@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.aop.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "environmentalAOPNewApp_Lawyers"
+	dialect "mvel"
+	when
+		environmental : AOP( currentPercentage > ( environmentalAOPPercentage ) )
+	then
+		environmental.setId( "environmentalAOPNewApp_Lawyers" );
+		environmental.setDescription( "Increase in Environmental work.  If the work is other than incidental to a real estate purchase, it is a decline." );
+		environmental.setTooltip( "Are they providing Environmental as part of a real estate purchase or sale?" );
+end

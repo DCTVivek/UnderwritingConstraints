@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.plaintilff;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "missingLargestCase_Lawyers"
+	dialect "mvel"
+	when
+		missingLargestCase : PlaintiffSupp( plaintiffPercentage >= 50 && isLargestCaseMissing == "true" )
+	then
+		missingLargestCase.setId( "missingLargestCase_Lawyers" );
+		missingLargestCase.setDescription( "Plaintiff largest case size above 1M" );
+		missingLargestCase.setTooltip( "No explanation needed." );
+end

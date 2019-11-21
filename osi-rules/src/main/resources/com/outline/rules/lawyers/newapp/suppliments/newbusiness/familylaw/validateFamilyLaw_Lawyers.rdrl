@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.familylaw;
+
+import java.lang.Number;
+import com.outline.rules.pojo.FamilyLawSupplement;
+
+rule "validateFamilyLaw_Lawyers"
+	dialect "mvel"
+	when
+		validateFamilyLaw : FamilyLawSupplement( surrogacy > 0 || assistedReproductive > 0 || divorceAssetsOver > 0 )
+	then
+		validateFamilyLaw.setId( "validateFamilyLaw_Lawyers" );
+		validateFamilyLaw.setDescription( "Applicant practices in higher risk area(s) of family law." );
+		validateFamilyLaw.setTooltip( "If applicant has Divorce over 5M, please provide number of divorce engagements over $5M. Please also provide the three highest divorce cases in the past three years." );
+end

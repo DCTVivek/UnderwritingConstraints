@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "isFirmOperateUnderOtherLegalName_Lawyers"
+	dialect "mvel"
+	when
+		isFirmOperateUnderOtherLegalName : Firm( isApplFirmWithDifferentLegalName == "Y" )
+	then
+		isFirmOperateUnderOtherLegalName.setId( "isFirmOperateUnderOtherLegalName_Lawyers" );
+		isFirmOperateUnderOtherLegalName.setDescription( "Practicing under a name other than the firm name must be approved. Why does the firm have another name." );
+		isFirmOperateUnderOtherLegalName.setTooltip( "Nature of relationship with applicant firm? Same attorneys operating under both names? Same legal services provided by both names? If not, explain." );
+end

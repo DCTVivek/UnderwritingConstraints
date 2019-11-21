@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "governmentNBAOP_Lawyers"
+	dialect "mvel"
+	when
+		governmentNBAOP : AOP( governmentAOPPercentage > 0 )
+	then
+		governmentNBAOP.setId( "governmentNBAOP_Lawyers" );
+		governmentNBAOP.setDescription( "Government work - review population governmental entity" );
+		governmentNBAOP.setTooltip( " If population is over 1M, it is outside of our authority." );
+end

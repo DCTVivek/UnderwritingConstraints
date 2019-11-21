@@ -1,0 +1,19 @@
+package com.outline.rules.lawyerssuppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.WillsTrustsEstates;
+
+rule "checkApplHavediscretionaryControlOverFunds_Lawyers"
+	dialect "mvel"
+
+	when checkApplHavediscretionaryControlOverFunds : WillsTrustsEstates(isApplHaveControlOverFunds=="Y" )
+	then
+		checkApplHavediscretionaryControlOverFunds.setId("checkApplHavediscretionaryControlOverFunds_Lawyers");
+		checkApplHavediscretionaryControlOverFunds.setDescription("Wills / Estates Firm has discretionary control of funds. May be acting as executor, rep, or trustee.");
+		checkApplHavediscretionaryControlOverFunds.setTooltip("1. What are they doing and for whom?
+                2. Is any lawyer in the firm a beneficiary of any trust serviced by the firm?
+                3. Does the firm provide investment advisory services or have the authority to invest or divest assets belonging to a client?
+                4. Is there always a written agreement for the scope of legal services provided?
+                5. For how many trusts does the firm act as trustee?
+                6. How much are the total assets of the three largest trusts under management by the firm?");
+end

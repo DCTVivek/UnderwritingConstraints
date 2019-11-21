@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.morepracticemanagement.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.MorePracticeManagementNewApp;
+
+rule "IsFirmProvidedLegalServiceNewApp_Lawyers"
+	dialect "mvel"
+	when
+		IsFirmProvidedLegalService : MorePracticeManagementNewApp( isFirmProvidedLegalService == "Y" )
+	then
+		IsFirmProvidedLegalService.setId( "IsFirmProvidedLegalServiceNewApp_Lawyers" );
+		IsFirmProvidedLegalService.setDescription( "Firms providing legal services related to securities / investments or hedge funds or mass tort/class action as lead counsel are outside our authority.  Firms providing legal services for mass tort/class as other than lead counsel need to be reviewed." );
+		IsFirmProvidedLegalService.setTooltip( "Firms providing legal services for mass tort/class as other than lead counsel need to be reviewed." );
+end

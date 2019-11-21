@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AopNew;
+
+rule "ProductLiabilityPlaintiff_Lawyers"
+	dialect "mvel"
+	when
+		ProductLiability : AopNew( productLiabilityPlaintiffAOPPercentage > 25 )
+	then
+		ProductLiability.setId( "ProductLiabilityPlaintiff_Lawyers" );
+		ProductLiability.setDescription( "Product Liability more than 25%." );
+		ProductLiability.setTooltip( "No explanation needed." );
+end

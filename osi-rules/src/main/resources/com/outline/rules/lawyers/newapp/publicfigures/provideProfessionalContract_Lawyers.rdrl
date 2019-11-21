@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.publicfigures;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PublicFiguresAjaxExpansions;
+
+rule "provideProfessionalContract_Lawyers"
+	dialect "mvel"
+	when
+		provideProfessionalContract : PublicFiguresAjaxExpansions( provideProfessionalContract == "Y" )
+	then
+		provideProfessionalContract.setId( "provideProfessionalContract_Lawyers" );
+		provideProfessionalContract.setDescription( "Providing business management/contracts for a public figure." );
+		provideProfessionalContract.setTooltip( "Decline (Outside of C&F Authority Guidelines)" );
+end

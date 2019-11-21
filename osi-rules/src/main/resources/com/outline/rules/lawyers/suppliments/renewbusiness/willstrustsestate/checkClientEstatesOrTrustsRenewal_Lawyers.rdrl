@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.WillsTrustsEstates;
+
+rule "checkClientEstatesOrTrustsRenewal_Lawyers"
+	dialect "mvel"
+
+	when checkClientEstatesOrTrustsRenewal : WillsTrustsEstates(numberOfEstateOver5Million>numberOfEstateOver5MillionOld , numberOfEstateOver10Million>numberOfEstateOver10MillionOld )
+	then
+		checkClientEstatesOrTrustsRenewal.setId("checkClientEstatesOrTrustsRenewal_Lawyers");
+		checkClientEstatesOrTrustsRenewal.setDescription("Estates or trusts valued over 5M or 10M.");
+		checkClientEstatesOrTrustsRenewal.setTooltip("Are they specializing in Wills/Estates and Trusts.");
+end

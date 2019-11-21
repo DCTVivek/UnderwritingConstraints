@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.litigationsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.LitigationSupplement;
+
+rule "CasesSettledBeforeTrail_Lawyers"
+	dialect "mvel"
+	when
+		CasesSettledBeforeTrail : LitigationSupplement( perOfCasesSettledBeforeTrail < 80 )
+	then
+		CasesSettledBeforeTrail.setId( "CasesSettledBeforeTrail_Lawyers" );
+		CasesSettledBeforeTrail.setDescription( "If firm has a large caseload, lack of settlement is very time consuming." );
+		CasesSettledBeforeTrail.setTooltip( "No explanation needed." );
+end

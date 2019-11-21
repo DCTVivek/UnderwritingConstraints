@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.bankruptcy;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BankruptcySupplement;
+
+rule "PreBankruptcyServices_Lawyers"
+	dialect "mvel"
+	when
+		PreBankruptcyServices : BankruptcySupplement( preBankruptcyServices == "Y" )
+	then
+		PreBankruptcyServices.setId( "PreBankruptcyServices_Lawyers" );
+		PreBankruptcyServices.setDescription( "Connection with thrid party that provides debt relief or consolidation." );
+		PreBankruptcyServices.setTooltip( "Decline." );
+end

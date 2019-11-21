@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.WillsTrustsEstates;
+
+rule "checkClientEstatesOrTrusts_Lawyers"
+	dialect "mvel"
+	when
+		checkClientEstatesOrTrusts : WillsTrustsEstates( estateOver5Million > 0 || estateOver10Million > 0 )
+	then
+		checkClientEstatesOrTrusts.setId( "checkClientEstatesOrTrusts_Lawyers" );
+		checkClientEstatesOrTrusts.setDescription( "Estates or trusts valued over 5M or 10M." );
+		checkClientEstatesOrTrusts.setTooltip( "Provide the applicants three largest estates/trusts." );
+end

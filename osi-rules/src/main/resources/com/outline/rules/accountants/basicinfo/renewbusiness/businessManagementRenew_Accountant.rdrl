@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "businessManagementRenew_Accountant"
+	dialect "mvel"
+	when
+		businessManagementRenew : BasicInfoAcc( businessManagementNew > 0 || diffAopBusinessManagement > 10 )
+	then
+		businessManagementRenew.setId( "businessManagementRenew_Accountant" );
+		businessManagementRenew.setDescription( "Business Management AOP more than 0%." );
+		businessManagementRenew.setTooltip( "Business Mgt AOP questions: 1.Is it a permanent or temporary position and if so for how long has it been in place and how long will it continure.  2. Are they an employee or consultant.  3. Do they have any ownership and if so how much?" );
+end

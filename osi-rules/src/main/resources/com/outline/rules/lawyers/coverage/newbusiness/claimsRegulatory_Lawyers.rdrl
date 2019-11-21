@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "claimsRegulatory_Lawyers"
+	dialect "mvel"
+	when
+		claimsRegulatory : Coverage( isPersonnelBeSubOfAnyInvest == "Y" || isLawyerProfLiabClaimAgntAppl == "Y" || isAnyActOmmBecomeClaimAgntFirm == "Y" )
+	then
+		claimsRegulatory.setId( "claimsRegulatory_Lawyers" );
+		claimsRegulatory.setDescription( "Regulatory/Disciplinary Issue" );
+		claimsRegulatory.setTooltip( "Obtain the details and current status or outcome." );
+end

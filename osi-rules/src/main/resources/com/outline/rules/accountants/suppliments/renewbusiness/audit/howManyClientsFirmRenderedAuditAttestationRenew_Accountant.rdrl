@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "howManyClientsFirmRenderedAuditAttestationRenew_Accountant"
+	dialect "mvel"
+
+	when howManyClientsFirmRenderedAuditAttestationRenew : AuditAcc(firmRenderedAuditAtt>0)
+	then
+		howManyClientsFirmRenderedAuditAttestationRenew.setId("howManyClientsFirmRenderedAuditAttestationRenew_Accountant");
+		howManyClientsFirmRenderedAuditAttestationRenew.setDescription("Audit or attest services for clients that have subsequently declared or filed bankruptcy, defaulted on a debt obligation, or became insolvent.");
+		howManyClientsFirmRenderedAuditAttestationRenew.setTooltip("Audit or attest services for clients that have subsequently declared or filed bankruptcy, defaulted on a debt obligation, or became insolvent.  Determine what the firm's audit opinion was prior to the client filing bankruptcy or became insolvent. How long has the firm had the client?");
+end

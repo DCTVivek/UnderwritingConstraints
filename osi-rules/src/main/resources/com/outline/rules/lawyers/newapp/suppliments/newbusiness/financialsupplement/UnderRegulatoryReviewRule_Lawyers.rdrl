@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.financialsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.FinancialSupplement;
+
+rule "UnderRegulatoryReviewRule_Lawyers"
+	dialect "mvel"
+	when
+		UnderRegulatoryReview : FinancialSupplement( underRegulatoryReview == "Y" )
+	then
+		UnderRegulatoryReview.setId( "	UnderRegulatoryReviewRule_Lawyers" );
+		UnderRegulatoryReview.setDescription( "Financial Institition - Institution for which they provide services has been under regulatory review." );
+		UnderRegulatoryReview.setTooltip( "Decline." );
+end

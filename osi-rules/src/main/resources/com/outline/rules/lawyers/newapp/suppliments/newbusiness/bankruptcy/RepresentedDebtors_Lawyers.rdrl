@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.bankruptcy;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BankruptcySupplement;
+
+rule "RepresentedDebtors_Lawyers"
+	dialect "mvel"
+	when
+		RepresenrDebtors : BankruptcySupplement( representedDebtors == "Y" )
+	then
+		RepresenrDebtors.setId( "RepresentedDebtors_Lawyers" );
+		RepresenrDebtors.setDescription( "Bankruptcy case with debt above $10M." );
+		RepresenrDebtors.setTooltip( "Over the last three years, what are the values of the three largest bankruptcy cases the firm has handled?" );
+end

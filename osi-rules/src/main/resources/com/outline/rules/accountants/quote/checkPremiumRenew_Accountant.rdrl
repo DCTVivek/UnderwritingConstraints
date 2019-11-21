@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.quote;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PremiumAcc;
+
+rule "checkPremiumRenew_Accountant"
+	dialect "mvel"
+
+	when checkPremiumRenew : PremiumAcc(coutOfPremium>0)
+	then
+		checkPremiumRenew.setId("checkPremiumRenew_Accountant");
+		checkPremiumRenew.setDescription("Premium above 3,000.");
+		checkPremiumRenew.setTooltip("Premium above 3,000. Need approval from underwriting.");
+end

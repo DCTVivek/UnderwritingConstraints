@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.financialsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.FinancialSupplement;
+
+rule "BankruptInsolventRule_Lawyers"
+	dialect "mvel"
+	when
+		BankruptInsolventRule : FinancialSupplement( haveBecomeBankruptInsolvent == "Y" )
+	then
+		BankruptInsolventRule.setId( "BankruptInsolventRule_Lawyers" );
+		BankruptInsolventRule.setDescription( "Financial Institition - Institution for which they provide services has become bankrupt." );
+		BankruptInsolventRule.setTooltip( "Decline." );
+end

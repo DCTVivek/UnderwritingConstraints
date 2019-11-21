@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "claimsRegulatoryRenewal_Lawyers"
+	dialect "mvel"
+	when
+			claims: Coverage( isPersonnelBeSubOfAnyInvest == "Y" || isLawyerProfLiabClaimAgntAppl == "Y" || isAnyActOmmBecomeClaimAgntFirm == "Y" )
+	then
+		claims.setId( "claimsRegulatoryRenewal_Lawyers" );
+		claims.setDescription( "Claims or regulatory issues." );
+		claims.setTooltip( "Get a complete claims supplement along with a through description of the claim and when it was reported. If regulatory, get the details and current status or outcome." );
+end

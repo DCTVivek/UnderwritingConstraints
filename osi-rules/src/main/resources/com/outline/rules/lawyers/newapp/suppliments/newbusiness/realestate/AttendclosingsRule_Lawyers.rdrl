@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.RealEstateSupplementsNewApp;
+
+rule "AttendclosingsRule_Lawyers"
+	dialect "mvel"
+	when
+		RealSupp : RealEstateSupplementsNewApp( attendClosings == "Y" )
+	then
+		RealSupp.setId( "AttendclosingsRule_Lawyers" );
+		RealSupp.setDescription( "Non attorney staff attending closings on behalf of the attorney." );
+		RealSupp.setTooltip( "How frequently do non attorney support staff attend closings? How many support staff attend closings? What experience does the support staff have managing closings?" );
+end

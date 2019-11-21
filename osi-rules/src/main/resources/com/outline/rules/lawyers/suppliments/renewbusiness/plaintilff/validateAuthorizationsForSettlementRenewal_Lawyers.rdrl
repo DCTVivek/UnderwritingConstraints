@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.plaintilff;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "validateAuthorizationsForSettlementRenewal_Lawyers"
+	dialect "mvel"
+
+	when validateAuthorizationsForSettlementRenewal : PlaintiffSupp(isSettlementAggrementsUsedOld=="Y" && isSettlementAggrementsUsed=="N" )
+	then
+		validateAuthorizationsForSettlementRenewal.setId("validateAuthorizationsForSettlementRenewal_Lawyers");
+		validateAuthorizationsForSettlementRenewal.setDescription("Plaintiff written authorizations not used.");
+		validateAuthorizationsForSettlementRenewal.setTooltip("Worker's Comp is determined by the court so there are not settlement authorizations used.  If other Plaintiff AOP's you need to know why they are not being used.");
+end

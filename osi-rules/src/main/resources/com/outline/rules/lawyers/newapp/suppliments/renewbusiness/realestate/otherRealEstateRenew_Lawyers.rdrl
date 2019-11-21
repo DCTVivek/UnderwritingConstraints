@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.RealEstateSupplementsNewApp;
+
+rule "otherRealEstateRenew_Lawyers"
+	dialect "mvel"
+	when
+		otherRealEstate : RealEstateSupplementsNewApp( otherAopResidentialPercentageNew > ( 0 ) || otherAopCommercialPercentageNew > ( 0 ) || otherDescResNew != ( otherDescResPrior ) || otherDescCommNew != ( otherDescCommPrior ) )
+	then
+		otherRealEstate.setId( "otherRealEstateRenew_Lawyers" );
+		otherRealEstate.setDescription( "Real Estate Other - review description" );
+		otherRealEstate.setTooltip( "Review description of other for completeness." );
+end

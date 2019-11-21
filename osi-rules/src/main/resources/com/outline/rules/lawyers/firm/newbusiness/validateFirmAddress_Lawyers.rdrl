@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "validateFirmAddress_Lawyers"
+	dialect "mvel"
+
+	when validateFirmAddress : Firm(containsPOBOXInAddress=="true")
+	then
+		validateFirmAddress.setId("validateFirmAddress_Lawyers");
+		validateFirmAddress.setDescription("The address must be a physical address not a PO box.");
+		validateFirmAddress.setTooltip("In addition to the PO box, get a physical address.");
+end

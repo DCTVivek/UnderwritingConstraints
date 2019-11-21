@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.ResidentialSupplement;
+
+rule "checkSpeculativeAop_Lawyers"
+	dialect "mvel"
+	when
+		checkSpeculativeAop : ResidentialSupplement( speculativeAopCommercialPercentage > 0 )
+	then
+		checkSpeculativeAop.setId( "checkSpeculativeAop_Lawyers" );
+		checkSpeculativeAop.setDescription( "Decline - due Speculative Real Estate, Investment Trusts, or Real Estate Syndications. " );
+		checkSpeculativeAop.setTooltip( "Decline - due Speculative Real Estate, Investment Trusts, or Real Estate Syndications" );
+end

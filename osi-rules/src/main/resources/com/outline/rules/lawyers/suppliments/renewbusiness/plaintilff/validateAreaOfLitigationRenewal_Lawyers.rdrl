@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.plaintilff;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "validateAreaOfLitigationRenewal_Lawyers"
+	dialect "mvel"
+
+	when validateAreaOfLitigationRenewal : PlaintiffSupp(medicalMalpracticeAol>medicalMalpracticeAolOld || productsLiabilityAol>productsLiabilityAolOld || otherAol>otherAolOld || toxicTortAol>toxicTortAolOld )
+	then
+		validateAreaOfLitigationRenewal.setId("validateAreaOfLitigationRenewal_Lawyers");
+		validateAreaOfLitigationRenewal.setDescription("Plaintiff AOP in Med Mal/ Products Liability / Toxic Tort or Other.");
+		validateAreaOfLitigationRenewal.setTooltip("Products Liability / Toxic Tort - are they other than lead counsel.  What is the case size and plaintiff size?  For Med Mal, how many cases and what size?  For Other, get a detailed explanation of what thy are doing?");
+end

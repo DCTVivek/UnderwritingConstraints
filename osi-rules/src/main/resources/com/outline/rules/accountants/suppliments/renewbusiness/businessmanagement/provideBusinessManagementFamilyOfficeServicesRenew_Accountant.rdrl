@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.businessmanagement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BusinessManagementAcc;
+
+rule "provideBusinessManagementFamilyOfficeServicesRenew_Accountant"
+	dialect "mvel"
+	when
+		provideBusinessManagementFamilyOfficeServicesRenew : BusinessManagementAcc( isControlFundsForBusinessAndEntimentFc == "Y" )
+	then
+		provideBusinessManagementFamilyOfficeServicesRenew.setId( "provideBusinessManagementFamilyOfficeServicesRenew_Accountant" );
+		provideBusinessManagementFamilyOfficeServicesRenew.setDescription( "Firm provided management services for investment ventures." );
+		provideBusinessManagementFamilyOfficeServicesRenew.setTooltip( "Firm provided management services for investment ventures." );
+end

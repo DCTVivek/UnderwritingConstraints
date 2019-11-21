@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "fullPriorActDateInsuranceCoverage_Accountant"
+	dialect "mvel"
+	when
+		fullPriorActDateInsuranceCoverage : BasicInfoAcc( firmYear < "10" )
+	then
+		fullPriorActDateInsuranceCoverage.setId( "fullPriorActDateInsuranceCoverage_Accountant" );
+		fullPriorActDateInsuranceCoverage.setDescription( "Full prior acts requires 10 years of continuous insurance" );
+		fullPriorActDateInsuranceCoverage.setTooltip( "Full prior acts requires 10 years of continuous insurance - Obtain copy of the dec page from prior carrier" );
+end

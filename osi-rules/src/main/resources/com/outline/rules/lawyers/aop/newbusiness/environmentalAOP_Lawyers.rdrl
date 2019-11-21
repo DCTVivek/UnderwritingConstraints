@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "environmentalAOP_Lawyers"
+	dialect "mvel"
+	when
+		environmentalAOP : AOP( environmentalAOPPercentage > 0 )
+	then
+		environmentalAOP.setId( "environmentalAOP_Lawyers" );
+		environmentalAOP.setDescription( "If Environmental AOP has above 0%, it must be approved by UW. If the work is other than incidental to a real estate purchase, it requires C&F Referal." );
+		environmentalAOP.setTooltip( "Does attorney expect percentage to continue? How many engagements has firm handled in each of the past three years? Describe nature of Environmental services." );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "banksBrokersInsuranceCompaniesInvestmentCompaniesRenew_Accountant"
+	dialect "mvel"
+
+	when banksBrokersInsuranceCompaniesInvestmentCompaniesRenew : AuditAcc(auditClients_1n>0 ||  auditClients_2n>0 ||  auditClients_8n>0 ||  auditClients_9n>0 )
+	then
+		banksBrokersInsuranceCompaniesInvestmentCompaniesRenew.setId("banksBrokersInsuranceCompaniesInvestmentCompaniesRenew_Accountant");
+		banksBrokersInsuranceCompaniesInvestmentCompaniesRenew.setDescription("Audit - non public - Firm does work for Banks, Lending Institutions, Broker/Dealers, Insurance Companies, Investment companies & Funds, or Publically Traded companies. These are ouside of our authority.");
+		banksBrokersInsuranceCompaniesInvestmentCompaniesRenew.setTooltip("Audit Non Public - If Banks and Lending Institutions. Broker/Dealers, Insurance Companies, Investment companies, or Publically Traded companies, it must be referred to C & F and will most likely be a decline");
+end

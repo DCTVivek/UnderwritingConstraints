@@ -1,0 +1,97 @@
+package com.outline.rules.accountants.general.newbusiness;
+import com.util.Context;
+
+rule "anySolePractitionerAccountingFirm_Accountant_old"
+	when ctx : Context(this["isAnyFirmMeargedOrAcquired"]=="Y")
+	then
+		ctx.put("question","Firm has mergered or acquired a firm.");
+		ctx.put("hint","Review details with client to determine if the acquired firm is  covered with a tail or if they are included in the prior acts?  Need to understand the other firms practice.");
+end
+
+rule "controlOrDisburseClientFunds_Accountant_old"
+	when ctx : Context(this["isControlClientFunds"]=="Y")
+	then
+		ctx.put("question","Firms controls or disburses client funds.");
+		ctx.put("hint","Determine for how many clients, amounts and the circumstances and under what condiitons and controls.");
+end
+
+rule "servingTrusteeCotrusteeExecutor_Accountant_old"
+	when ctx : Context(this["isServedAsTrustee"]=="Y")
+	then
+		ctx.put("question","Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client.");
+		ctx.put("hint","Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client. Review supplement - if the applicant is a beneficiary of a personal trust valued in excess of $500,000 - it is a Decline");
+end
+
+rule "servingOfficerDirectorPartner_Accountant_old"
+	when ctx : Context(this["isFirmRenderedServiceForAnyClient"]=="Y")
+	then
+		ctx.put("question","Firm is serving as an officer, director, partner, manager or other member of a client's governing body.");
+		ctx.put("hint","Firm is serving as an officer, director, partner, manager or other member of a client's governing body.  Review supplement.  If the industry type is: Banks, Broker/Dealers,Investment Companies and Funds, Hedge Funds, Mutual Funds, Syndication Mangers - Decline");
+end
+
+rule "policyExcludeCoveragePredecessorFirmAffiliatesClients_Accountant_old"
+	when ctx : Context(this["isPolicyExcludesCoverage"]=="Y")
+	then
+		ctx.put("question","Exclusions on the prior policy. ");
+		ctx.put("hint","Review explanation - obtain copy of exclusion from prior policy");
+end
+rule "officersConductBusinessUnderSeparateEntity_Accountant_old"
+	when ctx : Context(this["isFirmRenderingServices"]=="Y")
+	then
+		ctx.put("question","Firm providing services under separate entity name. ");
+		ctx.put("hint","Separate Entity: Get and explaination of what it is and what does and why the need for the separate entity.  Does it have its own insurance.  Need to understand the relationship.");
+end
+
+rule "OrganizePromoteReferInvestInvestmentVentures_Accountant_old"
+	when ctx : Context(this["isInvestmentVenture"]=="Y")
+	then
+		ctx.put("question","Firm is organizing, promoting or referring others to invest in investment ventures.  Outside the UW appetite of the program. Decline");
+		ctx.put("hint","Firm is organizing, promoting or referring others to invest in investment ventures.  Outside the UW appetite of the program. Decline");
+end
+
+rule "investmentFundsHedgeFundsMutualFunds_Accountant_old"
+	when ctx : Context(this["isSyndicationManagers"]=="Y")
+	then
+		ctx.put("question","Firm is providing services to investment funds, hedge funds, mutual funds or syndication managers and is outside the UW appetite of the program. Decline");
+		ctx.put("hint","Firm is providing services to investment funds, hedge funds, mutual funds or syndication managers and is outside the UW appetite of the program. Decline");
+end
+rule "renderServicesOtherThanTaxServices_Accountant_old"
+	when ctx : Context(this["isFirmRenderedAuditOrAttestService"]=="Y")
+	then
+		ctx.put("question","Equity interest of more than 10% in client for whom services are performed. Services are not covered.");
+		ctx.put("hint","Equity interest of more than 10% in cliente for whom services are perfomed. Firm needs to be advised that the services will not be covered.  See exclusion 9.");
+end
+
+rule "providedManagementServicesForInvestmentVentures_Accountant_old"
+	when ctx : Context(this["isManagementServiceProvided"]=="Y")
+	then
+		ctx.put("question","Firm is providing management services for investment ventures and therefore is outside the UW appetite of the program. Decline");
+		ctx.put("hint","Firm is providing management services for investment ventures and therefore is outside the UW appetite of the program. Decline");
+end
+
+rule "hasFirmArrangedFinancingBusinessBrokerOfferingPublicPrivateSecurities_Accountant_old"
+	when ctx : Context(this["isDebtOrEquityFinancing"]=="Y")
+	then
+		ctx.put("question","Firms arranges debt or equity financing, acts as a business broker, underwrites the offering of public or private securities, or prepares fairness opinions.Outside the UW appetite of the program.-Decline");
+		ctx.put("hint","Firms arranges debt or equity financing, acts as a business broker, underwrites the offering of public or private securities, or prepares fairness opinions.Outside the UW appetite of the program.-Decline");
+end
+rule "hasFirmPersonnelPredecessorsInvestedNonpublicInvestment_Accountant_old"
+	when ctx : Context(this["isNonPublicInvestmentDone"]=="Y")
+	then
+		ctx.put("question","Firms invests in  nonpublic investment venture in which a client has also invested.");
+		ctx.put("hint","Firms invests in  nonpublic investment venture in which a client has also invested.  Obtain  the details and circumstances.Understand and document if there is a potential conflict of interest.");
+end
+
+rule "checkCountOfFeeSuitInPastYears_Accountant_old"
+	when ctx : Context(this["coutOfFeeSuit"]>3)
+	then
+		ctx.put("question","More than 3 fee suites in the past 3 years.");
+		ctx.put("hint","Insure that the fee suit supplement is complete");
+end
+
+rule "checkAmountOfFeesSued_Accountant_old"
+	when ctx : Context(this["totalAmountfeeCal"]>25000)
+	then
+		ctx.put("question","Fee suit amount in the past 3 years greater than $25,000.");
+		ctx.put("hint","Insure that the fee suit supplement is complete");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.financialsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.FinancialSupplement;
+
+rule "EquityInterestRule_Lawyers"
+	dialect "mvel"
+	when
+		EquityInterestRule : FinancialSupplement( equityInterest == "Y" )
+	then
+		EquityInterestRule.setId( "EquityInterestRule_Lawyers" );
+		EquityInterestRule.setDescription( "Financial Institution - had a loan or equity interest in financial institution to which they are providing services." );
+		EquityInterestRule.setTooltip( "Decline." );
+end

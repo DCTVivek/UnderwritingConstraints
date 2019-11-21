@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "bankruptcyAOP_Lawyers"
+	dialect "mvel"
+	when
+		bankruptcyAOP : AOP( bankruptcyPercentage > 35 )
+	then
+		bankruptcyAOP.setId( "bankruptcyAOP_Lawyers" );
+		bankruptcyAOP.setDescription( "Bankruptcy above 35% - review supp" );
+		bankruptcyAOP.setTooltip( "No explanation required." );
+end

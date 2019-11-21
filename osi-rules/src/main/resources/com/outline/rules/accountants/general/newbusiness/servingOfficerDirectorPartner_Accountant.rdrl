@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "servingOfficerDirectorPartner_Accountant"
+	dialect "mvel"
+
+	when servingOfficerDirectorPartner : GeneralAcc(isFirmRenderedServiceForAnyClient=="Y")
+	then
+		servingOfficerDirectorPartner.setId("servingOfficerDirectorPartner_Accountant");
+		servingOfficerDirectorPartner.setDescription("Firm is serving as an officer, director, partner, manager or other member of a client's governing body.");
+		servingOfficerDirectorPartner.setTooltip("Firm is serving as an officer, director, partner, manager or other member of a client's governing body.  Review supplement.  If the industry type is: Banks, Broker/Dealers,Investment Companies and Funds, Hedge Funds, Mutual Funds, Syndication Mangers - Decline");
+end

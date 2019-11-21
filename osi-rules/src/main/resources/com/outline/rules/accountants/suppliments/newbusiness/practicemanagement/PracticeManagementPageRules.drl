@@ -1,0 +1,9 @@
+package com.outline.rules.accountants.suppliments.newbusiness.practicemanagement;
+import com.util.Context;
+
+rule "hasFirmReceivedNonMonetaryCompensation_Accountant_old"
+	when ctx : Context(this["isNonMonetaryCompensationRecieved"]=="Y")
+	then
+		ctx.put("question","Firm received non-monetary compensation.");
+		ctx.put("hint","Firm received non-monetary compensation. Review additional questions on industry, name and services rendered. Be aware of potential conflict of interest.");
+end

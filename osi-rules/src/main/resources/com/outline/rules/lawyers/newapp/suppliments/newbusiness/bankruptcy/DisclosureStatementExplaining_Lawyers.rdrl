@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.bankruptcy;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BankruptcySupplement;
+
+rule "DisclosureStatementExplaining_Lawyers"
+	dialect "mvel"
+	when
+		DisclosureStatementExplaining : BankruptcySupplement( disclosureStatementExplaining == "N" )
+	then
+		DisclosureStatementExplaining.setId( "DisclosureStatementExplaining_Lawyers" );
+		DisclosureStatementExplaining.setDescription( "Firm does not have uniform disclosure statement." );
+		DisclosureStatementExplaining.setTooltip( "Decline." );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.willsEstateNewApp;
+
+rule "otherWillsEstateNewApp_Lawyers"
+	dialect "mvel"
+	when
+		otherWillsEstate : willsEstateNewApp( otherWillsEstate > 0 )
+	then
+		otherWillsEstate.setId( "otherWillsEstateNewApp_Lawyers" );
+		otherWillsEstate.setDescription( "Wills - other % above zero - review description" );
+		otherWillsEstate.setTooltip( "No explanation needed." );
+end

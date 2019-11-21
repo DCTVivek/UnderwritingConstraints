@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "ratedAttorneysRenew_Lawyers"
+	dialect "mvel"
+
+	when ratedAttorneysRenew : Firm(currentRatedAttorneyCount>5)
+	then
+		ratedAttorneysRenew.setId("ratedAttorneysRenew_Lawyers");
+		ratedAttorneysRenew.setDescription("Added attorney's to make it more than  5 full time attorneys. Organic growth and need C & F clearance.");
+		ratedAttorneysRenew.setTooltip("Need C & F clearance for organic growth");
+end

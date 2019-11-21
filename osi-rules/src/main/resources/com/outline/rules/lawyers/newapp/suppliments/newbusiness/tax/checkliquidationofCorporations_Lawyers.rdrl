@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checkliquidationofCorporations_Lawyers"
+	dialect "mvel"
+	when
+		checkliquidationofCorporations : Tax( liquidationofCorporations > 0 )
+	then
+		checkliquidationofCorporations.setId( "checkliquidationofCorporations_Lawyers" );
+		checkliquidationofCorporations.setDescription( "Tax - providing liquidation of corporations" );
+		checkliquidationofCorporations.setTooltip( "Decline." );
+end

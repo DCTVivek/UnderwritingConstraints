@@ -1,0 +1,171 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+import com.util.Context;
+
+rule "hasFirmMergedBusinessSolePractitionerRenew_Accountant_old"
+	when ctx : Context(this["isAnyFirmMeargedOrAcquired"]=="Y")
+	then
+		ctx.put("question","Firm has mergered or acquired a firm.");
+		ctx.put("hint","Review details with client to determine if the acquired firm is  covered with a tail or if they are included in the prior acts?  Need to understand the other firms practice.");
+end
+rule "hasFirmEnteredNewEngagementRequiringFirmControlDisburseRenew_Accountant_old"
+	when ctx : Context(this["isControlClientFunds"]=="Y")
+	then
+		ctx.put("question","Firms controls or disburses client funds.");
+		ctx.put("hint","Determine for how many clients, amounts and the circumstances and under what condiitons and controls.");
+end
+rule "hasFirmEnteredEngagementServingTrusteeCoTrusteeRenew_Accountant_old"
+	when ctx : Context(this["isServedAsTrustee"]=="Y")
+	then
+		ctx.put("question","Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client.");
+		ctx.put("hint","Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client. Review supplement - if the applicant is a beneficiary of a personal trust valued in excess of $500,000 - it is a Decline");
+end
+rule "hasFirmEnteredEngagementServingOfficerDirectorRenew_Accountant_old"
+	when ctx : Context(this["isFirmRenderedServiceForAnyClient"]=="Y")
+	then
+		ctx.put("question","Firm is serving as an officer, director, partner, manager or other member of a client's governing body.");
+		ctx.put("hint","Firm is serving as an officer, director, partner, manager or other member of a client's governing body.  Review supplement.  If the industry type is: Banks, Broker/Dealers,Investment Companies and Funds, Hedge Funds, Mutual Funds, Syndication Mangers - Decline");
+end
+rule "otherAOPRenew_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_20"]>0 )
+	then
+		ctx.put("question","Other AOP above 0% - review description");
+		ctx.put("hint","Other AOP: Review description and if it belongs in another category contact insured and talk to them about where it belongs. Anything in Other AOP has to be reviewed by UW.");
+end
+rule "regulatoryInvestigationInquirySuspendedPracticeChargedRenew_Accountant_old"
+	when ctx : Context(this["isAnyRegulatoryInquiry"]=="Y")
+	then
+		ctx.put("question","Firms has a regulatory investigations, suspensions or criminal charges.");
+		ctx.put("hint","Determine the circumstances and disposition of the regulatory investigation, suspension or criminal charge.");
+end
+rule "anyAccountantsProfessionalLiabilityClaimsMadeAgainstFirmRenew_Accountant_old"
+	when ctx : Context(this["isAwarenessOfAnyProfLiability"]=="Y")
+	then
+		ctx.put("question","Reported Claim.");
+		ctx.put("hint","Make sure the supplement is complete.");
+end
+rule "anyActOmissionFeeDisputeBasisOfClaimAgainstFirmRenew_Accountant_old"
+	when ctx : Context(this["isAwarenessOfAnyProfLiabilitySuitAgainst"]=="Y")
+	then
+		ctx.put("question","Potential Claim");
+		ctx.put("hint","Make sure the supplement is complete.");
+end
+rule "auditPubliclyheldRenew_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_5"]>0 )
+	then
+		ctx.put("question","Public Audit AOP - this risk is ouside our program authority - decline.");
+		ctx.put("hint","Public Audit is outside of the program authority - decline");
+end
+rule "SECWorkOtherAuditRenew_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_21"]>0 )
+	then
+		ctx.put("question","SEC Work - AOP is outside our underwriting authority - decline");
+		ctx.put("hint","SEC Work - AOP is outside our underwriting authority - decline");
+end
+rule "investmentFinancialRenew_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_19"]>0 )
+	then
+		ctx.put("question","Investment / Financial Planning AOP greater than 0%. If greater than 25% it must be approved by C & F");
+		ctx.put("hint","Investment / Financial Planning AOP.  Obtain the detials on what services are they providing and to who. If more than 25% it must be referred to C & F.");
+end
+rule "firmAddressRenew_Accountant_old"
+	when ctx : Context(this["containsPOBOXInAddressRenew"]=="true")
+	then
+		ctx.put("question","Address is PO Box and must be a physical address.");
+		ctx.put("hint","In addition to the PO box, get a physical address.");
+end
+rule "validateEffectiveDateWithCurrentDateRenew_Accountant_old"
+		when ctx : Context(this["isCurrentDateAfterEfectiveDateRenew"]=="true")
+	then
+		ctx.put("question","The effective date cannot be after the current date.");
+		ctx.put("hint","Effective date after the current date.");
+end
+rule "checkStateRenew_Accountant_old"
+		when ctx : Context(this["newPolicyState"]!=this["oldPolicyState"])
+	then
+		ctx.put("question","Change of state may require a new policy.");
+		ctx.put("hint","State has been changed. Get the details of why the change.");
+end
+rule "totalNoOfPersonRenew_Accountant_old"
+		when ctx : Context(this["totalFirmPersonnel"]>15 )
+	then
+		ctx.put("question","Large firm. Total number of firm personell is above 15 people.");
+		ctx.put("hint","Total number of firm personell is above 15 people. Large firm.");
+end
+rule "annualRevenueLastBusinessYearRenew_Accountant_old"
+		when ctx : Context(this["annualRevenue_Amount0"]<20000 )
+	then
+		ctx.put("question","Revenue - Firm is below 20,000 may be part -time.");
+		ctx.put("hint","Revenue - Firm is either below 20,000 determine if they are part-time or moonlighting.");
+end
+rule "otherConsultingRenew_Accountant_old"
+		when ctx : Context(this["diffAopOthrConsultant"]>0 )
+	then
+		ctx.put("question","Other consulting AOP, description needs to be reviewed.");
+		ctx.put("hint","Other Consulting AOP - Get a full description of the consulting that the accountant is providing as well as to what type of clients.");
+end
+rule "managementConsultingBusinessPlanningRenew_Accountant_old"
+	when ctx : Context(this["diffAopManagement"]>10)
+	then
+		ctx.put("question","AOP - Management consulting and business planning practice.");
+		ctx.put("hint","Management Consulting / Business Planning AOP - Get a description of what clients they are providing management consulting to and details on the consulting engagment.  Is it ongoing.  Business planning - determine 1. for how many clients, 2. is it ongoing, 3. Is it for mergers and acqisitions. 4. Is valuation part of the engagement.");
+end
+rule "businessValuationRenew_Accountant_old"
+		when ctx : Context(this["flagForBusinessValuation"]=="true")
+	then
+		ctx.put("question","Business valuation AOP.  If greater than 25% of total revenue, valuations must  be on businesses less than 20 Million in value.");
+		ctx.put("hint","Business Valuation: Need names and services provided - If publically held corporation - If greater than 25% valuations must  be on businesses less than 20 Million in value.");
+end
+rule "forecastsProjectionsRenew_Accountant_old"
+		when ctx : Context(this["forecastsProjectionsNew"]>0 ||this["diffAopForecastsProjections"]>5)
+	then
+		ctx.put("question","Forecasts / Projections AOPmore than 0%.");
+		ctx.put("hint","Forecasts / Projections AOP - For who and name and type of company, does it have to do with the sale of a company?");
+end
+rule "mergersAcquisitionsRenew_Accountant_old"
+		when ctx : Context(this["mergersAcquisitionsNew"]>0 ||this["diffAopMergersAcquisitions"]>10)
+	then
+		ctx.put("question","Mergers and Acquisitions-More than 0% in Mergers and Acquisitions.");
+		ctx.put("hint","Mergers and Acquisitions AOP - For who, when, how many");
+end
+rule "businessManagementRenew_Accountant_old"
+		when ctx : Context(this["businessManagementNew"]>0 ||this["diffAopBusinessManagement"]>10)
+	then
+		ctx.put("question","Business Management AOP more than 0%.");
+		ctx.put("hint","Business Mgt AOP questions: 1.Is it a permanent or temporary position and if so for how long has it been in place and how long will it continure.  2. Are they an employee or consultant.  3. Do they have any ownership and if so how much?");
+end
+rule "erisaPensionPlansRenew_Accountant_old"
+		when ctx : Context(this["erisaPensionNew"]>0 ||this["diffAopErisaPension"]>10)
+	then
+		ctx.put("question","Erisa/Pension plans  AOP greater than 0%.  If greater than 25% it must be approved by C & F");
+		ctx.put("hint","Erisa/Pension plans  AOP - Who for, and services provided, is it a public company.");
+end
+rule "trusteeServicesRenew_Accountant_old"
+		when ctx : Context(this["trusteeServicesNew"]>0 ||this["diffAopTrusteeServices"]>10)
+	then
+		ctx.put("question","Trustee AOP greater than 0%.");
+		ctx.put("hint","Trustee AOP questions: 1. What services are provided? 2. Are they activley managing the trust?  3. How many and the value of each. Is applicant  a beneficiary of a personal trust valued in excess of $500,000?");
+end
+rule "checkAmountOfFeesSuedRenew_Accountant_old"
+	when ctx : Context(this["totalAmountfeeCal"]>25000)
+	then
+		ctx.put("question","Fee suits for more than 25%");
+		ctx.put("hint","Insure that the fee suit supplement is complete");
+end
+rule "percentageRevenueFromLargestRevenueClientRenew_Accountant_old"
+	when ctx : Context(this["percentOfRevenueFromLargestClient"]>39)
+	then
+		ctx.put("question","Large client above 39%. Review if the firm is providing audit services to a large client. Conflict of interest in rendering and audit opinion.");
+		ctx.put("hint","Large client above 39%. Obtain the name and kind of client - how are they handling conflict of interest. Are they providing audit services.");
+end
+rule "annualRevenueRenew_Accountant_old"
+	when ctx : Context(this["flagAnnualRevenue"]=="true")
+	then
+		ctx.put("question","Large firm - revenue above 2M");
+		ctx.put("hint","Revenue - Firm is above 2M in revenue. ");
+end
+rule "validateEffectiveDateWithDaysRenewBusiness_Accountant_old"
+		when ctx : Context(this["daysDifferenceForEfectiveDateRenew"]>90 )
+	then
+		ctx.put("question","Effective date cannot be more than 90 days prior to the current date for renewal or more than 60 days prior for new business.");
+		ctx.put("hint","    ");
+end

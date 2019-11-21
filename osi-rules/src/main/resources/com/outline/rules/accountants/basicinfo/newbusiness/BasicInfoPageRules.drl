@@ -1,0 +1,208 @@
+package com.outline.rules.accountants.basicinfo.newbusiness;
+import com.util.Context;
+
+
+rule "firmAddress_Accountant_old"
+	when ctx : Context(this["containsPOBOXInAddress"]=="true")
+	then
+		ctx.put("question","AauditPubliclyheld_Accountantddress is PO Box and must be a physical address.");
+		ctx.put("hint","In addition to the PO box, get a physical address.");
+end
+
+
+rule "validateEffectiveDateWithCurrentDateNewBusiness_Accountant_old"
+		when ctx : Context(this["isCurrentDateAfterEfectiveDate"]=="true")
+	then
+		ctx.put("question","The effective date cannot be after the current date.");
+		ctx.put("hint","Effective date after the current date.");
+end
+
+rule "validateEffectiveDateWithDaysNewBusiness_Accountant_old"
+		when ctx : Context(this["daysDifferenceForEfectiveDate"]>60 )
+	then
+		ctx.put("question","Effective date cannot be more than 90 days prior to the current date for renewal or more than 60 days prior for new business.");
+		ctx.put("hint","Effective date outside of guidelines.");
+end
+
+rule "totalNoOfPerson_Accountant_old"
+		when ctx : Context(this["totalFirmPersonnel"]>15 )
+	then
+		ctx.put("question","Large firm. Total number of firm personell is above 15 people.");
+		ctx.put("hint","Total number of firm personell is above 15 people. Large firm.");
+end
+
+rule "annualRevenueLastBusinessYear_Accountant_old"
+		when ctx : Context(this["annualRevenue_Amount0"]<20000 )
+	then
+		ctx.put("question","Revenue - Firm is below 20,000 may be part -time.");
+		ctx.put("hint","Revenue - Firm is either below 20,000 determine if they are part-time or moonlighting.");
+end
+
+rule "annualRevenueLastBusinessYear2M_Accountant_old"
+		when ctx : Context(this["annualRevenue_Amount0"]>2000000 )
+	then
+		ctx.put("question","Large firm - revenue above 2M");
+		ctx.put("hint","Revenue - Firm is above 2M in revenue.");
+end
+
+rule "auditPubliclyheld_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_5"]>0 )
+	then
+		ctx.put("question","Public Audit AOP - this risk is ouside our program authority - decline.");
+		ctx.put("hint","Public Audit is outside of the program authority - decline");
+end
+
+rule "otherConsulting_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_12"]>0 )
+	then
+		ctx.put("question","Other consulting AOP, description needs to be reviewed.");
+		ctx.put("hint","Other Consulting AOP -Get a full description of the consulting that the accountant is providing as well as to what type of clients.");
+end
+
+rule "businessValuation_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_15"]>0 )
+	then
+		ctx.put("question","Business valuation AOP.If greater than 25% of total revenue, valuations must be on businesses less than 20 Million in value.");
+		ctx.put("hint","Business Valuation: Need names and services provided - If publically held corporation - If greater than 25% valuations must be on businesses less than 20 Million in value.");
+end
+
+rule "SECWorkOtherAudit_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_21"]>0 )
+	then
+		ctx.put("question","SEC Work - AOP is outside our underwriting authority - decline");
+		ctx.put("hint","SEC Work - AOP is outside our underwriting authority - decline");
+end
+
+rule "investmentFinancial_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_19"]>0 )
+	then
+		ctx.put("question","Investment / Financial Planning AOP greater than 0%.If greater than 25% it must be approved by C & F");
+		ctx.put("hint","Investment / Financial Planning AOP.Obtain the detials on what services are they providing and to who.If more than 25% it must be referred to C & F.");
+end
+
+rule "otherAOP_Accountant_old"
+		when ctx : Context(this["aOP_Percentage_20"]>0 )
+	then
+		ctx.put("question","Other AOP above 0% - review description");
+		ctx.put("hint","Other AOP: Review description and if it belongs in another category contact insured and talk to them about where it belongs.Anything in Other AOP has to be reviewed by UW.");
+end
+
+rule "lastYearFirmRevenue_Accountant_old"
+		when ctx : Context(this["percentOfRevenueFromLargestClient"]>39 )
+	then
+		ctx.put("question","Large client above 39%. Review if the  firm is providing audit services to a large client. Conflict of interest in rendering and audit opinion.");
+		ctx.put("hint","Large client above 39%. Obtain the name and kind of client - how are they handling conflict of interest. Are they providing audit services.");
+end
+
+rule "validateLimitsNewBusiness_Accountant_old"
+	when ctx : Context(this["limitSequenceDifference"]>2)
+	then
+		ctx.put("question","Limits more than 2 step above current limit.");
+		ctx.put("hint","Limit: Why are they looking for the major increase in coverage - 2 steps above their current limit.");
+end
+
+rule "IsAnyRegulatoryInquiry_Accountant_old"
+	when ctx : Context(this["isAnyRegulatoryInquiry"]=="Y")
+	then
+		ctx.put("question","Firms has a regulatory investigations, suspensions or criminal charges.");
+		ctx.put("hint","Determine the circumstances and disposition of the regulatory investigation, suspension or criminal charge.");
+end
+
+rule "IsAwarenessOfAnyProfLiability_Accountant_old"
+	when ctx : Context(this["isAwarenessOfAnyProfLiability"]=="Y")
+	then
+		ctx.put("question","Reported Claim.");
+		ctx.put("hint","Make sure the supplement is complete.");
+end
+
+rule "IsAwarenessOfAnyProfLiabilitySuitAgainst_Accountant_old"
+	when ctx : Context(this["isAwarenessOfAnyProfLiabilitySuitAgainst"]=="Y")
+	then
+		ctx.put("question","Potential Claim.");
+		ctx.put("hint","Make sure the supplement is complete.");
+end
+
+rule "firmSECEntities_Accountant_old"
+	when ctx : Context(this["isPublicTradedAudited"]=="Y")
+	then
+		ctx.put("question","SEC related entity question answered Yes. Public Audit is not within the program authority.");
+		ctx.put("hint","SEC related entity question answered Yes. Public Audit is not within the program authority.");
+end
+
+rule "firmSalePromotionRecommendation_Accountant_old"
+	when ctx : Context(this["isPublicPrivateOfferingsDone"]=="Y")
+	then
+		ctx.put("question","Firms receiving commissions rather and accounting fees on the sale, promotion or recommendation of securites, insurance products, real estate or other investments are outside the UW appetite of the program.");
+		ctx.put("hint","Firms receiving commissions rather and accounting fees on the sale, promotion or recommendation of securites, insurance products, real estate or other investments are outside the UW appetite of the program.  Get the details of what they are doing and for who or Decline");
+end
+
+rule "firmSecuritiesrealEstateOtherInvestments_Accountant_old"
+	when ctx : Context(this["isCommissionRecieved"]=="Y")
+	then
+		ctx.put("question","Firms provideing services or consenting to the use of their work product in connection with public or private offerings of securities, real estate or other investments are outside the UW appetite of the program.");
+		ctx.put("hint","Firms provideing services or consenting to the use of their work product in connection with public or private offerings of securities, real estate or other investments are outside the UW appetite of the program. Decline.");
+end
+
+rule "managementConsultingBusinessPlanning_Accountant_old"
+	when ctx : Context(this["aOP_Percentage_13"]>0)
+	then
+		ctx.put("question","AOP - Management consulting and business planning practice.");
+		ctx.put("hint","Management Consulting / Business Planning AOP - Get a description of what clients they are providing management consulting to and details on the consulting engagment.  Is it ongoing.  Business planning - determine 1. for how many clients, 2. is it ongoing, 3. Is it for mergers and acqisitions.  4. Is valuation part of the engagement.");
+end
+
+rule "forecastsProjections_Accountant_old"
+	when ctx : Context(this["aOP_Percentage_16"]>0)
+	then
+		ctx.put("question","Forecasts / Projections AOPmore than 0%.");
+		ctx.put("hint","Forecasts / Projections AOP - For who and name and type of company, does it have to do with the sale of a company?");
+
+end
+
+rule "mergersAcquisitions_Accountant_old"
+	when ctx : Context(this["aOP_Percentage_17"]>0)
+	then
+		ctx.put("question","Mergers and Acquisitions-More than 0% in Mergers and Acquisitions.");
+		ctx.put("hint","Mergers and Acquisitions AOP - For who, when, how many");
+end
+
+rule "businessManagement_Accountant_old"
+	when ctx : Context(this["aOP_Percentage_18"]>0)
+	then
+		ctx.put("question","Business Management AOP more than 0%.");
+		ctx.put("hint","Business Mgt AOP questions: 1.Is it a permanent or temporary position and if so for how long has it been in place and how long will it continure.  2. Are they an employee or consultant.  3. Do they have any ownership and if so how much?");
+end
+
+rule "erisaPensionPlans_Accountant_old"
+	when ctx : Context(this["aOP_Percentage_23"]>0)
+	then
+		ctx.put("question","Erisa/Pension plans  AOP greater than 0%.  If greater than 25% it must be approved by C & F");
+		ctx.put("hint","Erisa/Pension plans  AOP - Who for, and services provided, is it a public company.");
+end
+
+rule "trusteeServices_Accountant_old"
+	when ctx : Context(this["AOP_Percentage_24"]>0)
+	then
+		ctx.put("question","Trustee AOP greater than 0%.");
+		ctx.put("hint","Trustee AOP questions: 1. What services are provided? 2. Are they activley managing the trust?  3. How many and the value of each. Is applicant  a beneficiary of a personal trust valued in excess of $500,000?");
+end
+
+rule "FirmDeclinedCancelledNnonrenewedProfessionalLiability_Accountant_old"
+	when ctx : Context(this["isFirmDeclinedOtherthanNonPayment"]=="Y")
+	then
+		ctx.put("question","Firm declined, cancelled or non-renewed.");
+		ctx.put("hint","Get a detailed explanation of the circumstances around the declination, cancellation or non renewal.");
+end
+
+rule "fullPriorActDateInsuranceCoverage_Accountant_old"
+	when ctx : Context(this["firmYear"]<10)
+	then
+		ctx.put("question","Full prior acts requires 10 years of continuous insurance");
+		ctx.put("hint","Full prior acts requires 10 years of continuous insurance - Optain copy of the dec page from prior carrier");
+end
+
+rule "validateExpirationDateNewBusiness_Accountant_old"
+	when ctx : Context(this["effectiveDateOfPolicyNew"]!=this["policyExpiryDateNewPros"])
+	then
+		ctx.put("question","Expiration date on current insurance different than effective date requested.");
+		ctx.put("hint","Why is the expiration date different than the desired effective date? Has there been a lapse in coverage?");
+end

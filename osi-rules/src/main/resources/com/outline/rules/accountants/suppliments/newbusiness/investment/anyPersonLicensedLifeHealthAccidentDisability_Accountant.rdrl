@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "anyPersonLicensedLifeHealthAccidentDisability_Accountant"
+	dialect "mvel"
+
+	when anyPersonLicensedLifeHealthAccidentDisability : InvestmentAcc(isAnyNonPublicInvestments=="Y")
+	then
+		anyPersonLicensedLifeHealthAccidentDisability.setId("anyPersonLicensedLifeHealthAccidentDisability_Accountant");
+		anyPersonLicensedLifeHealthAccidentDisability.setDescription("Firm provides services as a life/health/accident/disability insurance agent or broker.");
+		anyPersonLicensedLifeHealthAccidentDisability.setTooltip("Firm provides services as a life/health/accident/disability insurance agent or broker.  Advise and document to the firm that these services are not currrently covered by the policy.");
+end

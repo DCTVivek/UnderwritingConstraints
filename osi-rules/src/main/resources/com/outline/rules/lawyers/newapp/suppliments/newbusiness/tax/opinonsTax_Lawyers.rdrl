@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "opinonsTax_Lawyers"
+	dialect "mvel"
+	when
+		opinonsTax : Tax( opinionsTaxShelters > 0 )
+	then
+		opinonsTax.setId( "opinonsTax_Lawyers" );
+		opinonsTax.setDescription( "Tax - providing opinions on tax shelters" );
+		opinonsTax.setTooltip( "No explanation needed." );
+end

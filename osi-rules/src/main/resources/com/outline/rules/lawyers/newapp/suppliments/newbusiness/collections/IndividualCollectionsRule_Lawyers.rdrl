@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.collections;
+
+import java.lang.Number;
+import com.outline.rules.pojo.CollectionSupplement;
+
+rule "IndividualCollectionsRule_Lawyers"
+	dialect "mvel"
+	when
+		IndividualCollectionsRule : CollectionSupplement( individualCollections > 10000 )
+	then
+		IndividualCollectionsRule.setId( "IndividualCollectionsRule_Lawyers" );
+		IndividualCollectionsRule.setDescription( "Individual collections exceeds underwriting threshold." );
+		IndividualCollectionsRule.setTooltip( "What is the value of the 3 largest collection cases the firm has handled in the past two years?" );
+end

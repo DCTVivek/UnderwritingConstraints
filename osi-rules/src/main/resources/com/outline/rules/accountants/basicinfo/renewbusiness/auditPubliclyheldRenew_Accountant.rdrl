@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "auditPubliclyheldRenew_Accountant"
+	dialect "mvel"
+	when
+		auditPubliclyheldRenew : BasicInfoAcc( )
+	then
+		auditPubliclyheldRenew.setId( "auditPubliclyheldRenew_Accountant" );
+		auditPubliclyheldRenew.setDescription( "Public Audit AOP - this risk is ouside our program authority - decline." );
+		auditPubliclyheldRenew.setTooltip( "Public Audit is outside of the program authority - decline" );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.willsEstateNewApp;
+
+rule "EstatesHandledInYearNewApp_Lawyers"
+	dialect "mvel"
+	when
+		WillSupp : willsEstateNewApp( willEstatesHandledPastYear > ( willTrustPercentageCount ) )
+	then
+		WillSupp.setTooltip( "No explanation needed." );
+		WillSupp.setId( "EstatesHandledInYearNewApp_Lawyers" );
+		WillSupp.setDescription( "Large number of wills in comparison to percentage of practice." );
+end

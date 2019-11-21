@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "applicantWithPublicFigures_Lawyers"
+	dialect "mvel"
+	when
+		applicantWithPublicFigures : AOP( isFirmHaveClientInEntertainmentInd == "Y" )
+	then
+		applicantWithPublicFigures.setId( "applicantWithPublicFigures_Lawyers" );
+		applicantWithPublicFigures.setDescription( "The firm is providing services to public figures." );
+		applicantWithPublicFigures.setTooltip( "Name each public figure represented. Why is each client considered a public figure? Does applicant provide services to client as an agent and or investment services? " );
+end

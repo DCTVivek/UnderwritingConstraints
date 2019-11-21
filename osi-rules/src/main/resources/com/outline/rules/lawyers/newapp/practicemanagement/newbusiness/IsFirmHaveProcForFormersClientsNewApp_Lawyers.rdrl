@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.practicemanagement.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PracticeManagementNewApp;
+
+rule "IsFirmHaveProcForFormersClientsNewApp_Lawyers"
+	dialect "mvel"
+	when
+		IsFirmHaveProcForFormersClients : PracticeManagementNewApp( isFirmHaveProcForFormersClients == "N" )
+	then
+		IsFirmHaveProcForFormersClients.setId( "IsFirmHaveProcForFormersClientsNewApp_Lawyers" );
+		IsFirmHaveProcForFormersClients.setDescription( "No process or procedure for checking conflicts of interest" );
+		IsFirmHaveProcForFormersClients.setTooltip( "No explanation required." );
+end

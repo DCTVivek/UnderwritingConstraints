@@ -1,0 +1,21 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.businessmanagement;
+import com.util.Context;
+
+rule "doesFirmhaveDiscretionaryInvestmentRenew_Accountant_old"
+	when ctx : Context(this["haveInvestmentAuthorityFC"]=="Y")
+	then
+		ctx.put("question","Firm  has discretionary investment authority of client funds.");
+		ctx.put("hint","Firm  has discretionary investment authority of client funds. Review the supplement and also determine what is the nature of the discretionary control and for how many clients. Is this for trusts that are controlled by the trust agreement or by the courts?");
+end
+rule "provideBusinessManagementFamilyOfficeServicesRenew_Accountant_old"
+	when ctx : Context(this["isControlFundsForBusinessAndEntimentFc"]=="Y")
+	then
+		ctx.put("question","Firm is providing business/personal management or family office services or control funds for clients in the entertainment or sports industry. Outside of the programs appetite. Decline");
+		ctx.put("hint","Firm is providing business/personal management or family office services or control funds for clients in the entertainment or sports industry. Outside of the programs appetite. Decline");
+end
+rule "doFirmPersonnelActasManagerCFOforClientsRenew_Accountant_old"
+	when ctx : Context(this["isFirmPersonnelBusinessManagerFc"]=="Y")
+	then
+		ctx.put("question","Firm acting as a business manager or CFO for business clients.  See exclusion 10b:  an officer, director, trustee, partner or other member of a governing body of any entity other than the Named Insured is excluded.");
+		ctx.put("hint","Firm acting as a business manager or CFO for business clients.  Determine if the accountants is an employee of the client and in what capacity.  May be excluded under 10b.");
+end

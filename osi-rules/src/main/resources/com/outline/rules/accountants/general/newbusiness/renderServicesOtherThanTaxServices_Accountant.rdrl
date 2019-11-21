@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "renderServicesOtherThanTaxServices_Accountant"
+	dialect "mvel"
+
+	when renderServicesOtherThanTaxServices : GeneralAcc(isFirmRenderedAuditOrAttestService=="Y")
+	then
+		renderServicesOtherThanTaxServices.setId("renderServicesOtherThanTaxServices_Accountant");
+		renderServicesOtherThanTaxServices.setDescription("Equity interest of more than 10% in client for whom services are performed. Services are not covered.");
+		renderServicesOtherThanTaxServices.setTooltip("Equity interest of more than 10% in cliente for whom services are perfomed. Firm needs to be advised that the services will not be covered.  See exclusion 9.");
+end

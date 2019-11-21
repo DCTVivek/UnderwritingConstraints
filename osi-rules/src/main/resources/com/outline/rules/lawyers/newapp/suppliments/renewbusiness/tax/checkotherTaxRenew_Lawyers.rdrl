@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checkotherTaxRenew_Lawyers"
+	dialect "mvel"
+	when
+		TaxSupp : Tax( otherTax > ( otherTaxOld ) )
+	then
+		TaxSupp.setId( "checkotherTaxRenew_Lawyers" );
+		TaxSupp.setDescription( "Tax - other greater than zero." );
+		TaxSupp.setTooltip( "If no description; obtain description of services provided." );
+end

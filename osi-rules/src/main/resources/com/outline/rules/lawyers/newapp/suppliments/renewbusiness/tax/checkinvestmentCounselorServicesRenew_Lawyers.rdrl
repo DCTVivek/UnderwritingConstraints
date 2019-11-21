@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checkinvestmentCounselorServicesRenew_Lawyers"
+	dialect "mvel"
+	when
+		TaxSupp : Tax( investmentCounselorServices > ( investmentCounselorServicesOld ) )
+	then
+		TaxSupp.setId( "checkinvestmentCounselorServicesRenew_Lawyers" );
+		TaxSupp.setDescription( "Tax - providing investment counseling." );
+		TaxSupp.setTooltip( "Describe nature of investment counselor services" );
+end

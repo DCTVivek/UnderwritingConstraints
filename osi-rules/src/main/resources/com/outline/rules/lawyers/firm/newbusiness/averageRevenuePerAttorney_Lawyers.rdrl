@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "averageRevenuePerAttorney_Lawyers"
+	dialect "mvel"
+
+	when averageRevenuePerAttorney : Firm(averageRevenuePerAttorney>400000)
+	then
+		averageRevenuePerAttorney.setId("averageRevenuePerAttorney_Lawyers");
+		averageRevenuePerAttorney.setDescription("The revenue per attorney is higher than $400,000.");
+		averageRevenuePerAttorney.setTooltip("Why is the revenue per attorney so high. Please explain.");
+end

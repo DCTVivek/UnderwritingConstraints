@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.practicemanagement.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PracticeManagement;
+
+rule "IsFirmHaveCenteralDocketOrDairySystem_Lawyers"
+	dialect "mvel"
+	when
+		IsFirmHaveCenteralDocketOrDairySystem : PracticeManagement( isFirmHaveIndepDockets == "N" )
+	then
+		IsFirmHaveCenteralDocketOrDairySystem.setId( "IsFirmHaveCenteralDocketOrDairySystem_Lawyers" );
+		IsFirmHaveCenteralDocketOrDairySystem.setDescription( "Lack of docket or diary system. Missing deadlines is a large source of claims." );
+		IsFirmHaveCenteralDocketOrDairySystem.setTooltip( "1) Determine if they really don't have one. 2) What contorls are used in lieu of a diary or docket system?" );
+end

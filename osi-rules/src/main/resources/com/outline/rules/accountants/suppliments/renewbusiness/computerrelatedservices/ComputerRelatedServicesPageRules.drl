@@ -1,0 +1,9 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.computerrelatedservices;
+import com.util.Context;
+
+rule "computerRelatedServicesAmountInRevenuesRenew_Accountant_old"
+	when ctx : Context(this["revenuesFromLastYear_2n"]>0 ||  this["revenuesFromLastYear_3n"]>0 ||  this["revenuesFromLastYear_4n"]>0 ||  this["revenuesFromLastYear_5n"]>0 ||  this["estimatedRevenue_2n"]>0 ||  this["estimatedRevenue_3n"]>0 ||  this["estimatedRevenue_4n"]>0 ||  this["estimatedRevenue_5n"]>0)
+	then
+		ctx.put("question","Computer Related Services AOP - Firm Recommending, selling or training , Installing custom software/hardware, Performing system maintenance or Other. Recommending or selling okay if accouting package related and for current clients.  Anything else is a decline.");
+		ctx.put("hint","Determine if they are providng installation of package software or recommending or a reseller of software and hardware that it is for accounting and it is for their current clients. Any custom software or system maintenance is a decline.");
+end

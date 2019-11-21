@@ -1,0 +1,46 @@
+package com.outline.rules.lawyers.practicemanagement.newbusiness;
+import com.util.Context;
+
+
+rule "IsFirmHaveClientMoreThanCertainPercentageOfBilling_Lawyers_old"
+	when ctx : Context(this["PercentFromFirstLargestRevenueClient"]>50)
+	then
+		ctx.put("question","Large client  more than 50%, was the work  1. insurance defense work; or 2. for a government or government agency; or 3. Payment related to a single specific engagement.");
+		ctx.put("hint","Determine the type of work and engagement done for the large client. Was the work performed by the firm 1. insurance defense work; or 2. for a government or government agency; or 3. Payment related to a single specific engagement.");
+end
+
+rule "IsFirmProvideInvestmentAdvice_Lawyers_old"
+	when ctx : Context(this["IsFirmProvideInvestmentAdvice"]=="Y")
+	then
+		ctx.put("question","Firm is making discretionary investments or providing  investment advice.");
+		ctx.put("hint","What are they doing and for whom.  Is it on behalf of a trust?  How many clients they are doing it for.  In what AOP?");
+end
+
+
+rule "IsFirmHaveCenteralDocketOrDairySystem_Lawyers_old"
+	when ctx : Context(this["IsFirmHaveIndepDockets"]=="N")
+	then
+		ctx.put("question","Lack of docket or diary system. Missing deadlines is a large source of claims.");
+		ctx.put("hint","What kind of controls are they using if there is no diary or docket system? Determine if they really don't have one.");
+end
+
+rule "firmAccountsReceivable_Lawyers_old"
+	when ctx : Context(this["PercentofApplAcctRcbl"]>35)
+	then
+		ctx.put("question","Accounts receivable above 35%");
+		ctx.put("hint","Review the AOP's as some are more prone to receivables, such as Family Law.  Get a description of why the accounts receivable is so high.");
+end
+
+rule "checkCountOfFeeSuitInPastYears_Lawyers_old"
+	when ctx : Context(this["coutOfFeeSuit"]>3)
+	then
+		ctx.put("question","More than 3 fee suites in the past 3 years.");
+		ctx.put("hint","Is this an ongoing problem of collections.  Have there been countersuits?");
+end
+
+rule "checkAmountOfFeesSued_Lawyers_old"
+	when ctx : Context(this["AmountOfFeesSuedTotal"]>25000)
+	then
+		ctx.put("question","Fee suit amount great than $25,000");
+		ctx.put("hint","Is this an ongoing problem of collections.Have there been countersuits?");
+end

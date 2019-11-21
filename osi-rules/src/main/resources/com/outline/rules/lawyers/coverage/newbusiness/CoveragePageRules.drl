@@ -1,0 +1,104 @@
+package com.outline.rules.lawyers.coverage.newbusiness;
+import com.util.Context;
+
+rule "claimsRegulatory_Lawyers_old"
+	when ctx : Context(this["IsPersonnelBeSubOfAnyInvest"]=="Y" ||  this["IsLawyerProfLiabClaimAgntAppl"]=="Y" || this["IsAnyActOmmBecomeClaimAgntFirm"]=="Y")
+	then
+		ctx.put("question","Claims or regulatory issues.");
+		ctx.put("hint","Get a complete claims supplement along with a through description of the claim and when it was reported. If regulatory, get the details and current status or outcome.");
+end
+
+
+rule "checkAttorneyDeclineForProfLiability_Lawyers_old"
+	when ctx : Context(this["IsAttorneyDeclineForProfLiability"]=="Y" && this["StateCode"]!="MO")
+	then
+		ctx.put("question","Professional liabiity non, renewed, declined or cancelled.");
+		ctx.put("hint","Get a detailed explanation of what happened and why they were declined, cancelled or non renewed.");
+end
+
+rule "checkPriorActDateWithAttorneysHiringDate_Lawyers_old"
+	when ctx : Context(this["PriorActDate"]>this["AttorneyPriorActDate"])
+	then
+		ctx.put("question","Prior acts date after any of the attorneys dates of hire.  Potential Carreer coverage issue.");
+		ctx.put("hint","Need to understand the history of the firm and if career coverage is being requested");
+end
+
+rule "checkPriorActDateWithEstablishDate_Lawyers_old"
+	when ctx : Context(this["YearOfFirmEstablished"]<this["priorActDateYear"] )
+	then
+		ctx.put("question","Firm prior acts year is prior to the firm establised year   Potential career coverage issue.");
+		ctx.put("hint","  ");
+end
+
+rule "checkEstablishDateWithAttorneysHiringDate_Lawyers_old"
+	when ctx : Context(this["YearOfFirmEstablished"]>this["hiringYearOfAttorney"] )
+	then
+		ctx.put("question","Year of hire prior to Year on Date Established.  Potential career coverage issue.");
+		ctx.put("hint","Need details or previous firm or career coverage that has been afforded.");
+end
+
+rule "checkPolicyIncludeLateralHireCoverage_Lawyers_old"
+	when ctx : Context(this["IsPolicyIncludeLateralHireCov"]=="Y" )
+	then
+		ctx.put("question","Lateral hire coverage on current policy.");
+		ctx.put("hint","Need to understand the lateral hire coverage provided and previous firms attorney worked for.");
+end
+
+rule "IsPolicyExcludesCoverage_Lawyers_old"
+	when ctx : Context(this["IsPolicyExcludesCoverage"]=="Y" )
+	then
+		ctx.put("question","Coverage exclusion is attached to current policy.");
+		ctx.put("hint","Send UW copy of the endorsement.");
+end
+
+rule "checkIsFirmMergedWithOtherFirm_Lawyers_old"
+	when ctx : Context(this["IsFirmMergedWithOtherFirm"]=="Y" )
+	then
+		ctx.put("question","Firm has had an acqisition or merger in past 10 years.");
+		ctx.put("hint","Was it a merger or acquisition?  When?  Were the practices the same or very different.  Was an ERP purchased?");
+end
+
+rule "validateExpirationDateNewBusiness_Lawyers_old"
+	when ctx : Context(this["effectiveDateOfPolicy"]!=this["policyExpiryDate"])
+	then
+		ctx.put("question","Expiration date on current insurance different than effective date requested.");
+		ctx.put("hint","Why is the submission late?  If more than 90 (NB) or 60 (Renewal) explain that we cannot quote them that far out.");
+end
+
+
+rule "validateLimitsNewBusiness_Lawyers_old"
+	when ctx : Context(this["limitSequenceDifference"]>2)
+	then
+		ctx.put("question","Limits requested more than 2 step above current limit.");
+		ctx.put("hint","Why are they looking for the major increase in coverage");
+end
+
+
+rule "validateDesiredEffectiveWithCurrentDate_Lawyers_old"
+
+	when ctx : Context(this["currentDate"]>this["PolicyEffectiveDate"])
+	then
+		ctx.put("question","The effective date cannot be after the current date.");
+		ctx.put("hint","The insured sometimes puts in a desired effective date 1 day different than the expiration and this is incorrect. They have to be the same.");
+end
+
+rule "validateDesiredEffectiveDateNB_Lawyers_old"
+	when ctx : Context( this["daysDifference"]>60 )
+	then
+		ctx.put("question","Effective date cannot be more than 90 days prior to the current date for renewal or more than 60 days prior for new business.  ");
+		ctx.put("hint","The insured sometimes puts in a desired effective date 1 day different than the expiration and this is incorrect.  They have to be the same.");
+end
+
+rule "validateEffectiveDateWithCurrentDateNewBusiness_Lawyers_old"
+		when ctx : Context(this["isCurrentDateAterEfectiveDate"]=="true")
+	then
+		ctx.put("question","The effective date cannot be after the current date.");
+		ctx.put("hint","Date not within approved range.");
+end
+rule "validateEffectiveDateWithDaysNewBusiness_Lawyers_old"
+		when ctx : Context(this["daysDifferenceForEfectiveDate"]>60 )
+	then
+		ctx.put("question","Effective date cannot be more than 90 days prior to the current date for renewal or more than 60 days prior for new business.");
+		ctx.put("hint","    ");
+end
+

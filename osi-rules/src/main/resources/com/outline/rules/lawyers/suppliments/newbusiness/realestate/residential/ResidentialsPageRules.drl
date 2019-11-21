@@ -1,0 +1,18 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.realestate.residential;
+import com.util.Context;
+
+rule "checkForeclosuresAndLoanWorkoutsAOPResidential_Lawyers_old"
+	when ctx : Context(this["foreclosuresResidentialPercentage"]>0 || this["LoanWorkoutsAopResidentialPercentage"]>0  )
+	then
+		ctx.put("question","Residentail Real estate forclosure work. Review commecial and residential and determine who they are doing it on behalf of a financial institution. If more than 25% needs C & F approval. If more than 10% of overall revenue, cannot offer more than 1,000,000 per claim limit.");
+		ctx.put("hint","Review both Commercial and Residential Foreclosure and Loan workouts if the total percentage is greater than 25% of their overall revenue the account will be referred to C & F. If more than 10% subject to a max limit of 1M. Ask if they are doing it on behalf of a financial institution.");
+end
+
+rule "checkOtherResidentialAop_Lawyers_old"
+	when ctx : Context(this["otherAopResidentialPercentage"]>0 )
+	then
+		ctx.put("question","Residential Real estate 'Other' is greater than 0.");
+		ctx.put("hint","Review the description and determine if it belongs in another category. Discuss with the client to understand what they are doing.");
+end
+
+

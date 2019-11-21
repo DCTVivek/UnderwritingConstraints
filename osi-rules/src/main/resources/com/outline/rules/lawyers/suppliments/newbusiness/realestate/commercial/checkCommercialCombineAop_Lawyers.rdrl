@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.realestate.commercial;
+
+import java.lang.Number;
+import com.outline.rules.pojo.ResidentialSupplement;
+
+rule "checkCommercialCombineAop_Lawyers"
+	dialect "mvel"
+	when
+		checkCommercialCombineAop : ResidentialSupplement( speculativeAopCommercialPercentage > 0 || investmentTrustsPercentage > 0 || estateSyndicationsAopCommercialPercentage > 0 )
+	then
+		checkCommercialCombineAop.setId( "checkCommercialCombineAop_Lawyers" );
+		checkCommercialCombineAop.setDescription( "Real Estate Trusts are outside of authority." );
+		checkCommercialCombineAop.setTooltip( "Is the real estate trust for mere equity? Is the trust for investment purposes? Does the attorney maintain any interest in the trust?" );
+end

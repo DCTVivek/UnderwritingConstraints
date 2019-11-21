@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "doesSecondPartnerCommitteeApproveSignOofRenew_Accountant"
+	dialect "mvel"
+
+	when doesSecondPartnerCommitteeApproveSignOofRenew : AuditAcc(numberOfPersonnelValue>1 &&  isAuditEngagementsAtt=="N"  )
+	then
+		doesSecondPartnerCommitteeApproveSignOofRenew.setId("doesSecondPartnerCommitteeApproveSignOofRenew_Accountant");
+		doesSecondPartnerCommitteeApproveSignOofRenew.setDescription("Multi partner firm accepting audit engagments with no partner review.");
+		doesSecondPartnerCommitteeApproveSignOofRenew.setTooltip("Multi partner firm accepting audit engagments with no partner review. Need to understand the nature of the audits the firm is doing");
+end

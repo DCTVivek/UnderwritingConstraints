@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "trusteeServicesRenew_Accountant"
+	dialect "mvel"
+	when
+		trusteeServicesRenew : BasicInfoAcc( trusteeServicesNew > 0 || diffAopTrusteeServices > 10 )
+	then
+		trusteeServicesRenew.setId( "trusteeServicesRenew_Accountant" );
+		trusteeServicesRenew.setDescription( "Trustee AOP greater than 0%." );
+		trusteeServicesRenew.setTooltip( "Trustee AOP questions: 1. What services are provided? 2. Are they activley managing the trust?  3. How many and the value of each. Is applicant  a beneficiary of a personal trust valued in excess of $500,000?" );
+end

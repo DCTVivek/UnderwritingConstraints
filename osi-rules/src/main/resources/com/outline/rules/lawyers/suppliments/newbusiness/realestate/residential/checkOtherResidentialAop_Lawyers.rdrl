@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.realestate.residential;
+
+import java.lang.Number;
+import com.outline.rules.pojo.ResidentialSupplement;
+
+rule "checkOtherResidentialAop_Lawyers"
+	dialect "mvel"
+	when
+		checkOtherResidentialAop : ResidentialSupplement( otherAopResidentialPercentage > 0 )
+	then
+		checkOtherResidentialAop.setId( "checkOtherResidentialAop_Lawyers" );
+		checkOtherResidentialAop.setDescription( "Real Estate Other percentage" );
+		checkOtherResidentialAop.setTooltip( "No explanation needed." );
+end

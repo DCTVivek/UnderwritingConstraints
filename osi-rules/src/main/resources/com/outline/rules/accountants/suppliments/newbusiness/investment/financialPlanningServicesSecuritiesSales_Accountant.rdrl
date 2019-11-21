@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "financialPlanningServicesSecuritiesSales_Accountant"
+	dialect "mvel"
+
+	when financialPlanningServicesSecuritiesSales : InvestmentAcc(isSecuritiesSales=="Y")
+	then
+		financialPlanningServicesSecuritiesSales.setId("financialPlanningServicesSecuritiesSales_Accountant");
+		financialPlanningServicesSecuritiesSales.setDescription("Firms providing securities sales are outside the UW appetite of the program");
+		financialPlanningServicesSecuritiesSales.setTooltip("If 'Y' Decline");
+end

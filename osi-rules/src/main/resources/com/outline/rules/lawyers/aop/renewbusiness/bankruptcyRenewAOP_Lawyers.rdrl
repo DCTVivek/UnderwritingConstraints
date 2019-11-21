@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "bankruptcyRenewAOP_Lawyers"
+	dialect "mvel"
+
+	when bankruptcyRenewAOP : AOP(currentPercentage>priorYearPercentage , currentPercentage>35)
+	then
+		bankruptcyRenewAOP.setId("bankruptcyRenewAOP_Lawyers");
+		bankruptcyRenewAOP.setDescription("Firm has more than 35% bankruptcy.");
+		bankruptcyRenewAOP.setTooltip("Are they providing services to or do they own a debt consolidation or collections company");
+end

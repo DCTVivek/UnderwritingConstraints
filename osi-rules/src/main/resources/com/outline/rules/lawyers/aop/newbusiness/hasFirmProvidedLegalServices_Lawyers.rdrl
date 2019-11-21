@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "hasFirmProvidedLegalServices_Lawyers"
+	dialect "mvel"
+
+	when hasFirmProvidedLegalServices : AOP(isFirmProvidedLegalService=="Y")
+	then
+		hasFirmProvidedLegalServices.setId("hasFirmProvidedLegalServices_Lawyers");
+		hasFirmProvidedLegalServices.setDescription("Firms providing legal services related to securities / investments or hedge funds or mass tort/class action as lead cousel are ouside our authority.  Firms providing legal services for mass tort/class as other than lead counsel need to be reviewed.");
+		hasFirmProvidedLegalServices.setTooltip("What are they doing and when and for how long and do they intend to continue.  If class action are they Other than lead plaintiff counsel. If mass tort/class action have they acted as Lead counselor managing role and is it for  Plaintiff or defense.How many?");
+end

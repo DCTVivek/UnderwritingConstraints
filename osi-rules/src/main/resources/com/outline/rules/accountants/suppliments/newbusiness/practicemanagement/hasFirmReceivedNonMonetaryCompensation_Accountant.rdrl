@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.practicemanagement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PracticreManagementAcc;
+
+rule "hasFirmReceivedNonMonetaryCompensation_Accountant"
+	dialect "mvel"
+	when
+		hasFirmReceivedNonMonetaryCompensation : PracticreManagementAcc( isNonMonetaryCompensationRecieved == "Y" )
+	then
+		hasFirmReceivedNonMonetaryCompensation.setId( "hasFirmReceivedNonMonetaryCompensation_Accountant" );
+		hasFirmReceivedNonMonetaryCompensation.setDescription( "Firm received non-monetary compensation." );
+		hasFirmReceivedNonMonetaryCompensation.setTooltip( "Firm received non-monetary compensation. Review additional questions on industry, name and services rendered. Be aware of potential conflict of interest." );
+end

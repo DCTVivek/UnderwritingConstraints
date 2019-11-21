@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "titleOpinionsAop_Lawyers"
+	dialect "mvel"
+
+	when titleOpinionsAop : AOP(titleOpinionsAopPercentage>15)
+	then
+		titleOpinionsAop.setId("titleOpinionsAop_Lawyers");
+		titleOpinionsAop.setDescription("Title opions - 15% to 30% of annual revenue - subject to a maximum policy limit of $1,000,000 each claim / $3,000,000 in the policy aggregate.");
+		titleOpinionsAop.setTooltip("Who are they doing title opinion work for and is it in conjunction with their own real estate practice.");
+end

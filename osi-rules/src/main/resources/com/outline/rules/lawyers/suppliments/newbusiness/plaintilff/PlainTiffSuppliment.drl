@@ -1,0 +1,48 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.plaintilff
+import com.util.Context;
+
+rule "validateAreaOfLitigation_Lawyers_old"
+	when ctx : Context(this["medicalMalpracticeAOLPercentage"]>0 || this["productsLiabilityAOLPercentage"]>0 || this["OtherAOLPercentage"]>0 || this["toxicTortAOLPercentage"]>0 )
+	then
+		ctx.put("question","Plaintiff AOP in Med Mal/ Products Liability / Toxic Tort or Other.");
+		ctx.put("hint","Products Liability / Toxic Tort - are they other than lead counsel.  What is the case size and plaintiff size?  For Med Mal, how many cases and what size?  For Other, get a detailed explanation of what thy are doing?");
+end
+
+rule "validatePlaintiffLargestCase_Lawyers_old"
+	when ctx : Context(this["plaintiffLargestCaseSize"]>=1000000 )
+	then
+		ctx.put("question","Plaintiff largest case size above 1M.");
+		ctx.put("hint","What is the average case size?  How many large cases have the handled.  Are they lead counsel?");
+end
+
+rule "validateAverageCasesPerAttorney_Lawyers_old"
+	when ctx : Context(this["NumberOfInjuryHandleByAttorney"]>75 )
+	then
+		ctx.put("question","Plaintiff per attorney case load more than 75 per year.");
+		ctx.put("hint","Determine what kind of cases they are handing and how they handle that large a case load.");
+end
+
+
+rule "validateAuthorizationsForSettlement_Lawyers_old"
+	when ctx : Context(this["IsSettlementAggrementsUsed"]=="N" )
+	then
+		ctx.put("question","Plaintiff written authorizations not used.");
+		ctx.put("hint","Worker's Comp is determined by the court so there are not settlement authorizations used.  If other Plaintiff AOP's you need to know why they are not being used.");
+end
+
+
+rule "plaintiffLitigationAOP_Lawyers_old"
+	when ctx : Context(this["StateCode"]=="CA" && this["difference"]>50)
+	then
+		ctx.put("question","If California and more than 50% Plaintiff, other than WC and Commercial, must be approved by UW and C & F.  If largest case over 1M - must be approved by UW.  If over 75 cases per attorney - must be approved by UW.");
+		ctx.put("hint","Med Mal/ Products Liability / Toxic Tort / Other, Over 1m largest case size, if Practice greater than 50% of revenue. if over 75 cases per attorney need to explain case load.");
+end
+
+rule "missingLargestCase_Lawyers_old"
+	when ctx : Context(this["plaintiffPercentage"]>=50 && this["isLargestCaseMissing"]=="true")
+	then
+		ctx.put("question","Plaintiff is 50% of revenue and largest case size is missing.");
+		ctx.put("hint","Obtain the largest case size information as well as the average case size. How many large cases have the handled. Are they lead counsel?");
+end
+
+

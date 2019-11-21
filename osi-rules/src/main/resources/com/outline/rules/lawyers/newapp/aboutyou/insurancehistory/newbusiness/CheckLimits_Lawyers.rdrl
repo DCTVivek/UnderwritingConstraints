@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.aboutyou.insurancehistory.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "CheckLimits_Lawyers"
+	dialect "mvel"
+	when
+		limit : Coverage( limitSequenceDifference == 1 )
+	then
+		limit.setId( "CheckLimits_Lawyers" );
+		limit.setDescription( "Wide increases or decreases in the per claim limit needs to be explained." );
+		limit.setTooltip( "Why are they looking for the major increase or decrease  in coverage" );
+end

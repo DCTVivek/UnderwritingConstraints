@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "FirmPersonnelDiscretionaryAuthorityToInvest_Accountant"
+	dialect "mvel"
+
+	when FirmPersonnelDiscretionaryAuthorityToInvest : InvestmentAcc(isAnyEmployeeBenefitPlan=="Y")
+	then
+		FirmPersonnelDiscretionaryAuthorityToInvest.setId("FirmPersonnelDiscretionaryAuthorityToInvest_Accountant");
+		FirmPersonnelDiscretionaryAuthorityToInvest.setDescription("Firm has discretionary authority to invest for an employee benefit plan. Not within the UW appetite of the program - Decline");
+		FirmPersonnelDiscretionaryAuthorityToInvest.setTooltip("Firm has discretionary authority to invest for an employee benefit plan. Not within the UW appetite of the program - Decline");
+end

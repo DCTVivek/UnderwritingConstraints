@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "auditRelatedCPETrainingRenew_Accountant"
+	dialect "mvel"
+
+	when auditRelatedCPETrainingRenew : AuditAcc(isFirmHaveAWrittenPolicyAtt=="N")
+	then
+		auditRelatedCPETrainingRenew.setId("auditRelatedCPETrainingRenew_Accountant");
+		auditRelatedCPETrainingRenew.setDescription("Firm doesn no have a written policy on audit-related CPE training, including required courses and CPE hours per year specific to audit services.");
+		auditRelatedCPETrainingRenew.setTooltip("Firms performing audit should have specific CPE training geared to audit services.  Find out why not.");
+end

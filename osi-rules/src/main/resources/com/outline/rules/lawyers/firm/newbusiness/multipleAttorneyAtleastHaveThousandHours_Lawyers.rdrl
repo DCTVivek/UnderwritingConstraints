@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "multipleAttorneyAtleastHaveThousandHours_Lawyers"
+	dialect "mvel"
+
+	when multipleAttorneyAtleastHaveThousandHours : Firm(attorneysCountHave1000Hours<1)
+	then
+		multipleAttorneyAtleastHaveThousandHours.setId("multipleAttorneyAtleastHaveThousandHours_Lawyers");
+		multipleAttorneyAtleastHaveThousandHours.setDescription("Multiple attorneys without one working 1000 hours.");
+		multipleAttorneyAtleastHaveThousandHours.setTooltip("Need C & F approval.");
+end

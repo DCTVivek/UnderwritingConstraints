@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "forecastsProjectionsRenew_Accountant"
+	dialect "mvel"
+
+		when forecastsProjectionsRenew : BasicInfoAcc(forecastsProjectionsNew>0 ||diffAopForecastsProjections>5)
+	then
+		forecastsProjectionsRenew.setId("forecastsProjectionsRenew_Accountant");
+		forecastsProjectionsRenew.setDescription("Forecasts / Projections AOPmore than 0%.");
+		forecastsProjectionsRenew.setTooltip("Forecasts / Projections AOP - For who and name and type of company, does it have to do with the sale of a company?");
+end

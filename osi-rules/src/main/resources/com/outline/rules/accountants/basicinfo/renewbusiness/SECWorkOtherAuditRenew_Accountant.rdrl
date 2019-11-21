@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "SECWorkOtherAuditRenew_Accountant"
+	dialect "mvel"
+
+		when SECWorkOtherAuditRenew : BasicInfoAcc(aop_Percentage_21>0 )
+	then
+		SECWorkOtherAuditRenew.setId("SECWorkOtherAuditRenew_Accountant");
+		SECWorkOtherAuditRenew.setDescription("SEC Work - AOP is outside our underwriting authority - decline");
+		SECWorkOtherAuditRenew.setTooltip("SEC Work - AOP is outside our underwriting authority - decline");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "copyrightTrademarkPatentAOP_Lawyers"
+	dialect "mvel"
+	when
+		copyrightTrademarkPatentAOP : AOP( ctpPercentage > 5 )
+	then
+		copyrightTrademarkPatentAOP.setId( "copyrightTrademarkPatentAOP_Lawyers" );
+		copyrightTrademarkPatentAOP.setDescription( "Only up to 5% and limited to searches and filings are within our authority (C&F Referal Required)" );
+		copyrightTrademarkPatentAOP.setTooltip( "Does attorney expect percentage to continue? How many engagements has firm handled in each of the past three years? Describe nature of Copyright/Trademark services. (C&F will not consider exception if over 10%)." );
+end

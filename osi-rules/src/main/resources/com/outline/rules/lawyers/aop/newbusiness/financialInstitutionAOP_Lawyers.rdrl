@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "financialInstitutionAOP_Lawyers"
+	dialect "mvel"
+	when
+		financialInstitutionAOP : AOP( financialPercentage > 0 )
+	then
+		financialInstitutionAOP.setId( "financialInstitutionAOP_Lawyers" );
+		financialInstitutionAOP.setDescription( "Financial Institution - review supplement" );
+		financialInstitutionAOP.setTooltip( "No explanation needed." );
+end

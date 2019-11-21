@@ -1,0 +1,39 @@
+package com.outline.rules.accountants.suppliments.newbusiness.investment;
+import com.util.Context;
+
+rule "financialPlanningServicesSecuritiesSales_Accountant_old"
+	when ctx : Context(this["isSecuritiesSales"]=="Y")
+	then
+		ctx.put("question","Firms providing securities sales are outside the UW appetite of the program");
+		ctx.put("hint","If 'Y' Decline");
+end
+rule "doesFirmHaveContractualRelationship_Accountant_old"
+	when ctx : Context(this["isContractualRelationShip"]=="Y")
+	then
+		ctx.put("question","Firms with a contractual relationship with a securities broker or dealer must be approved by UW.");
+		ctx.put("hint","Determine the type of contractual relationship - Determine if there is a E & O Policy in place. If they have current coverage via their current Professional Liability policy decline to quote.Are they covered under a broker/dealer E & O policy?");
+end
+rule "haveAnyPersonnelRecommendedAnyNonPublicInvestments_Accountant_old"
+	when ctx : Context(this["isAnyNonPublicInvestments"]=="Y")
+	then
+		ctx.put("question","Firm has recommendd non-public investments to clients in which the firm has an ownership interest.  Not within the UW appetitie of the program. - Decline");
+		ctx.put("hint","Firm has recommendd non-public investments to clients in which the firm has an ownership interest.  Not within the UW appetitie of the program. - Decline");
+end
+rule "anyPersonLicensedLifeHealthAccidentDisability_Accountant_old"
+	when ctx : Context(this["isAnyNonPublicInvestments"]=="Y")
+	then
+		ctx.put("question","Firm provides services as a life/health/accident/disability insurance agent or broker.");
+		ctx.put("hint","Firm provides services as a life/health/accident/disability insurance agent or broker.  Advise and document to the firm that these services are not currrently covered by the policy.");
+end
+rule "FirmPersonnelDiscretionaryAuthorityToInvest_Accountant_old"
+	when ctx : Context(this["isAnyEmployeeBenefitPlan"]=="Y")
+	then
+		ctx.put("question","Firm has discretionary authority to invest for an employee benefit plan. Not within the UW appetite of the program - Decline");
+		ctx.put("hint","Firm has discretionary authority to invest for an employee benefit plan. Not within the UW appetite of the program - Decline");
+end
+rule "discretionaryInvestmentAuthority_Accountant_old"
+	when ctx : Context(this["isDiscretionaryAssetMangt"]=="Y")
+	then
+		ctx.put("question","Firm is providing discretionary asset management services.");
+		ctx.put("hint","Review supplement for completeness and determine for how many clients, amounts and the circumstances and under what condiitons and controls.");
+end

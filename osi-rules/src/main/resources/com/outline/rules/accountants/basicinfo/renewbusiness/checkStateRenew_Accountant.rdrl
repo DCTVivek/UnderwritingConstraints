@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "checkStateRenew_Accountant"
+	dialect "mvel"
+
+		when checkStateRenew : BasicInfoAcc(newPolicyState!=oldPolicyState)
+	then
+		checkStateRenew.setId("checkStateRenew_Accountant");
+		checkStateRenew.setDescription("Change of state may require a new policy.");
+		checkStateRenew.setTooltip("State has been changed. Get the details of why the change.");
+end

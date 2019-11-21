@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "firmSecuritiesrealEstateOtherInvestments_Accountant"
+	dialect "mvel"
+
+	when firmSecuritiesrealEstateOtherInvestments : BasicInfoAcc(isCommissionRecieved=="Y")
+	then
+		firmSecuritiesrealEstateOtherInvestments.setId("firmSecuritiesrealEstateOtherInvestments_Accountant");
+		firmSecuritiesrealEstateOtherInvestments.setDescription("Firms provideing services or consenting to the use of their work product in connection with public or private offerings of securities, real estate or other investments are outside the UW appetite of the program.");
+		firmSecuritiesrealEstateOtherInvestments.setTooltip("Firms provideing services or consenting to the use of their work product in connection with public or private offerings of securities, real estate or other investments are outside the UW appetite of the program. Decline.");
+end

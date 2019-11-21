@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.realestate.commercial;
+
+import java.lang.Number;
+import com.outline.rules.pojo.ResidentialSupplement;
+
+rule "checkForeclosuresAndLoanWorkoutsAOPCommercial_Lawyers"
+	dialect "mvel"
+	when
+		checkForeclosuresAndLoanWorkoutsAOPCommercial : ResidentialSupplement( foreclosuresCommercialPercentage > 0 || loanWorkoutsCommercialPercentage > 0 )
+	then
+		checkForeclosuresAndLoanWorkoutsAOPCommercial.setId( "checkForeclosuresAndLoanWorkoutsAOPCommercial_Lawyers" );
+		checkForeclosuresAndLoanWorkoutsAOPCommercial.setDescription( "Commercial Real estate forclosure work. Review commecial and residential and determine who they are doing it on behalf of a financial institution. If more than 25% needs C & F approval. If more than 10% of overall revenue, cannot offer more than 1,000,000 per claim limit." );
+		checkForeclosuresAndLoanWorkoutsAOPCommercial.setTooltip( "Review both Commercial and Residential Foreclosure and Loan workouts if the total percentage is greater than 25% of their overall revenue the account will be referred to C & F.  If more than 10% subject to a max limit of 1M.  Ask if they are doing it on behalf of a financial institution.If so what financial institutions?  Does any attorney have a management position." );
+end

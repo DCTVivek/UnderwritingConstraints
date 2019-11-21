@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "managementConsultingBusinessPlanningRenew_Accountant"
+	dialect "mvel"
+
+	when managementConsultingBusinessPlanningRenew : BasicInfoAcc(diffAopManagement>10)
+	then
+		managementConsultingBusinessPlanningRenew.setId("managementConsultingBusinessPlanningRenew_Accountant");
+		managementConsultingBusinessPlanningRenew.setDescription("AOP - Management consulting and business planning practice.");
+		managementConsultingBusinessPlanningRenew.setTooltip("Management Consulting / Business Planning AOP - Get a description of what clients they are providing management consulting to and details on the consulting engagment.  Is it ongoing.  Business planning - determine 1. for how many clients, 2. is it ongoing, 3. Is it for mergers and acqisitions. 4. Is valuation part of the engagement.");
+end

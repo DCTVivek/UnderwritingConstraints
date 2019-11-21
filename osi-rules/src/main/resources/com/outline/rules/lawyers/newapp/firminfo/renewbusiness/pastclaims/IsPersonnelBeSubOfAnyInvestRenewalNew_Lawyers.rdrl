@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.firminfo.renewbusiness.pastclaims;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "IsPersonnelBeSubOfAnyInvestRenewalNew_Lawyers"
+	dialect "mvel"
+	when
+		IsPersonnelBeSubOfAnyInvest : Coverage( isPersonnelBeSubOfAnyInvest == "Y" )
+	then
+		IsPersonnelBeSubOfAnyInvest.setId( "IsPersonnelBeSubOfAnyInvestRenewalNew_Lawyers" );
+		IsPersonnelBeSubOfAnyInvest.setDescription( "Claims or regulatory issues." );
+		IsPersonnelBeSubOfAnyInvest.setTooltip( "Regulatory, get the details and current status or outcome." );
+end

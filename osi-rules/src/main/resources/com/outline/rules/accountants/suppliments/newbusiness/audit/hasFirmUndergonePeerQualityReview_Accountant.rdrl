@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "hasFirmUndergonePeerQualityReview_Accountant"
+	dialect "mvel"
+	when
+		hasFirmUndergonePeerQualityReview : AuditAcc( isAuditEngagementsAtt == "N" )
+	then
+		hasFirmUndergonePeerQualityReview.setId( "hasFirmUndergonePeerQualityReview_Accountant" );
+		hasFirmUndergonePeerQualityReview.setDescription( "No peer review in the past 3 years." );
+		hasFirmUndergonePeerQualityReview.setTooltip( "No peer review in the past 3 years. Determine why the firm has not had a peer review." );
+end

@@ -1,0 +1,9 @@
+package com.outline.rules.accountants.basicinfo.newbusiness;
+
+import java.lang.Number;
+
+rule "practiceRule_Accountant"
+	dialect "mvel"
+	when
+	then
+end

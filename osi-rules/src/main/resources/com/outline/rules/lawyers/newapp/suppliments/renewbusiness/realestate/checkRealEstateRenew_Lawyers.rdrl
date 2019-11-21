@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.ResidentialSupplement;
+
+rule "checkRealEstateRenew_Lawyers"
+	dialect "mvel"
+	when
+		checkRealEstate : ResidentialSupplement( estateSyndicationsAopCommercialPercentage > 0 )
+	then
+		checkRealEstate.setId( "checkRealEstateRenew_Lawyers" );
+		checkRealEstate.setDescription( "Real Estate trust work - Decline" );
+		checkRealEstate.setTooltip( "Real Estate trust work - Decline" );
+end

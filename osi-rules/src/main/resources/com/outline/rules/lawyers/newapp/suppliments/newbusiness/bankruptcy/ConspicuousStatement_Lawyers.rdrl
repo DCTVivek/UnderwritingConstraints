@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.bankruptcy;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BankruptcySupplement;
+
+rule "ConspicuousStatement_Lawyers"
+	dialect "mvel"
+	when
+		ConspicuousStatement : BankruptcySupplement( conspicuousStatement == "N" )
+	then
+		ConspicuousStatement.setId( "ConspicuousStatement_Lawyers" );
+		ConspicuousStatement.setDescription( "Firm does not have conspicuous statement." );
+		ConspicuousStatement.setTooltip( "Decline." );
+end

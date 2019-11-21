@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.willsEstateNewApp;
+
+rule "TaxOpinionsWillsEstate_Lawyers"
+	dialect "mvel"
+	when
+		WillSupp : willsEstateNewApp( taxOpinionsPercentage > 0 )
+	then
+		WillSupp.setId( "TaxOpinionsWillsEstate_Lawyers" );
+		WillSupp.setDescription( "Will / Estates - providng Tax Opinions." );
+		WillSupp.setTooltip( "How many opinions have been given over the past three years? What is the value of the wills or estates involved in the opinions?" );
+end

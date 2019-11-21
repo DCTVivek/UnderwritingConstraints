@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "opinonTaxRenew_Lawyers"
+	dialect "mvel"
+	when
+		TaxSupp : Tax( opinionsTaxShelters > ( opinionsTaxShelters ) )
+	then
+		TaxSupp.setId( "opinonTaxRenew_Lawyers" );
+		TaxSupp.setDescription( "Tax - providing opinions on tax shelters." );
+		TaxSupp.setTooltip( "Describe nature of tax opinions and tax shelter advice and services." );
+end

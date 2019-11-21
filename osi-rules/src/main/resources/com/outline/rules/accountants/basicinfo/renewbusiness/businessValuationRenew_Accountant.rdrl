@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "businessValuationRenew_Accountant"
+	dialect "mvel"
+
+		when businessValuationRenew : BasicInfoAcc(flagForBusinessValuation=="true")
+	then
+		businessValuationRenew.setId("businessValuationRenew_Accountant");
+		businessValuationRenew.setDescription("Business valuation AOP.  If greater than 25% of total revenue, valuations must  be on businesses less than 20 Million in value.");
+		businessValuationRenew.setTooltip("Business Valuation: Need names and services provided - If publically held corporation - If greater than 25% valuations must  be on businesses less than 20 Million in value.");
+end

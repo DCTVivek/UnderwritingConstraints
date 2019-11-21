@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "checkCountOfFeeSuitInPastYears_Accountant"
+	dialect "mvel"
+	when
+		checkCountOfFeeSuitInPastYears : GeneralAcc( coutOfFeeSuit > 9 )
+	then
+		checkCountOfFeeSuitInPastYears.setId( "checkCountOfFeeSuitInPastYears_Accountant" );
+		checkCountOfFeeSuitInPastYears.setDescription( "Fee suits for more than 9 or the annual ammount paid is greater than 25,000" );
+		checkCountOfFeeSuitInPastYears.setTooltip( "Insure that the fee suit supplement is complete" );
+end

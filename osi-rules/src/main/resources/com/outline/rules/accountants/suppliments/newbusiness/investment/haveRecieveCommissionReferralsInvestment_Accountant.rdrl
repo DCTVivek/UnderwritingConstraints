@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "haveRecieveCommissionReferralsInvestment_Accountant"
+	dialect "mvel"
+	when
+		InvestMentSupp : InvestmentAcc( isSecuritiesSales == "Y" )
+	then
+		InvestMentSupp.setId( "haveRecieveCommissionReferralsInvestment_Accountant" );
+		InvestMentSupp.setDescription( "Firm has received commissions, referral fees, reciprocity or other inducements arising from the sale, promotion or recommendation of securities, insurance products, real estate or other investments. - Decline." );
+		InvestMentSupp.setTooltip( "Firm hasreceived commissions, referral fees, reciprocity or other inducements arising from the sale, promotion or recommendation of securities, insurance products, real estate or other investments. - Decline" );
+end

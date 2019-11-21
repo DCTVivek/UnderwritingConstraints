@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.plaintilff;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "validateAuthorizationsForSettlement_Lawyers"
+	dialect "mvel"
+	when
+		validateAuthorizationsForSettlement : PlaintiffSupp( isSettlementAggrementsUsed == "N" )
+	then
+		validateAuthorizationsForSettlement.setId( "validateAuthorizationsForSettlement_Lawyers" );
+		validateAuthorizationsForSettlement.setDescription( "Plaintiff written authorizations not used." );
+		validateAuthorizationsForSettlement.setTooltip( "Confirm the answer is \"NO.\" If no, does the applicant have any procedure for settlements? " );
+end

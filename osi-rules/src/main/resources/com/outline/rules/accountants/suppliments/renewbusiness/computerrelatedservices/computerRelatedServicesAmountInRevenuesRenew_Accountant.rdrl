@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.computerrelatedservices;
+
+import java.lang.Number;
+import com.outline.rules.pojo.ComputerservicesAcc;
+
+rule "computerRelatedServicesAmountInRevenuesRenew_Accountant"
+	dialect "mvel"
+
+	when computerRelatedServicesAmountInRevenuesRenew : ComputerservicesAcc(revenuesFromLastYear_2n>0 ||  revenuesFromLastYear_3n>0 ||  revenuesFromLastYear_4n>0 ||  revenuesFromLastYear_5n>0 ||  estimatedRevenue_2n>0 ||  estimatedRevenue_3n>0 ||  estimatedRevenue_4n>0 ||  estimatedRevenue_5n>0)
+	then
+		computerRelatedServicesAmountInRevenuesRenew.setId("computerRelatedServicesAmountInRevenuesRenew_Accountant");
+		computerRelatedServicesAmountInRevenuesRenew.setDescription("Computer Related Services AOP - Firm Recommending, selling or training , Installing custom software/hardware, Performing system maintenance or Other. Recommending or selling okay if accouting package related and for current clients.  Anything else is a decline.");
+		computerRelatedServicesAmountInRevenuesRenew.setTooltip("Determine if they are providng installation of package software or recommending or a reseller of software and hardware that it is for accounting and it is for their current clients. Any custom software or system maintenance is a decline.");
+end

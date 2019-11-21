@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "investmentCounselingMoneyMgtAOP_Lawyers"
+	dialect "mvel"
+	when
+		investmentCounselingMoneyMgtAOP : AOP( investmentCounselingMoneyMgtPercentage > 0 )
+	then
+		investmentCounselingMoneyMgtAOP.setId( "investmentCounselingMoneyMgtAOP_Lawyers" );
+		investmentCounselingMoneyMgtAOP.setDescription( "Firm has Investment Counseling/Money Mgt. and it  is outside the our Underwriting Authority" );
+		investmentCounselingMoneyMgtAOP.setTooltip( "Decline (Outside of C&F Authority Guidelines)" );
+end

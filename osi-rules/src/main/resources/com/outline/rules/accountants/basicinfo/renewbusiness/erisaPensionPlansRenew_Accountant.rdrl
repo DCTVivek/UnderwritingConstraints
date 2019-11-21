@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "erisaPensionPlansRenew_Accountant"
+	dialect "mvel"
+
+		when erisaPensionPlansRenew : BasicInfoAcc(erisaPensionNew>0 ||diffAopErisaPension>10)
+	then
+		erisaPensionPlansRenew.setId("erisaPensionPlansRenew_Accountant");
+		erisaPensionPlansRenew.setDescription("Erisa/Pension plans  AOP greater than 0%.  If greater than 25% it must be approved by C & F");
+		erisaPensionPlansRenew.setTooltip("Erisa/Pension plans  AOP - Who for, and services provided, is it a public company.");
+end

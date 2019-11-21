@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "doesSecondPartnerApproveSignOffAcceptanceAuditEngagements_Accountant"
+	dialect "mvel"
+
+	when doesSecondPartnerApproveSignOffAcceptanceAuditEngagements : AuditAcc(numberOfPersonnelValue>0 &&  isAuditEngagementsAtt=="N"  )
+	then
+		doesSecondPartnerApproveSignOffAcceptanceAuditEngagements.setId("doesSecondPartnerApproveSignOffAcceptanceAuditEngagements_Accountant");
+		doesSecondPartnerApproveSignOffAcceptanceAuditEngagements.setDescription("Multi partner firm accepting audit engagments with no partner review.");
+		doesSecondPartnerApproveSignOffAcceptanceAuditEngagements.setTooltip("Multi partner firm accepting audit engagments with no partner review. Need to understand the nature of the audits the firm is doing.");
+end

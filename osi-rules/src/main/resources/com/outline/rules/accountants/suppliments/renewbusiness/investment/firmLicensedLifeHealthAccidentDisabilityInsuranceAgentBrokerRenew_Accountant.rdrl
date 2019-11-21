@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "firmLicensedLifeHealthAccidentDisabilityInsuranceAgentBrokerRenew_Accountant"
+	dialect "mvel"
+
+	when firmLicensedLifeHealthAccidentDisabilityInsuranceAgentBrokerRenew : InvestmentAcc(isAnyFirmAffiliateLicensed=="Y")
+	then
+		firmLicensedLifeHealthAccidentDisabilityInsuranceAgentBrokerRenew.setId("firmLicensedLifeHealthAccidentDisabilityInsuranceAgentBrokerRenew_Accountant");
+		firmLicensedLifeHealthAccidentDisabilityInsuranceAgentBrokerRenew.setDescription("Firm provides services as a life/health/accident/disability insurance agent or broker.");
+		firmLicensedLifeHealthAccidentDisabilityInsuranceAgentBrokerRenew.setTooltip("Firm provides services as a life/health/accident/disability insurance agent or broker.  Advise and document to the firm that these services are not currrently covered by the policy.");
+end

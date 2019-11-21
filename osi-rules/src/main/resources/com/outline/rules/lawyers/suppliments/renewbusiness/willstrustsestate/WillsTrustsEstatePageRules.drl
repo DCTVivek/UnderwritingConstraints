@@ -1,0 +1,12 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.willstrustsestate;
+import com.util.Context;
+
+
+
+rule "checkClientEstatesOrTrustsRenewal_Lawyers_old"
+	when ctx : Context(this["NumberOfEstateOver5Million"]>this["NumberOfEstateOver5MillionOld"] || this["NumberOfEstateOver10Million"]>this["NumberOfEstateOver10MillionOld"] )
+	then
+		ctx.put("question","Estates or trusts valued over 5M or 10M.");
+		ctx.put("hint","Are they specializing in Wills/Estates and Trusts.");
+end
+

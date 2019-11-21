@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "hasFirmEnteredEngagementServingTrusteeCoTrusteeRenew_Accountant"
+	dialect "mvel"
+
+	when hasFirmEnteredEngagementServingTrusteeCoTrusteeRenew : BasicInfoAcc(isServedAsTrustee=="Y")
+	then
+		hasFirmEnteredEngagementServingTrusteeCoTrusteeRenew.setId("hasFirmEnteredEngagementServingTrusteeCoTrusteeRenew_Accountant");
+		hasFirmEnteredEngagementServingTrusteeCoTrusteeRenew.setDescription("Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client.");
+		hasFirmEnteredEngagementServingTrusteeCoTrusteeRenew.setTooltip("Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client. Review supplement - if the applicant is a beneficiary of a personal trust valued in excess of $500,000 - it is a Decline");
+end

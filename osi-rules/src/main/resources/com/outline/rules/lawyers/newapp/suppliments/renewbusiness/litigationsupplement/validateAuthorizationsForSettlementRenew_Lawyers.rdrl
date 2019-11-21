@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.litigationsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "validateAuthorizationsForSettlementRenew_Lawyers"
+	dialect "mvel"
+	when
+		validateAuthorizationsForSettlement : PlaintiffSupp( isSettlementAggrementsUsed == "N" )
+	then
+		validateAuthorizationsForSettlement.setId( "validateAuthorizationsForSettlementRenew_Lawyers" );
+		validateAuthorizationsForSettlement.setDescription( "Not using written authorizations" );
+		validateAuthorizationsForSettlement.setTooltip( "How does the firm confirm a clients acceptance of the settlement?" );
+end

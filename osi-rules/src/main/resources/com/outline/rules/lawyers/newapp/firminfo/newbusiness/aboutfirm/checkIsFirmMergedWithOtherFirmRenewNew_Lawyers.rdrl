@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.firminfo.newbusiness.aboutfirm;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "checkIsFirmMergedWithOtherFirmRenewNew_Lawyers"
+	dialect "mvel"
+	when
+		checkIsFirmMergedWithOtherFirm : Coverage( isFirmMergedWithOtherFirm == "Y" )
+	then
+		checkIsFirmMergedWithOtherFirm.setId( "checkIsFirmMergedWithOtherFirmRenewNew_Lawyers" );
+		checkIsFirmMergedWithOtherFirm.setDescription( "Firm has had an acquisition or merger in past 10 years." );
+		checkIsFirmMergedWithOtherFirm.setTooltip( "Was it a merger or acquisition?  When?  Were the practices the same or very different.  Was an ERP purchased?" );
+end

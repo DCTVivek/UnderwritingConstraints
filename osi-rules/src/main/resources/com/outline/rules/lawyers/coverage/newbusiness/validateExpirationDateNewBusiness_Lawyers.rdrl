@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "validateExpirationDateNewBusiness_Lawyers"
+	dialect "mvel"
+	when
+		validateExpirationDateNewBusiness : Coverage( effectiveDateOfPolicy != ( policyExpiryDate ) )
+	then
+		validateExpirationDateNewBusiness.setId( "validateExpirationDateNewBusiness_Lawyers" );
+		validateExpirationDateNewBusiness.setDescription( "Expiration date on current insurance different than effective date requested." );
+		validateExpirationDateNewBusiness.setTooltip( "Why is the submission late?  If more than 90 (NB) or 60 (Renewal) explain that we cannot quote them that far out." );
+end

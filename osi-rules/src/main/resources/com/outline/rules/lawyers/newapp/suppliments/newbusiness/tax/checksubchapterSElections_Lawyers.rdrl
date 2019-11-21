@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checksubchapterSElections_Lawyers"
+	dialect "mvel"
+	when
+		checksubchapterSElections : Tax( subchapterSElections > 0 )
+	then
+		checksubchapterSElections.setId( "checksubchapterSElections_Lawyers" );
+		checksubchapterSElections.setDescription( "Tax - providing subchapter S Elections" );
+		checksubchapterSElections.setTooltip( "Decline." );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "isOfficeInOtherThanStateOfDomicile_Lawyers"
+	dialect "mvel"
+	when
+		isOfficeInOtherThanStateOfDomicile : Firm( priorStateDesc != ( StateDesc ) )
+	then
+		isOfficeInOtherThanStateOfDomicile.setId( "isOfficeInOtherThanStateOfDomicile_Lawyers" );
+		isOfficeInOtherThanStateOfDomicile.setDescription( "Offices in other states must be approved for licensing and hours worked in a state other than the state of domicile." );
+		isOfficeInOtherThanStateOfDomicile.setTooltip( "Review.  if contiguous states okay, f not need to know what they are doing in the other states.  Are they licensed in those states?" );
+end

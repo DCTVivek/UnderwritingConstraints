@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.WillsTrustsEstates;
+
+rule "checkAssetProtectionNewApp_Lawyers"
+	dialect "mvel"
+	when
+		checkAssetProtection : WillsTrustsEstates( assetProtectionValue > "0" )
+	then
+		checkAssetProtection.setId( "checkAssetProtectionNewApp_Lawyers" );
+		checkAssetProtection.setDescription( "Wills - Asset protection above zero" );
+		checkAssetProtection.setTooltip( "No explanation needed." );
+end

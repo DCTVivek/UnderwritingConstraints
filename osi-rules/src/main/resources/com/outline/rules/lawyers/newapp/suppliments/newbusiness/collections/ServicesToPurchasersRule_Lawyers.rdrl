@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.collections;
+
+import java.lang.Number;
+import com.outline.rules.pojo.CollectionSupplement;
+
+rule "ServicesToPurchasersRule_Lawyers"
+	dialect "mvel"
+	when
+		ServicesToPurchasersRule : CollectionSupplement( servicesToPurchasers == "Y" )
+	then
+		ServicesToPurchasersRule.setId( "ServicesToPurchasersRule_Lawyers" );
+		ServicesToPurchasersRule.setDescription( "Provides services to debt consolidators." );
+		ServicesToPurchasersRule.setTooltip( "Decline." );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.businessmanagement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BusinessManagementAcc;
+
+rule "doesFirmhaveDiscretionaryInvestment_Accountant"
+	dialect "mvel"
+	when
+		doesFirmhaveDiscretionaryInvestment : BusinessManagementAcc( haveInvestmentAuthorityFC == "Y" )
+	then
+		doesFirmhaveDiscretionaryInvestment.setId( "doesFirmhaveDiscretionaryInvestment_Accountant" );
+		doesFirmhaveDiscretionaryInvestment.setDescription( "Firm  has discretionary investment authority of client funds." );
+		doesFirmhaveDiscretionaryInvestment.setTooltip( "Firm  has discretionary investment authority of client funds. Review the supplement and also determine what is the nature of the discretionary control and for how many clients.  Is this for trusts that are controlled by the trust agreement or by the courts?" );
+end

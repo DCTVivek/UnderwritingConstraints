@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.morepracticemanagement.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.MorePracticeManagementNewApp;
+
+rule "TopTwoRevenueClients_Lawyers"
+	dialect "mvel"
+	when
+		TopTwoRevenueClient : MorePracticeManagementNewApp( firstLargestRevenueClientNew > ( firstLargestRevenueClientOld+5 ) || secondLargestRevenueClientNew > ( secondLargestRevenueClientOld+5 ) )
+	then
+		TopTwoRevenueClient.setId( "TopTwoRevenueClients_Lawyers" );
+		TopTwoRevenueClient.setDescription( "Increase in Large client  more than 50%, was the work  1. insurance defense work; or 2. for a government or government agency; or 3. Payment related to a single specific engagement." );
+		TopTwoRevenueClient.setTooltip( "Determine the type of work and engagement done for the large client. Was the work performed by the firm 1. insurance defense work; or 2. for a government or government agency; or 3. Payment related to a single specific engagement." );
+end

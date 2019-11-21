@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.realestate.commercial;
+
+import java.lang.Number;
+import com.outline.rules.pojo.ResidentialSupplement;
+
+rule "checkOtherCommercialAopRenewal_Lawyers"
+	dialect "mvel"
+
+	when checkOtherCommercialAopRenewal : ResidentialSupplement(otherAopCommercialPercentage!=otherAopCommercialPercentageOld )
+	then
+		checkOtherCommercialAopRenewal.setId("checkOtherCommercialAopRenewal_Lawyers");
+		checkOtherCommercialAopRenewal.setDescription("Commercial Real estate 'Other' is greater than 0.");
+		checkOtherCommercialAopRenewal.setTooltip("Review the description and determine if it belongs in another category. Discuss with the client to understand what they are doing.");
+end

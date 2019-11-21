@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "investmentFinancialRenew_Accountant"
+	dialect "mvel"
+
+		when investmentFinancialRenew : BasicInfoAcc(aop_Percentage_19>0 )
+	then
+		investmentFinancialRenew.setId("investmentFinancialRenew_Accountant");
+		investmentFinancialRenew.setDescription("Investment / Financial Planning AOP greater than 0%. If greater than 25% it must be approved by C & F");
+		investmentFinancialRenew.setTooltip("Investment / Financial Planning AOP.  Obtain the detials on what services are they providing and to who. If more than 25% it must be referred to C & F.");
+end

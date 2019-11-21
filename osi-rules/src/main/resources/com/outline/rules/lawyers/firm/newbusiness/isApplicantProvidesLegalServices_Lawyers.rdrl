@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "isApplicantProvidesLegalServices_Lawyers"
+	dialect "mvel"
+	when
+		isApplicantProvidesLegalServices : Firm( isApplicantProvidesLegalServices == "Y" )
+	then
+		isApplicantProvidesLegalServices.setId( "isApplicantProvidesLegalServices_Lawyers" );
+		isApplicantProvidesLegalServices.setDescription( "If a firm is providing legal services under an entity other than the firm, it must be approved. What are they doing and why." );
+		isApplicantProvidesLegalServices.setTooltip( "What is the nature of the relationship between this entity and the applicant firm? What legal services this entity provide? What legal services does the applicant provide to this entity? " );
+end

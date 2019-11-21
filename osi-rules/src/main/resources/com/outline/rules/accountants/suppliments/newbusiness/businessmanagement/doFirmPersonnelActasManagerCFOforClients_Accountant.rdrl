@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.businessmanagement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BusinessManagementAcc;
+
+rule "doFirmPersonnelActasManagerCFOforClients_Accountant"
+	dialect "mvel"
+
+	when doFirmPersonnelActasManagerCFOforClients : BusinessManagementAcc(isFirmPersonnelBusinessManagerFc=="Y")
+	then
+		doFirmPersonnelActasManagerCFOforClients.setId("doFirmPersonnelActasManagerCFOforClients_Accountant");
+		doFirmPersonnelActasManagerCFOforClients.setDescription("Firm acting as a business manager or CFO for business clients.  See exclusion 10b:  an officer, director, trustee, partner or other member of a governing body of any entity other than the Named Insured is excluded.");
+		doFirmPersonnelActasManagerCFOforClients.setTooltip("Firm acting as a business manager or CFO for business clients.  Determine if the accountants is an employee of the client and in what capacity.  May be excluded under 10b.");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.firminfo.newbusiness.pastclaims;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "validateRegulatroyIssues_Lawyers"
+	dialect "mvel"
+	when
+		RegulatroyIssues : Coverage( isPersonnelBeSubOfAnyInvest == "Y" )
+	then
+		RegulatroyIssues.setId( "validateRegulatroyIssues_Lawyers" );
+		RegulatroyIssues.setDescription( "Regulatory/Disciplinary Issue." );
+		RegulatroyIssues.setTooltip( "Obtain the details and current status or outcome." );
+end

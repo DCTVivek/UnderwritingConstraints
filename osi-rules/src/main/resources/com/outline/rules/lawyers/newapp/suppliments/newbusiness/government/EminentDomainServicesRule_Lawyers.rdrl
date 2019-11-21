@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.government;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GovernmentSupplement;
+
+rule "EminentDomainServicesRule_Lawyers"
+	dialect "mvel"
+	when
+		EminentDomainServices : GovernmentSupplement( eminentDomainServices == "Y" )
+	then
+		EminentDomainServices.setId( "EminentDomainServicesRule_Lawyers" );
+		EminentDomainServices.setDescription( "Government - Providing services related to eminent domain." );
+		EminentDomainServices.setTooltip( "How many times has the attorney performed eminent domain services in the past three years?" );
+end

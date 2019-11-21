@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.aop.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AopNew;
+
+rule "otherAOPRenew_Lawyers"
+	dialect "mvel"
+	when
+		otherAOP : AopNew( otherAopNew > ( otherAopPrior ) || otherDescNew != ( otherDescPrior ) )
+	then
+		otherAOP.setId( "otherAOPRenew_Lawyers" );
+		otherAOP.setDescription( "Change in Other AOP - Review description " );
+		otherAOP.setTooltip( "Review the description and work with insured to put it in the appropriate category if applicable.  Get as through description of the work if it does belong in other." );
+end

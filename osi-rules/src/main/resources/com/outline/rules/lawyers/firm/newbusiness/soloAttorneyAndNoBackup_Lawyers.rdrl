@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "soloAttorneyAndNoBackup_Lawyers"
+	dialect "mvel"
+
+	when soloAttorneyAndNoBackup : Firm(isFirmHaveBackupAttorney!="Y")
+	then
+		soloAttorneyAndNoBackup.setId("soloAttorneyAndNoBackup_Lawyers");
+		soloAttorneyAndNoBackup.setDescription("Backup required for solo attorney");
+		soloAttorneyAndNoBackup.setTooltip("Need Backup attorney name and address.");
+end

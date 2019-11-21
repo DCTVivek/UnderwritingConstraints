@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AopNew;
+
+rule "MergersAcquisitions_Lawyers"
+	dialect "mvel"
+	when
+		MergersAcquisitionsAOP : AopNew( mergersAcquisitionsAOPPercentage > 25 )
+	then
+		MergersAcquisitionsAOP.setId( "MergersAcquisitions_Lawyers" );
+		MergersAcquisitionsAOP.setDescription( "Higher risk area of practice." );
+		MergersAcquisitionsAOP.setTooltip( "Which side was represented. Value of the 3 largest in the last 3 years." );
+end

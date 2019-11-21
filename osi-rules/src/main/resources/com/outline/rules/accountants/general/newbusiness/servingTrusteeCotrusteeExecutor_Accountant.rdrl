@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "servingTrusteeCotrusteeExecutor_Accountant"
+	dialect "mvel"
+
+	when servingTrusteeCotrusteeExecutor : GeneralAcc(isServedAsTrustee=="Y")
+	then
+		servingTrusteeCotrusteeExecutor.setId("servingTrusteeCotrusteeExecutor_Accountant");
+		servingTrusteeCotrusteeExecutor.setDescription("Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client.");
+		servingTrusteeCotrusteeExecutor.setTooltip("Firms is serving as trustee, co-trustee, executor, administrator or personal representative for a  client. Review supplement - if the applicant is a beneficiary of a personal trust valued in excess of $500,000 - it is a Decline");
+end

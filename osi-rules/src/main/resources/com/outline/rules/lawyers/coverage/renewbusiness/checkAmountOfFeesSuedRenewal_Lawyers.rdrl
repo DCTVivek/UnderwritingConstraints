@@ -1,0 +1,16 @@
+package com.outline.rules.lawyers.coverage.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "checkAmountOfFeesSuedRenewal_Lawyers"
+	dialect "mvel"
+
+
+	when 
+		checkAmountOfFeesSuedRenewal : Coverage(feeSuedTotal>25000)
+	then
+		checkAmountOfFeesSuedRenewal.setId( "checkAmountOfFeesSuedRenewal_Lawyers" );
+		checkAmountOfFeesSuedRenewal.setDescription( "Fee suit more than 25,000" );
+		checkAmountOfFeesSuedRenewal.setTooltip( "Is this an on going problem of collections.  Have there been countersuits?" );
+end

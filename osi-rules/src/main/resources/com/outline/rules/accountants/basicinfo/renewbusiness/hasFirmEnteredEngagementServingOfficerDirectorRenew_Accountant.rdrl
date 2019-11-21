@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "hasFirmEnteredEngagementServingOfficerDirectorRenew_Accountant"
+	dialect "mvel"
+
+	when hasFirmEnteredEngagementServingOfficerDirectorRenew : BasicInfoAcc(isFirmRenderedServiceForAnyClient=="Y")
+	then
+		hasFirmEnteredEngagementServingOfficerDirectorRenew.setId("hasFirmEnteredEngagementServingOfficerDirectorRenew_Accountant");
+		hasFirmEnteredEngagementServingOfficerDirectorRenew.setDescription("Firm is serving as an officer, director, partner, manager or other member of a client's governing body.");
+		hasFirmEnteredEngagementServingOfficerDirectorRenew.setTooltip("Firm is serving as an officer, director, partner, manager or other member of a client's governing body.  Review supplement.  If the industry type is: Banks, Broker/Dealers,Investment Companies and Funds, Hedge Funds, Mutual Funds, Syndication Mangers - Decline");
+end

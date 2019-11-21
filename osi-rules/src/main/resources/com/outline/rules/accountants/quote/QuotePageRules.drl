@@ -1,0 +1,9 @@
+package com.outline.rules.accountants.quote;
+import com.util.Context;
+
+rule "checkPremiumRenew_Accountant_old"
+	when ctx : Context(this["coutOfPremium"]>0)
+	then
+		ctx.put("question","Premium above 3,000.");
+		ctx.put("hint","Premium above 3,000. Need approval from underwriting.");
+end

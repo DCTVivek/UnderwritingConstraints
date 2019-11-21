@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AopNew;
+
+rule "InternationalAOP_Lawyers"
+	dialect "mvel"
+	when
+		AOPSupp : AopNew( patentAOPPercentage > 10 )
+	then
+		AOPSupp.setId( "InternationalAOP_Lawyers" );
+		AOPSupp.setDescription( "Higher risk area of practice." );
+		AOPSupp.setTooltip( "Describe the nature of legal services in the firm's international services. Who are the services performed for?  What countries are invovlved?" );
+end

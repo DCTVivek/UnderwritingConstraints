@@ -1,0 +1,9 @@
+package com.outline.rules.lawyers.quote;
+import com.util.Context;
+
+rule "renewalPremiumComparision_Lawyers_old"
+	when ctx : Context(this["TotalPremium"]>3000)
+	then
+		ctx.put("question","Premium above 3,000.");
+		ctx.put("hint","Premium above 3,000 must be approved by UW");
+end

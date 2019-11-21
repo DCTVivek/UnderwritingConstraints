@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "checkEstablishDateWithAttorneysHiringDateRenew_Lawyers"
+	dialect "mvel"
+	when
+		checkEstablishDateWithAttorneysHiringDate : Firm( hiringYearOfAttorney != ( yearOfFirmEstablished ) )
+	then
+		checkEstablishDateWithAttorneysHiringDate.setId( "checkEstablishDateWithAttorneysHiringDateRenew_Lawyers" );
+		checkEstablishDateWithAttorneysHiringDate.setDescription( "Prior acts date and Date of hire are different" );
+		checkEstablishDateWithAttorneysHiringDate.setTooltip( "Why are date of hire and prior acts date different.  Do they currently have career coverage?" );
+end

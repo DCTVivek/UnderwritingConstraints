@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.plaintilff;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "missingLargestCaseRenewal_Lawyers"
+	dialect "mvel"
+
+	when missingLargestCaseRenewal : PlaintiffSupp(plaintiffPercentage>=50 && plaintiffPercentage>plaintiffPercentageOld && isLargestCaseMissing=="true")
+	then
+		missingLargestCaseRenewal.setId("missingLargestCaseRenewal_Lawyers");
+		missingLargestCaseRenewal.setDescription("Plaintiff is 50% of revenue and largest case size is missing.");
+		missingLargestCaseRenewal.setTooltip("Obtain the largest case size information as well as the average case size. How many large cases have the handled. Are they lead counsel?");
+end

@@ -1,0 +1,78 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+import com.util.Context;
+
+rule "applicantWithPublicFigures_Lawyers_old"
+	when ctx : Context(this["IsFirmHaveClientInEntertainmentInd"]=="Y")
+	then
+		ctx.put("question","The firm is providing services to public figures.");
+		ctx.put("hint","Who and are they 1. acting as an agent, 2. business management or negotiation of performance or professional contracts, 3. money management, investment advice or discretionary investments?");
+end
+rule "hasFirmProvidedLegalServices_Lawyers_old"
+	when ctx : Context(this["IsFirmProvidedLegalService"]=="Y")
+	then
+		ctx.put("question","Firms providing legal services related to securities / investments or hedge funds or mass tort/class action as lead cousel are ouside our authority.  Firms providing legal services for mass tort/class as other than lead counsel need to be reviewed.");
+		ctx.put("hint","What are they doing and when and for how long and do they intend to continue.  If class action are they Other than lead plaintiff counsel. If mass tort/class action have they acted as Lead counselor managing role and is it for  Plaintiff or defense.How many?");
+end
+
+
+rule "bankruptcyAOP_Lawyers_old"
+	when ctx : Context(this["bankruptcyPercentage"]>35)
+	then
+		ctx.put("question","Firm has more than 35% bankruptcy.");
+		ctx.put("hint","Are they providing services to or do they own a debt consolidation or collections company.");
+end
+rule "copyrightTrademarkPatentAOP_Lawyers_old"
+	when ctx : Context(this["CTPPercentage"]>0)
+	then
+		ctx.put("question","If Copyright/Trademark 5% or less must be approved by UW, more than 5% is outside our UW authority.");
+		ctx.put("hint","Only trademark searches and filings up to 5% are within our authority.  Anything else is a referral to  C & F or declined.");
+end
+rule "environmentalAOP_Lawyers_old"
+	when ctx : Context(this["environmentalAOPPercentage"]>0)
+	then
+		ctx.put("question","If Environmental AOP has above 0%, it must be approved by UW.  If the work is other than incidental to a real estate purchase, it is a decline.");
+		ctx.put("hint","Are they providing Environmental as part of a real estate purchase or sale?");
+end
+
+rule "financialInstitutionAOP_Lawyers_old"
+	when ctx : Context(this["financialInstitutionPercentage"]>0)
+	then
+		ctx.put("question","If the firm has: 1. Acted as General Counsel, or is CEO, Chairman, President, officer, director or member of any internal committee; or 2. Had an equity interest in said institution; or 3. Had a loan commitment for the subject institution; or 4. Provided services related to regulatory compliance.");
+		ctx.put("hint","What services has the firm provided to the financial institution?  Need a detailed description.  1. Is any institution which you represent or have represented within the last 5 years currently or previously been under regulatory review by any state or federal government agency or had any action taken against it?"
+		+"2. Has any financial institution for which you have done work in the last 5 years become bankrupt or insolvent?");
+end
+rule "governmentNBAOP_Lawyers_old"
+	when ctx : Context(this["GovernmentAOPPercentage"]>0)
+	then
+		ctx.put("question","1. The services are provided for any government or government agency where the town or city has a population equal to or greater than 1,000,000; 2. The attorney is providing bond work; or 3. The attorney is providing legal services involving eminent domain");
+		ctx.put("hint","What services are they providing to the municipality or government?  What is the population of the town or municipality?");
+end
+
+rule "securitiesBonds_Lawyers_old"
+	when ctx : Context(this["securitiesBondsAOPPercentage"]>0)
+	then
+		ctx.put("question","Work in Securities and Bonds is a decline");
+		ctx.put("hint","Determine if they are truly doing securities or bond work.  1. Within the past five years have you had any involvement in the following areas:"
+						+"a. Registration, issuance, offering, or sale of any bonds or securities?b. Promoter, syndicator, general partner, or managing partner of any limited partnership other than a family limited partnership.");
+end
+rule "otherAop_Lawyers_old"
+	when ctx : Context(this["otherAOPPercentage"]>0)
+	then
+		ctx.put("question","Other AOP - Review description ");
+		ctx.put("hint","Review the description and work with insured to put it in the appropriate category if applicable.  Get as through description of the work if it does belong in other.");
+end
+
+
+rule "investmentCounselingMoneyMgtAOP_Lawyers_old"
+	when ctx : Context(this["investmentCounselingMoneyMgtPercentage"]>0)
+	then
+		ctx.put("question","Firm has Investment Counseling/Money Mgt. and it  is outside the our Underwriting Authority");
+		ctx.put("hint","Decline");
+end
+
+rule "titleOpinionsAop_Lawyers_old"
+	when ctx : Context(this["titleOpinionsAopPercentage"]>15)
+	then
+		ctx.put("question","Title opions - 15% to 30% of annual revenue - subject to a maximum policy limit of $1,000,000 each claim / $3,000,000 in the policy aggregate.");
+		ctx.put("hint","Who are they doing title opinion work for and is it in conjunction with their own real estate practice.");
+end

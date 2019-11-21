@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.underwritinginformation.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.UnderwritingInformation;
+
+rule "isFirmCoverageForPreceedorFirmsNewApp_Lawyers"
+	dialect "mvel"
+	when
+		isFirmCoverageForPreceedorFirms : UnderwritingInformation( isFirmCoverageForPreceedorFirms == "Y" )
+	then
+		isFirmCoverageForPreceedorFirms.setId( "isFirmCoverageForPreceedorFirmsNewApp_Lawyers" );
+		isFirmCoverageForPreceedorFirms.setDescription( "Coverage exclusion is attached to current policy." );
+		isFirmCoverageForPreceedorFirms.setTooltip( "Send UW copy of the endorsement" );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "doesFirmContractualRelationshipWithSecuritiesbrokerDealerRenew_Accountant"
+	dialect "mvel"
+
+	when doesFirmContractualRelationshipWithSecuritiesbrokerDealerRenew : InvestmentAcc(isContractualRelationShip=="Y")
+	then
+		doesFirmContractualRelationshipWithSecuritiesbrokerDealerRenew.setId("doesFirmContractualRelationshipWithSecuritiesbrokerDealerRenew_Accountant");
+		doesFirmContractualRelationshipWithSecuritiesbrokerDealerRenew.setDescription("Firms with a contractual relationship with a securities broker or dealer.");
+		doesFirmContractualRelationshipWithSecuritiesbrokerDealerRenew.setTooltip("Determine the type of contractual relationship - Determine if there is a E & O Policy in place. If they have current coverage via their current Professional Liability policy decline to quote.  Are they covered under a broker/dealer E & O policy?");
+end

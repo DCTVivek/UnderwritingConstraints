@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "nonRatedAttorneyAdded_Lawyers"
+	dialect "mvel"
+
+	when nonRatedAttorneyAdded : Firm(nonratedAttorneyCount>0)
+	then
+		nonRatedAttorneyAdded.setId("nonRatedAttorneyAdded_Lawyers");
+		nonRatedAttorneyAdded.setDescription("Added Non-rated attorney.");
+		nonRatedAttorneyAdded.setTooltip("Needs approval by UW.");
+end

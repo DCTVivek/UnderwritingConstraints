@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "soloAttorneyAndHoursChange_Lawyers"
+	dialect "mvel"
+
+	when soloAttorneyAndHoursChange : Firm(annualWorkedHours<500)
+	then
+		soloAttorneyAndHoursChange.setId("soloAttorneyAndHoursChange_Lawyers");
+		soloAttorneyAndHoursChange.setDescription("Solo with less than 500 hours.  Must be approved by C & F");
+		soloAttorneyAndHoursChange.setTooltip("Why have they reduced their hours.  Are they getting ready to retire?");
+end

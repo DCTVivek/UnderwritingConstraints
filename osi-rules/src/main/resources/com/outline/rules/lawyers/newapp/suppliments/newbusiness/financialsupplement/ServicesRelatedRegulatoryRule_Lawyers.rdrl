@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.financialsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.FinancialSupplement;
+
+rule "ServicesRelatedRegulatoryRule_Lawyers"
+	dialect "mvel"
+	when
+		ServicesRelatedRegulatory : FinancialSupplement( servicesRelatedRegulatory == "Y" )
+	then
+		ServicesRelatedRegulatory.setId( "ServicesRelatedRegulatoryRule_Lawyers" );
+		ServicesRelatedRegulatory.setDescription( "Financial Institition - Performed services related to regulatory compliance." );
+		ServicesRelatedRegulatory.setTooltip( "Decline." );
+end

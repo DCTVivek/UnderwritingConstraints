@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.plaintilff;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "validateAverageCasesPerAttorney_Lawyers"
+	dialect "mvel"
+	when
+		validateAverageCasesPerAttorney : PlaintiffSupp( numberOfInjuryHandleByAttorney > 100 )
+	then
+		validateAverageCasesPerAttorney.setId( "validateAverageCasesPerAttorney_Lawyers" );
+		validateAverageCasesPerAttorney.setDescription( "Plaintiff per attorney case load more than 100 per year." );
+		validateAverageCasesPerAttorney.setTooltip( "How does the applicant manage this case load? " );
+end

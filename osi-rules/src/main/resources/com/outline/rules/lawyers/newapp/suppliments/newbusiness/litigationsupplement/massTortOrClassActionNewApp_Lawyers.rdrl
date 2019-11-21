@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.litigationsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.LitigationSupplement;
+
+rule "massTortOrClassActionNewApp_Lawyers"
+	dialect "mvel"
+	when
+		massTortOrClassAction : LitigationSupplement( massTortOrClassAction == "Y" )
+	then
+		massTortOrClassAction.setId( "massTortOrClassActionNewApp_Lawyers" );
+		massTortOrClassAction.setDescription( "Lead counsel on mass tort" );
+		massTortOrClassAction.setTooltip( "In the last five years, has the  firm or any member of the firm managed the litigation? " );
+end

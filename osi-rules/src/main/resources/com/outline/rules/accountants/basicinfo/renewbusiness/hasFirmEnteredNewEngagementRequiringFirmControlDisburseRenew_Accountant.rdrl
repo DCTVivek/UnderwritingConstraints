@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "hasFirmEnteredNewEngagementRequiringFirmControlDisburseRenew_Accountant"
+	dialect "mvel"
+
+	when hasFirmEnteredNewEngagementRequiringFirmControlDisburseRenew : BasicInfoAcc(isControlClientFunds=="Y")
+	then
+		hasFirmEnteredNewEngagementRequiringFirmControlDisburseRenew.setId("hasFirmEnteredNewEngagementRequiringFirmControlDisburseRenew_Accountant");
+		hasFirmEnteredNewEngagementRequiringFirmControlDisburseRenew.setDescription("Firms controls or disburses client funds.");
+		hasFirmEnteredNewEngagementRequiringFirmControlDisburseRenew.setTooltip("Determine for how many clients, amounts and the circumstances and under what condiitons and controls.");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "anyActOmissionFeeDisputeBasisOfClaimAgainstFirmRenew_Accountant"
+	dialect "mvel"
+
+	when anyActOmissionFeeDisputeBasisOfClaimAgainstFirmRenew : BasicInfoAcc(isAwarenessOfAnyProfLiabilitySuitAgainst=="Y")
+	then
+		anyActOmissionFeeDisputeBasisOfClaimAgainstFirmRenew.setId("anyActOmissionFeeDisputeBasisOfClaimAgainstFirmRenew_Accountant");
+		anyActOmissionFeeDisputeBasisOfClaimAgainstFirmRenew.setDescription("Potential Claim");
+		anyActOmissionFeeDisputeBasisOfClaimAgainstFirmRenew.setTooltip("Make sure the supplement is complete.");
+end

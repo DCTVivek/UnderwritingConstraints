@@ -1,0 +1,44 @@
+package com.outline.rules.lawyerssuppliments.newbusiness.willstrustsestate;
+import com.util.Context;
+
+rule "checkApplHavediscretionaryControlOverFunds_Lawyers_old"
+	when ctx : Context(this["IsApplHaveControlOverFunds"]=="Y" )
+	then
+		ctx.put("question","Wills / Estates Firm has discretionary control of funds. May be acting as executor, rep, or trustee.");
+		ctx.put("hint","1. What are they doing and for whom?"
+                +" 2. Is any lawyer in the firm a beneficiary of any trust serviced by the firm?"
+                +" 3. Does the firm provide investment advisory services or have the authority to invest or divest assets belonging to a client?"
+                +" 4. Is there always a written agreement for the scope of legal services provided?"
+                +" 5. For how many trusts does the firm act as trustee?"
+                +" 6. How much are the total assets of the three largest trusts under management by the firm?");
+end
+
+rule "checkClientEstatesOrTrusts_Lawyers_old"
+	when ctx : Context(this["estateOver5Million"]>0 || this["estateOver10Million"]>0 )
+	then
+		ctx.put("question","Estates or trusts valued over 5M or 10M.");
+		ctx.put("hint","Are they specializing in Wills/Estates and Trusts.");
+end
+
+
+
+rule "checkTaxOpinionsChecked_Lawyers_old"
+	when ctx : Context(this["taxOpinionsValue"]=="Y" )
+	then
+		ctx.put("question","Tax Opinions");
+		ctx.put("hint","Are they working with a CPA to provide tax opinions or do they have one on staff?");
+end
+
+rule "checkTaxationChecked_Lawyers_old"
+	when ctx : Context(this["taxationValue"]=="Y" )
+	then
+		ctx.put("question","Providing tax work as part of wills, trusts and estates work.");
+		ctx.put("hint","Are they providing tax opinions and if yes, are they working with a CPA to provide tax opinions or do they have one on staff?  Need to know what percentage of their overall revenue is taxation work.");
+end
+
+rule "checkAssetProtectionChecked_Lawyers_old"
+	when ctx : Context(this["assetProtectionValue"]=="Y" )
+	then
+		ctx.put("question","The firm is providing Asset protection as part of the will, estates and trust practice.");
+		ctx.put("hint","Are the providing the vehicles to protect estate or trust assets other than setting up the trust?  Do they have referral arrangements with financial planners and is ther a fee agreement?");
+end

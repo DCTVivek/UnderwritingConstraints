@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "mergersAcquisitionsRenew_Accountant"
+	dialect "mvel"
+
+		when mergersAcquisitionsRenew : BasicInfoAcc(mergersAcquisitionsNew>0 ||diffAopMergersAcquisitions>10)
+	then
+		mergersAcquisitionsRenew.setId("mergersAcquisitionsRenew_Accountant");
+		mergersAcquisitionsRenew.setDescription("Mergers and Acquisitions-More than 0% in Mergers and Acquisitions.");
+		mergersAcquisitionsRenew.setTooltip("Mergers and Acquisitions AOP - For who, when, how many");
+end

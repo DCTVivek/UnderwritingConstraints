@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.publicfigures;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PublicFiguresAjaxExpansions;
+
+rule "provideMoneyManagementServices_Lawyers"
+	dialect "mvel"
+	when
+		provideMoneyManagementServices : PublicFiguresAjaxExpansions( provideMoneyManagementServices == "Y" )
+	then
+		provideMoneyManagementServices.setId( "provideMoneyManagementServices_Lawyers" );
+		provideMoneyManagementServices.setDescription( "Providing money management/investment advice for a public figure." );
+		provideMoneyManagementServices.setTooltip( "Decline (Outside of C&F Authority Guidelines)" );
+end

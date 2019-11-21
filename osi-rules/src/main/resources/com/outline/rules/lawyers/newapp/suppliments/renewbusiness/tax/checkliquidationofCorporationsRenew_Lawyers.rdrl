@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checkliquidationofCorporationsRenew_Lawyers"
+	dialect "mvel"
+	when
+		TaxSupp : Tax( liquidationofCorporations > ( liquidationofCorporationsOld ) )
+	then
+		TaxSupp.setId( "checkliquidationofCorporationsRenew_Lawyers" );
+		TaxSupp.setDescription( "Tax - providing liquidation of corporations." );
+		TaxSupp.setTooltip( "Describe nature of Liquidation of Corporations tax services." );
+end

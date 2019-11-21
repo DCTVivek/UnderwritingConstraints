@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "lastYearFirmRevenue_Accountant"
+	dialect "mvel"
+	when
+		lastYearFirmRevenue : BasicInfoAcc( percentOfRevenueFromLargestClient > 39 )
+	then
+		lastYearFirmRevenue.setId( "lastYearFirmRevenue_Accountant" );
+		lastYearFirmRevenue.setDescription( "Large client above 40%. Review if the  firm is providing audit services to a large client.  Conflict of interest in rendering and audit opinion." );
+		lastYearFirmRevenue.setTooltip( "Large client above 39%.  Obtain the name and kind of client - how are they handling conflict of interest.  Are they providing audit services." );
+end

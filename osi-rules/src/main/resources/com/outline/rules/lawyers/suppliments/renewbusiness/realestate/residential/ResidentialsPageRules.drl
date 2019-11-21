@@ -1,0 +1,9 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.realestate.residential;
+import com.util.Context;
+
+rule "checkOtherResidentialAopRenewal_Lawyers_old"
+	when ctx : Context(this["otherAopResidentialPercentage"]!=this["otherAopResidentialPercentageOld"] )
+	then
+		ctx.put("question","Residential Real estate 'Other' is greater than 0.");
+		ctx.put("hint","Review the description and determine if it belongs in another category. Discuss with the client to understand what they are doing.");
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.plaintilff;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PlaintiffSupp;
+
+rule "validateAreaOfLitigation_Lawyers"
+	dialect "mvel"
+	when
+		validateAreaOfLitigation : PlaintiffSupp( otherAol > 0 || medicalMalpracticeAol > 0 || productsLiabilityAol > 0 || toxicTortAol > 0 )
+	then
+		validateAreaOfLitigation.setId( "validateAreaOfLitigation_Lawyers" );
+		validateAreaOfLitigation.setDescription( "Mass Tort/Class Action/Toxic Tort" );
+		validateAreaOfLitigation.setTooltip( "No explanation needed." );
+end

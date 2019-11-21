@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.litigationsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.LitigationSupplement;
+
+rule "numberOfInjuryCasesIn12MonthNewApp_Lawyers"
+	dialect "mvel"
+	when
+		numberOfInjuryCasesIn12Month : LitigationSupplement( numberOfInjuryCasesIn > 75 )
+	then
+		numberOfInjuryCasesIn12Month.setId( "numberOfInjuryCasesIn12MonthNewApp_Lawyers" );
+		numberOfInjuryCasesIn12Month.setDescription( "Large number of Litigation cases per attorney" );
+		numberOfInjuryCasesIn12Month.setTooltip( "No explanation needed." );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checkotherTax_Lawyers"
+	dialect "mvel"
+	when
+		checkotherTax : Tax( otherTax > 0 )
+	then
+		checkotherTax.setId( "checkotherTax_Lawyers" );
+		checkotherTax.setDescription( "Tax - other greater than zero" );
+		checkotherTax.setTooltip( "If no description, obtain description." );
+end

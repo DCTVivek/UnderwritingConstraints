@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "addedAttorneyIsLiscenseIndomicile_Lawyers"
+	dialect "mvel"
+
+	when addedAttorneyIsLiscenseIndomicile : Firm(isLiscenseIndomicile=="N")
+	then
+		addedAttorneyIsLiscenseIndomicile.setId("addedAttorneyIsLiscenseIndomicile_Lawyers");
+		addedAttorneyIsLiscenseIndomicile.setDescription("New attorney not licensed in the state of domicle.");
+		addedAttorneyIsLiscenseIndomicile.setTooltip("Attorneys need to have a valid license in the state of domicile.  If not, why not.");
+end

@@ -1,0 +1,35 @@
+package com.outline.rules.lawyers.suppliments.renewbusiness.plaintilff;
+import com.util.Context;
+
+
+rule "validateAreaOfLitigationRenewal_Lawyers_old"
+	when ctx : Context(this["medicalMalpracticeAOLPercentage"]>this["medicalMalpracticeAOLPercentageOld"] || this["productsLiabilityAOLPercentage"]>this["productsLiabilityAOLPercentageOld"] || this["OtherAOLPercentage"]>this["OtherAOLPercentageOld"] || this["toxicTortAOLPercentage"]>this["toxicTortAOLPercentageOld"] )
+	then
+		ctx.put("question","Plaintiff AOP in Med Mal/ Products Liability / Toxic Tort or Other.");
+		ctx.put("hint","Products Liability / Toxic Tort - are they other than lead counsel.  What is the case size and plaintiff size?  For Med Mal, how many cases and what size?  For Other, get a detailed explanation of what thy are doing?");
+end
+
+
+rule "validateAverageCasesPerAttorneyRenewal_Lawyers_old"
+	when ctx : Context(this["NumberOfInjuryHandleByAttorney"]>this["NumberOfInjuryHandleByAttorneyOld"] && this["NumberOfInjuryHandleByAttorney"]>75 )
+	then
+		ctx.put("question","Plaintiff per attorney case load more than 75 per year.");
+		ctx.put("hint","Determine what kind of cases they are handing and how they handle that large a case load.");
+end
+
+
+rule "validateAuthorizationsForSettlementRenewal_Lawyers_old"
+	when ctx : Context(this["IsSettlementAggrementsUsedOld"]=="Y" && this["IsSettlementAggrementsUsed"]=="N" )
+	then
+		ctx.put("question","Plaintiff written authorizations not used.");
+		ctx.put("hint","Worker's Comp is determined by the court so there are not settlement authorizations used.  If other Plaintiff AOP's you need to know why they are not being used.");
+end
+
+
+
+rule "missingLargestCaseRenewal_Lawyers_old"
+	when ctx : Context(this["plaintiffPercentage"]>=50 && this["plaintiffPercentage"]>this["plaintiffPercentageOld"] && this["isLargestCaseMissing"]=="true")
+	then
+		ctx.put("question","Plaintiff is 50% of revenue and largest case size is missing.");
+		ctx.put("hint","Obtain the largest case size information as well as the average case size. How many large cases have the handled. Are they lead counsel?");
+end

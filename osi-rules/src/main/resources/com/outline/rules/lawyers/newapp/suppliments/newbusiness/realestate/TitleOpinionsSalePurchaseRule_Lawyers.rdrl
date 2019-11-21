@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.RealEstateSupplementsNewApp;
+
+rule "TitleOpinionsSalePurchaseRule_Lawyers"
+	dialect "mvel"
+	when
+		RealSupp : RealEstateSupplementsNewApp( titleOpinionResiAop > ( salePurchaseResiAop ) || titleOpinionCommAop > ( salePurchaseCommAop ) )
+	then
+		RealSupp.setId( "TitleOpinionsSalePurchaseRule_Lawyers" );
+		RealSupp.setDescription( "Title Opinions percentage greater than the purchase and sale percentage." );
+		RealSupp.setTooltip( "Are the opinions provided to other law firms or non real estate clients?" );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "checkAmountOfFeesSuedRenew_Accountant"
+	dialect "mvel"
+
+	when checkAmountOfFeesSuedRenew : BasicInfoAcc(totalAmountfeeCal>25000)
+	then
+		checkAmountOfFeesSuedRenew.setId("checkAmountOfFeesSuedRenew_Accountant");
+		checkAmountOfFeesSuedRenew.setDescription("Fee suits for more than 25%");
+		checkAmountOfFeesSuedRenew.setTooltip("Insure that the fee suit supplement is complete");
+end

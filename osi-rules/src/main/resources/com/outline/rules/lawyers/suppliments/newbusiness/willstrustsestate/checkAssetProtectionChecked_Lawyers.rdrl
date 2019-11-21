@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.suppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.WillsTrustsEstates;
+
+rule "checkAssetProtectionChecked_Lawyers"
+	dialect "mvel"
+	when
+		checkAssetProtectionChecked : WillsTrustsEstates( assetProtectionValue == "Y" )
+	then
+		checkAssetProtectionChecked.setId( "checkAssetProtectionChecked_Lawyers" );
+		checkAssetProtectionChecked.setDescription( "The firm is providing Asset protection as part of the will, estates and trust practice." );
+		checkAssetProtectionChecked.setTooltip( "Just setting up the trust or providing services to protect assets or trust or estate? How many?" );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.practicemanagement.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.PracticeManagement;
+
+rule "IsFirmProvideInvestmentAdvice_Lawyers"
+	dialect "mvel"
+	when
+		IsFirmProvideInvestmentAdvice : PracticeManagement( isFirmProvideInvestmentAdvice == "Y" )
+	then
+		IsFirmProvideInvestmentAdvice.setId( "IsFirmProvideInvestmentAdvice_Lawyers" );
+		IsFirmProvideInvestmentAdvice.setDescription( "Providing investment advice or making discretionary investments" );
+		IsFirmProvideInvestmentAdvice.setTooltip( "Cannot be written without an acceptable response from the applicant regarding the specific nature of services provided. " );
+end

@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "soloAtorneyHoursLessThanFiveHundred_Lawyers"
+	dialect "mvel"
+	when
+		soloAtorneyHoursLessThanFiveHundred : Firm( annualWorkedHours < 500 )
+	then
+		soloAtorneyHoursLessThanFiveHundred.setId( "soloAtorneyHoursLessThanFiveHundred_Lawyers" );
+		soloAtorneyHoursLessThanFiveHundred.setDescription( "Solo with less than 500 hours.  Must be approved by C & F" );
+		soloAtorneyHoursLessThanFiveHundred.setTooltip( "Need C & F approval." );
+end

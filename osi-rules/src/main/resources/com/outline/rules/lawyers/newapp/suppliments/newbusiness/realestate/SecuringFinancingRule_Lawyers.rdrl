@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.RealEstateSupplementsNewApp;
+
+rule "SecuringFinancingRule_Lawyers"
+	dialect "mvel"
+	when
+		RealSupp : RealEstateSupplementsNewApp( includeSecuringFinancing == "Y" )
+	then
+		RealSupp.setId( "SecuringFinancingRule_Lawyers" );
+		RealSupp.setDescription( "Securing financing for clients is not an attorney function." );
+		RealSupp.setTooltip( "Decline." );
+end

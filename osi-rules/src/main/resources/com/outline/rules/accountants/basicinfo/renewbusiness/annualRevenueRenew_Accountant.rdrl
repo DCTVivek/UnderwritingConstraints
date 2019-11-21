@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "annualRevenueRenew_Accountant"
+	dialect "mvel"
+
+	when annualRevenueRenew : BasicInfoAcc(flagAnnualRevenue=="true")
+	then
+		annualRevenueRenew.setId("annualRevenueRenew_Accountant");
+		annualRevenueRenew.setDescription("Large firm - revenue above 2M");
+		annualRevenueRenew.setTooltip("Revenue - Firm is above 2M in revenue. ");
+end

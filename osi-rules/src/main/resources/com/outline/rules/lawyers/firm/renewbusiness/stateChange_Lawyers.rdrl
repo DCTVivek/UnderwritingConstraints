@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "stateChange_Lawyers"
+	dialect "mvel"
+
+	when stateChange : Firm(stateDesc!=priorStateDesc)
+	then
+		stateChange.setId("stateChange_Lawyers");
+		stateChange.setDescription("Changes of State requires review of why and may need a new application.");
+		stateChange.setTooltip("Change of state in address.  Get a detailed explaination of why.");
+end

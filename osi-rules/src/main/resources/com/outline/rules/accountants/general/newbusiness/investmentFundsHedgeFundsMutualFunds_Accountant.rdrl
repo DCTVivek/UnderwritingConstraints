@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.general.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.GeneralAcc;
+
+rule "investmentFundsHedgeFundsMutualFunds_Accountant"
+	dialect "mvel"
+
+	when investmentFundsHedgeFundsMutualFunds : GeneralAcc(isSyndicationManagers=="Y")
+	then
+		investmentFundsHedgeFundsMutualFunds.setId("investmentFundsHedgeFundsMutualFunds_Accountant");
+		investmentFundsHedgeFundsMutualFunds.setDescription("Firm is providing services to investment funds, hedge funds, mutual funds or syndication managers and is outside the UW appetite of the program. Decline");
+		investmentFundsHedgeFundsMutualFunds.setTooltip("Firm is providing services to investment funds, hedge funds, mutual funds or syndication managers and is outside the UW appetite of the program. Decline");
+end

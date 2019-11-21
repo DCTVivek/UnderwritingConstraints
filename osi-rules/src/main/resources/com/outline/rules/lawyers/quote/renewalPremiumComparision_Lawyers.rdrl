@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.quote;
+
+import java.lang.Number;
+import com.outline.rules.pojo.QuoteOptions;
+
+rule "renewalPremiumComparision_Lawyers"
+	dialect "mvel"
+	when
+		renewalPremiumComparision : QuoteOptions( totalPremium > 5000 )
+	then
+		renewalPremiumComparision.setId( "renewalPremiumComparision_Lawyers" );
+		renewalPremiumComparision.setDescription( "Premium above 5,000." );
+		renewalPremiumComparision.setTooltip( "Premium above 5,000 must be approved by UW" );
+end

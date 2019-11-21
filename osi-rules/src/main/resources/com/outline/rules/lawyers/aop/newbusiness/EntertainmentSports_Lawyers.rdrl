@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AopNew;
+
+rule "EntertainmentSports_Lawyers"
+	dialect "mvel"
+	when
+		EntertainmentSports : AopNew( entertainmentSportsAOPPercentage > 0 )
+	then
+		EntertainmentSports.setId( "EntertainmentSports_Lawyers" );
+		EntertainmentSports.setDescription( "Entertainment / Sports are outside of our authority.  Needs C & F approval." );
+		EntertainmentSports.setTooltip( "Who are they providing services to and what kind of services are they providing?" );
+end

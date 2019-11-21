@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.tax;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Tax;
+
+rule "checkprivatePlacementMemoranda_Lawyers"
+	dialect "mvel"
+	when
+		checkprivatePlacementMemoranda : Tax( privatePlacementMemoranda > 0 )
+	then
+		checkprivatePlacementMemoranda.setId( "checkprivatePlacementMemoranda_Lawyers" );
+		checkprivatePlacementMemoranda.setDescription( "Tax - providing opinions on private placement memo" );
+		checkprivatePlacementMemoranda.setTooltip( "Decline." );
+end

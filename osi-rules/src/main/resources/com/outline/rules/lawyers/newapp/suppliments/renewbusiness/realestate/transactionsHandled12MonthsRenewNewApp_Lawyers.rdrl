@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.RealEstateSupplementsNewApp;
+
+rule "transactionsHandled12MonthsRenewNewApp_Lawyers"
+	dialect "mvel"
+	when
+		transactionsHandled12MonthsRenew : RealEstateSupplementsNewApp( transactionsHandled12Months > 200 )
+	then
+		transactionsHandled12MonthsRenew.setId( "transactionsHandled12MonthsRenewNewApp_Lawyers" );
+		transactionsHandled12MonthsRenew.setDescription( "Real estate - more than 200 transactions per attorney" );
+		transactionsHandled12MonthsRenew.setTooltip( "No explanation needed." );
+end

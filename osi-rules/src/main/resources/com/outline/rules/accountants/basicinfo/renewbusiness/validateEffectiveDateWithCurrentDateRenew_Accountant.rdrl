@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "validateEffectiveDateWithCurrentDateRenew_Accountant"
+	dialect "mvel"
+
+		when validateEffectiveDateWithCurrentDateRenew : BasicInfoAcc(isCurrentDateAfterEfectiveDateRenew=="true")
+	then
+		validateEffectiveDateWithCurrentDateRenew.setId("validateEffectiveDateWithCurrentDateRenew_Accountant");
+		validateEffectiveDateWithCurrentDateRenew.setDescription("The effective date cannot be after the current date.");
+		validateEffectiveDateWithCurrentDateRenew.setTooltip("Effective date after the current date.");
+end

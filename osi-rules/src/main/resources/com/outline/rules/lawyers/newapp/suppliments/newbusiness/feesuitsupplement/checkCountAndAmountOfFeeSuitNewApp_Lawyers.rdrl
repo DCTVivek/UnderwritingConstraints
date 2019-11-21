@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.feesuitsupplement;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "checkCountAndAmountOfFeeSuitNewApp_Lawyers"
+	dialect "mvel"
+	when
+		checkCountAndAmountOfFeeSuit : Coverage( amountOfFeesSuedTotal > 25000 || coutOfFeeSuit > 9 )
+	then
+		checkCountAndAmountOfFeeSuit.setId( "checkCountAndAmountOfFeeSuitNewApp_Lawyers" );
+		checkCountAndAmountOfFeeSuit.setDescription( "More than 9 fee suites in the past 3 years or fee suit amount great than $25,000 in any one year." );
+		checkCountAndAmountOfFeeSuit.setTooltip( "Is this an on going problem of collections.  Have there been countersuits?" );
+end

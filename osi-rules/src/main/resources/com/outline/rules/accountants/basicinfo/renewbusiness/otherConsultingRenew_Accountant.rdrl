@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "otherConsultingRenew_Accountant"
+	dialect "mvel"
+
+		when otherConsultingRenew : BasicInfoAcc(diffAopOthrConsultant>0 )
+	then
+		otherConsultingRenew.setId("otherConsultingRenew_Accountant");
+		otherConsultingRenew.setDescription("Other consulting AOP, description needs to be reviewed.");
+		otherConsultingRenew.setTooltip("Other Consulting AOP - Get a full description of the consulting that the accountant is providing as well as to what type of clients.");
+end

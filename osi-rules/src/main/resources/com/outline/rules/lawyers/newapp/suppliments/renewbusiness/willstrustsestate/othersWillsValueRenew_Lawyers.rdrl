@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.renewbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.willsEstateNewApp;
+
+rule "othersWillsValueRenew_Lawyers"
+	dialect "mvel"
+	when
+		othersWills : willsEstateNewApp( otherWillsEstate > ( otherWillsEstatePrior ) || otherDescNew != (   	 otherDescPrior ) )
+	then
+		othersWills.setId( "othersWillsValueRenew_Lawyers" );
+		othersWills.setDescription( "Wills - other % increased or description has changed. - review description" );
+		othersWills.setTooltip( "Wills/Estates/Trusts - Make sure the description is complete for Other." );
+end

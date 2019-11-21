@@ -1,0 +1,14 @@
+package com.outline.rules.lawyerssuppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.WillsTrustsEstates;
+
+rule "checkTaxationChecked_Lawyers"
+	dialect "mvel"
+
+	when checkTaxationChecked : WillsTrustsEstates(taxationValue=="Y" )
+	then
+		checkTaxationChecked.setId("checkTaxationChecked_Lawyers");
+		checkTaxationChecked.setDescription("Providing tax work as part of wills, trusts and estates work.");
+		checkTaxationChecked.setTooltip("Are they providing tax opinions and if yes, are they working with a CPA to provide tax opinions or do they have one on staff?  Need to know what percentage of their overall revenue is taxation work.");
+end

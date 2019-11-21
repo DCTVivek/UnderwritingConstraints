@@ -1,0 +1,18 @@
+package com.outline.rules.lawyers.aop.renewbusiness;
+import com.util.Context;
+
+
+
+rule "governmentRenewAOP_Lawyers_old"
+	when ctx : Context(this["currentgovernmentPercentage"]>this["priorYeargovernmentPercentage"])
+	then
+		ctx.put("question","1.The services are provided for any government or government agency where the town or city has a population equal to or greater than 1,000,000 2.The attorney is providing bond work or 3.The attorney is providing legal services involving eminent domain");
+		ctx.put("hint","What services are they providing to the municipality or government?  What is the population of the town or municipality?");
+end
+
+rule "bankruptcyRenewAOP_Lawyers_old"
+	when ctx : Context(this["currentPercentage"]>this["priorYearPercentage"] && this["currentPercentage"]>35)
+	then
+		ctx.put("question","Firm has more than 35% bankruptcy.");
+		ctx.put("hint","Are they providing services to or do they own a debt consolidation or collections company");
+end

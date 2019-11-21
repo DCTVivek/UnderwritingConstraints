@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "attorneysNotLicensedIndomicile_Lawyers"
+	dialect "mvel"
+	when
+		attorneysNotLicensedIndomicile : Firm( isLiscenseIndomicile == "N" )
+	then
+		attorneysNotLicensedIndomicile.setId( "attorneysNotLicensedIndomicile_Lawyers" );
+		attorneysNotLicensedIndomicile.setDescription( "The attorney's must be licensed in the state of domicle." );
+		attorneysNotLicensedIndomicile.setTooltip( "Does attorney practice soley at the federal level? Is the attorney in the process of getting licenced in the state of domicile in the future?" );
+end

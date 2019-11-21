@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "regulatoryInvestigationInquirySuspendedPracticeChargedRenew_Accountant"
+	dialect "mvel"
+
+	when regulatoryInvestigationInquirySuspendedPracticeChargedRenew : BasicInfoAcc(isAnyRegulatoryInquiry=="Y")
+	then
+		regulatoryInvestigationInquirySuspendedPracticeChargedRenew.setId("regulatoryInvestigationInquirySuspendedPracticeChargedRenew_Accountant");
+		regulatoryInvestigationInquirySuspendedPracticeChargedRenew.setDescription("Firms has a regulatory investigations, suspensions or criminal charges.");
+		regulatoryInvestigationInquirySuspendedPracticeChargedRenew.setTooltip("Determine the circumstances and disposition of the regulatory investigation, suspension or criminal charge.");
+end

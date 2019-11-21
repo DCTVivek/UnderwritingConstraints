@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "checkCountOfFeeSuitInPastYearsRenew_Lawyers"
+	dialect "mvel"
+	when
+		checkCountOfFeeSuitInPastYearsRenew : Coverage( coutOfFeeSuit > 3 )
+	then
+		checkCountOfFeeSuitInPastYearsRenew.setId( "checkCountOfFeeSuitInPastYearsRenew_Lawyers" );
+		checkCountOfFeeSuitInPastYearsRenew.setDescription( "More than 3 fee suites in the past 3 years." );
+		checkCountOfFeeSuitInPastYearsRenew.setTooltip( "Is this an ongoing problem of collections.  Have there been countersuits?" );
+end

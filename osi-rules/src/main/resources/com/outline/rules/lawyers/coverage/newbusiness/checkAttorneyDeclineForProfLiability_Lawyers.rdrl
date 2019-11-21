@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "checkAttorneyDeclineForProfLiability_Lawyers"
+	dialect "mvel"
+
+	when checkAttorneyDeclineForProfLiability : Coverage(isAttorneyDeclineForProfLiability=="Y" && stateCode!="MO")
+	then
+		checkAttorneyDeclineForProfLiability.setId("checkAttorneyDeclineForProfLiability_Lawyers");
+		checkAttorneyDeclineForProfLiability.setDescription("Professional liabiity non, renewed, declined or cancelled.");
+		checkAttorneyDeclineForProfLiability.setTooltip("Get a detailed explanation of what happened and why they were declined, cancelled or non renewed.");
+end

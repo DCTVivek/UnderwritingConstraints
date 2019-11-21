@@ -1,0 +1,48 @@
+package com.outline.rules.accountants.suppliments.renewbusiness.audit;
+import com.util.Context;
+
+rule "howManyClientsFirmRenderedAuditAttestationRenew_Accountant_old"
+	when ctx : Context(this["firmRenderedAuditAtt"]>0)
+	then
+		ctx.put("question","Audit or attest services for clients that have subsequently declared or filed bankruptcy, defaulted on a debt obligation, or became insolvent.");
+		ctx.put("hint","Audit or attest services for clients that have subsequently declared or filed bankruptcy, defaulted on a debt obligation, or became insolvent.  Determine what the firm's audit opinion was prior to the client filing bankruptcy or became insolvent. How long has the firm had the client?");
+end
+rule "hasFirmUndergonePeerQualityReviewRenew_Accountant_old"
+	when ctx : Context(this["isAualityReviewAtt"]=="N")
+	then
+		ctx.put("question","No peer review in the past 3 years.");
+		ctx.put("hint","No peer review in the past 3 years. Determine why the firm has not had a peer review.");
+end
+rule "hasFirmlastpeerreviewmodifiedqualifiedRenew_Accountant_old"
+	when ctx : Context(this["isLastPeerReviewAtt"]=="Y")
+	then
+		ctx.put("question","Peer review modified, qualified, or adverse.");
+		ctx.put("hint","Peer review modified, qualified, or adverse.  Review description and determine if procedures have been put in place to correct deficiencies.");
+end
+rule "banksBrokersInsuranceCompaniesInvestmentCompaniesRenew_Accountant_old"
+	when ctx : Context(this["auditClients_1n"]>0 ||  this["auditClients_2n"]>0 ||  this["auditClients_8n"]>0 ||  this["auditClients_9n"]>0 )
+	then
+		ctx.put("question","Audit - non public - Firm does work for Banks, Lending Institutions, Broker/Dealers, Insurance Companies, Investment companies & Funds, or Publically Traded companies. These are ouside of our authority.");
+		ctx.put("hint","Audit Non Public - If Banks and Lending Institutions. Broker/Dealers, Insurance Companies, Investment companies, or Publically Traded companies, it must be referred to C & F and will most likely be a decline");
+end
+
+rule "auditRelatedCPETrainingRenew_Accountant_old"
+	when ctx : Context(this["isFirmHaveAWrittenPolicyAtt"]=="N")
+	then
+		ctx.put("question","Firm doesn no have a written policy on audit-related CPE training, including required courses and CPE hours per year specific to audit services.");
+		ctx.put("hint","Firms performing audit should have specific CPE training geared to audit services.  Find out why not.");
+end
+
+rule "doesSecondPartnerReviewAuditWorkpapersRenew_Accountant_old"
+	when ctx : Context(this["numberOfPersonnelValue"]>1 &&  this["isSecondPartnerReviewAtt"]=="N"  )
+	then
+		ctx.put("question","Firm provides audit services with no partner review.");
+		ctx.put("hint","Firm provides audit services with no partner review. Need to understand the nature of the audits the firm is doing.");
+end
+
+rule "doesSecondPartnerCommitteeApproveSignOofRenew_Accountant_old"
+	when ctx : Context(this["numberOfPersonnelValue"]>1 &&  this["isAuditEngagementsAtt"]=="N"  )
+	then
+		ctx.put("question","Multi partner firm accepting audit engagments with no partner review.");
+		ctx.put("hint","Multi partner firm accepting audit engagments with no partner review. Need to understand the nature of the audits the firm is doing");
+end

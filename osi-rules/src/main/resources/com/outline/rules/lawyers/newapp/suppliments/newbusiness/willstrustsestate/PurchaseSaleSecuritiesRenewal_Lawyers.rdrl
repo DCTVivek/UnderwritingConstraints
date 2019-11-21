@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.willstrustsestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.willsEstateNewApp;
+
+rule "PurchaseSaleSecuritiesRenewal_Lawyers"
+	dialect "mvel"
+	when
+		inPurchaseSaleSecurities : willsEstateNewApp( inPurchaseSaleSecurities == "Y" )
+	then
+		inPurchaseSaleSecurities.setId( "PurchaseSaleSecuritiesRenewal_Lawyers" );
+		inPurchaseSaleSecurities.setDescription( "Wills - trustee involved in sale or purchase of investments" );
+		inPurchaseSaleSecurities.setTooltip( "Wills/Estates/Trusts -Explain the nature of such services provided. How many clients are these services provided to in the last year?" );
+end

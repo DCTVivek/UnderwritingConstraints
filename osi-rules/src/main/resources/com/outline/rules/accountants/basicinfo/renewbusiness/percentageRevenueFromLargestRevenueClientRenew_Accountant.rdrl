@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.basicinfo.renewbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.BasicInfoAcc;
+
+rule "percentageRevenueFromLargestRevenueClientRenew_Accountant"
+	dialect "mvel"
+
+	when percentageRevenueFromLargestRevenueClientRenew : BasicInfoAcc(percentOfRevenueFromLargestClient>39)
+	then
+		percentageRevenueFromLargestRevenueClientRenew.setId("percentageRevenueFromLargestRevenueClientRenew_Accountant");
+		percentageRevenueFromLargestRevenueClientRenew.setDescription("Large client above 39%. Review if the firm is providing audit services to a large client. Conflict of interest in rendering and audit opinion.");
+		percentageRevenueFromLargestRevenueClientRenew.setTooltip("Large client above 39%. Obtain the name and kind of client - how are they handling conflict of interest. Are they providing audit services.");
+end

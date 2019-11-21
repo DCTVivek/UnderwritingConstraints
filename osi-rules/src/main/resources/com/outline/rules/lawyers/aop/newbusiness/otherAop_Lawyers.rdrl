@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.aop.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AOP;
+
+rule "otherAop_Lawyers"
+	dialect "mvel"
+	when
+		otherAop : AOP( otherAOPPercentage > 0 )
+	then
+		otherAop.setId( "otherAop_Lawyers" );
+		otherAop.setDescription( "Other AOP - Review description " );
+		otherAop.setTooltip( "Review the description and work with insured to put it in the appropriate category if applicable.  Get as through description of the work if it does belong in other and leave it in other." );
+end

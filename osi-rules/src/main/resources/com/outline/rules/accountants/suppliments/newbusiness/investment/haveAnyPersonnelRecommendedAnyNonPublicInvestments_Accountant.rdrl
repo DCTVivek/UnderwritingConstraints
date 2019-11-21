@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.investment;
+
+import java.lang.Number;
+import com.outline.rules.pojo.InvestmentAcc;
+
+rule "haveAnyPersonnelRecommendedAnyNonPublicInvestments_Accountant"
+	dialect "mvel"
+
+	when haveAnyPersonnelRecommendedAnyNonPublicInvestments : InvestmentAcc(isAnyNonPublicInvestments=="Y")
+	then
+		haveAnyPersonnelRecommendedAnyNonPublicInvestments.setId("haveAnyPersonnelRecommendedAnyNonPublicInvestments_Accountant");
+		haveAnyPersonnelRecommendedAnyNonPublicInvestments.setDescription("Firm has recommendd non-public investments to clients in which the firm has an ownership interest.  Not within the UW appetitie of the program. - Decline");
+		haveAnyPersonnelRecommendedAnyNonPublicInvestments.setTooltip("Firm has recommendd non-public investments to clients in which the firm has an ownership interest.  Not within the UW appetitie of the program. - Decline");
+end

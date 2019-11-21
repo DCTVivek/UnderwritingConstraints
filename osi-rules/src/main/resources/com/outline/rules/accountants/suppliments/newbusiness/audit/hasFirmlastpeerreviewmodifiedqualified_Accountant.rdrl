@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "hasFirmlastpeerreviewmodifiedqualified_Accountant"
+	dialect "mvel"
+
+	when hasFirmlastpeerreviewmodifiedqualified : AuditAcc(isLastPeerReviewAtt=="Y")
+	then
+		hasFirmlastpeerreviewmodifiedqualified.setId("hasFirmlastpeerreviewmodifiedqualified_Accountant");
+		hasFirmlastpeerreviewmodifiedqualified.setDescription("Peer review modified, qualified, or adverse.");
+		hasFirmlastpeerreviewmodifiedqualified.setTooltip("Peer review modified, qualified, or adverse.  Review description and determine if procedures have been put in place to correct deficiencies.");
+end

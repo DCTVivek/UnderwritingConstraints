@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.coverage.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Coverage;
+
+rule "checkAmountOfFeesSued_Lawyers"
+	dialect "mvel"
+
+	when checkAmountOfFeesSued : Coverage(amountOfFeesSuedTotal>25000)
+	then
+		checkAmountOfFeesSued.setId("checkAmountOfFeesSued_Lawyers");
+		checkAmountOfFeesSued.setDescription("Fee suit amount great than $25,000");
+		checkAmountOfFeesSued.setTooltip("Is this an ongoing problem of collections.Have there been countersuits?");
+end

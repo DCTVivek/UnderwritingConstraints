@@ -1,0 +1,14 @@
+package com.outline.rules.accountants.suppliments.newbusiness.audit;
+
+import java.lang.Number;
+import com.outline.rules.pojo.AuditAcc;
+
+rule "isPublicTradedAuditedReferral_Accountant"
+	dialect "mvel"
+	when
+		Audit : AuditAcc( isFirmHaveAWrittenPolicyAtt == "Y" )
+	then
+		Audit.setId( "isPublicTradedAuditedReferral_Accountant" );
+		Audit.setDescription( "Audits of SEC regulated entities. - Decline" );
+		Audit.setTooltip( "Audit of SEC regulated entites." );
+end
