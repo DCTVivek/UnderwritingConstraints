@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.copyrighttrademark;
+
+import java.lang.Number;
+import com.outline.rules.pojo.CopyRightTrademarkSupplement;
+
+rule "OtherServices_Lawyers"
+	dialect "mvel"
+	when
+		OtherServices : CopyRightTrademarkSupplement( otherServicesSup == "Y" )
+	then
+		OtherServices.setId( "OtherServices_Lawyers" );
+		OtherServices.setDescription( "Only searches and filings are within guidelines." );
+		OtherServices.setTooltip( "No explanation needed." );
+end
