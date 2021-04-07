@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.firm.newbusiness;
+
+import java.lang.Number;
+import com.outline.rules.pojo.Firm;
+
+rule "validateFirmState"
+	dialect "mvel"
+
+	when validateFirmAddress : Firm("true"=="true")
+	then
+		validateFirmAddress.setId("validateFirmState");
+		validateFirmAddress.setDescription("This is a testing rule.");
+		validateFirmAddress.setTooltip("************#################***********");
+end
