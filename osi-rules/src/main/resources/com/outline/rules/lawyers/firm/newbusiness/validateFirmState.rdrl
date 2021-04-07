@@ -6,9 +6,9 @@ import com.outline.rules.pojo.Firm;
 rule "validateFirmState"
 	dialect "mvel"
 
-	when validateFirmAddress : Firm("true"=="true")
+	when validateFirmAddress : Firm("Y"=="Y")
 	then
 		validateFirmAddress.setId("validateFirmState");
 		validateFirmAddress.setDescription("This is a testing rule.");
-		validateFirmAddress.setTooltip("************#################***********");
+		validateFirmAddress.setTooltip("hi");
 end
