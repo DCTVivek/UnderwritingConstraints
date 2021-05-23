@@ -1,12 +1,12 @@
 package com.outline.rules.lawyers.newapp.suppliments.newbusiness.CCBsupp;
 
 import java.lang.Number;
-import com.outline.rules.pojo.CorporateComerricialBusinbess;
+import com.outline.rules.pojo.CopyRightTrademarkSupplement;
 
 rule "OtherLegalCorporateServicesRule_Lawyers"
 	dialect "mvel"
 	when
-		OtherLegalCorporateServicesRule : CorporateComerricialBusinbess( OtherLegalCorporateServices == "Y" )
+		OtherLegalCorporateServicesRule : CopyRightTrademarkSupplement( OtherLegalCorporateServices == "Y" )
 	then
 		OtherLegalCorporateServicesRule.setId( "OtherLegalCorporateServicesRule_Lawyers" );
 		OtherLegalCorporateServicesRule.setDescription( "TEST4" );
