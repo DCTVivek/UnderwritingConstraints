@@ -9,6 +9,6 @@ rule "RegardToCorporateClientsRule_Lawyers"
 		RegardToCorporateClientsRule : CorporateComerricialBusinbess( LegalBusinessRelationshipServices == "Y" ||  AuthorityToDisburseFunds == "Y" || AcceptCompensation == "Y" || LegalServicesSecuritiesPayment == "Y" || PerformDueDiligence == "Y")
 	then
 		RegardToCorporateClientsRule.setId( "RegardToCorporateClientsRule_Lawyers" );
-		RegardToCorporateClientsRule.setDescription( "Firm Corporate commercial practices outside of the common compensation or relationship practices." );
-		RegardToCorporateClientsRule.setTooltip( "Ask for additional information on the items where they answered yes, when it happened, how often and with what client." );
+		RegardToCorporateClientsRule.setDescription( "TEST2" );
+		RegardToCorporateClientsRule.setTooltip("TEST2 DESC");
 end

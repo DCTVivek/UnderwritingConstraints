@@ -9,6 +9,6 @@ rule "LegalServicesBankruptLiquidationRule_Lawyers"
 		LegalServicesBankruptLiquidationRule : CorporateComerricialBusinbess( LegalServicesBankruptLiquidation == "Y" )
 	then
 		LegalServicesBankruptLiquidationRule.setId( "LegalServicesBankruptLiquidationRule_Lawyers" );
-		LegalServicesBankruptLiquidationRule.setDescription( "Insolvent client in the past 2 years." );
-		LegalServicesBankruptLiquidationRule.setTooltip( "Ask for additional information on client, name, amount, and current status." );
+		LegalServicesBankruptLiquidationRule.setDescription( "TEST3" );
+		LegalServicesBankruptLiquidationRule.setTooltip( "TEST3 DESC" );
 end

@@ -9,6 +9,6 @@ rule "OtherLegalCorporateServicesRule_Lawyers"
 		OtherLegalCorporateServicesRule : CorporateComerricialBusinbess( OtherLegalCorporateServices == "Y" )
 	then
 		OtherLegalCorporateServicesRule.setId( "OtherLegalCorporateServicesRule_Lawyers" );
-		OtherLegalCorporateServicesRule.setDescription( "Review corporate services that are being provided" );
-		OtherLegalCorporateServicesRule.setTooltip( "Review corporate services that are being provided" );
+		OtherLegalCorporateServicesRule.setDescription( "TEST4" );
+		OtherLegalCorporateServicesRule.setTooltip( "TEST4 DESC" );
 end
