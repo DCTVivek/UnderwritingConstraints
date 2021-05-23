@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.CCBsupp;
+
+import java.lang.Number;
+import com.outline.rules.pojo.CorporateComerricialBusinbess;
+
+rule "PubliclyRenderedServicesRule_Lawyers"
+	dialect "mvel"
+	when
+		PubliclyRenderedServicesRule : CorporateComerricialBusinbess( PubliclyRenderedServices == "Y" )
+	then
+		PubliclyRenderedServicesRule.setId( "PubliclyRenderedServicesRule_Lawyers" );
+		PubliclyRenderedServicesRule.setDescription( "Providing services to publicly traded companies - Decline  " );
+		PubliclyRenderedServicesRule.setTooltip( "Firms providing services to publicly traded companies are outside of C & F underwriting authority." );
+end

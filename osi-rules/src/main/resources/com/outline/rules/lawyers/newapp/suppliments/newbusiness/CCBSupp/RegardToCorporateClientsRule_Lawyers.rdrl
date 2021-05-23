@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.CCBsupp;
+
+import java.lang.Number;
+import com.outline.rules.pojo.CorporateComerricialBusinbess;
+
+rule "RegardToCorporateClientsRule_Lawyers"
+	dialect "mvel"
+	when
+		RegardToCorporateClientsRule : CorporateComerricialBusinbess( LegalBusinessRelationshipServices == "Y" ||  AuthorityToDisburseFunds == "Y" || AcceptCompensation == "Y" || LegalServicesSecuritiesPayment == "Y" || PerformDueDiligence == "Y")
+	then
+		RegardToCorporateClientsRule.setId( "RegardToCorporateClientsRule_Lawyers" );
+		RegardToCorporateClientsRule.setDescription( "Firm Corporate commercial practices outside of the common compensation or relationship practices." );
+		RegardToCorporateClientsRule.setTooltip( "Ask for additional information on the items where they answered yes, when it happened, how often and with what client." );
+end

@@ -9,6 +9,6 @@ rule "OtherLegalCorporateServicesRule_Lawyers"
 		OtherLegalCorporateServicesRule : CorporateComerricialBusinbess( OtherLegalCorporateServices == "Y" )
 	then
 		OtherLegalCorporateServicesRule.setId( "OtherLegalCorporateServicesRule_Lawyers" );
-		OtherLegalCorporateServicesRule.setDescription( "Individual collections exceeds underwriting threshold." );
-		OtherLegalCorporateServicesRule.setTooltip( "What is the value of the 3 largest collection cases the firm has handled in the past two years?" );
+		OtherLegalCorporateServicesRule.setDescription( "Review corporate services that are being provided" );
+		OtherLegalCorporateServicesRule.setTooltip( "Review corporate services that are being provided" );
 end

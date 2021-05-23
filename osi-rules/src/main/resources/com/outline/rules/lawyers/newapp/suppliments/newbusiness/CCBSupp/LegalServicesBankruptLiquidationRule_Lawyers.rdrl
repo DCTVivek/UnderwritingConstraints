@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.CCBsupp;
+
+import java.lang.Number;
+import com.outline.rules.pojo.CorporateComerricialBusinbess;
+
+rule "LegalServicesBankruptLiquidationRule_Lawyers"
+	dialect "mvel"
+	when
+		LegalServicesBankruptLiquidationRule : CorporateComerricialBusinbess( LegalServicesBankruptLiquidation == "Y" )
+	then
+		LegalServicesBankruptLiquidationRule.setId( "LegalServicesBankruptLiquidationRule_Lawyers" );
+		LegalServicesBankruptLiquidationRule.setDescription( "Insolvent client in the past 2 years." );
+		LegalServicesBankruptLiquidationRule.setTooltip( "Ask for additional information on client, name, amount, and current status." );
+end
