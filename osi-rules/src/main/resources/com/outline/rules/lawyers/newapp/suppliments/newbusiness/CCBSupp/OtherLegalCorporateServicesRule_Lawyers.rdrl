@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.CCBsupp;
+
+import java.lang.Number;
+import com.outline.rules.pojo.CorporateComerricialBusinbess;
+
+rule "OtherLegalCorporateServicesRule_Lawyers"
+	dialect "mvel"
+	when
+		OtherLegalCorporateServicesRule : CorporateComerricialBusinbess( OtherLegalCorporateServices == "Y" )
+	then
+		OtherLegalCorporateServicesRule.setId( "OtherLegalCorporateServicesRule_Lawyers" );
+		OtherLegalCorporateServicesRule.setDescription( "Individual collections exceeds underwriting threshold." );
+		OtherLegalCorporateServicesRule.setTooltip( "What is the value of the 3 largest collection cases the firm has handled in the past two years?" );
+end
