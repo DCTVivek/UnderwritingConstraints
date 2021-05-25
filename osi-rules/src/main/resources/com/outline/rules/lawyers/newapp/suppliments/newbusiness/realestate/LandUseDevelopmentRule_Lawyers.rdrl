@@ -1,0 +1,14 @@
+package com.outline.rules.lawyers.newapp.suppliments.newbusiness.realestate;
+
+import java.lang.Number;
+import com.outline.rules.pojo.RealEstateSupplementsNewApp;
+
+rule "LandUseDevelopmentRule_Lawyers"
+	dialect "mvel"
+	when
+		RealSupp : RealEstateSupplementsNewApp( titleOpinionResiAop > 0 )
+	then
+		RealSupp.setId( "LandUseDevelopmentRule_Lawyers" );
+		RealSupp.setDescription( "Real Estate practice includes Land Development and is outside of C & F authority" );
+		RealSupp.setTooltip( "Requires referral to C & F" );
+end

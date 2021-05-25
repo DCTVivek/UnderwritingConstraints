@@ -9,6 +9,6 @@ rule "MedicalMalpracticePlaintiff_Lawyers"
 		MedicalPracticeAOP : AopNew( medicalMalpracticePlaintiffAOPPercentage > 25 )
 	then
 		MedicalPracticeAOP.setId( "MedicalMalpracticePlaintiff_Lawyers" );
-		MedicalPracticeAOP.setDescription( "Medical Malpractice more that 25%." );
-		MedicalPracticeAOP.setTooltip( "No explanation needed." );
+		MedicalPracticeAOP.setDescription( "More than 25% Medical malpractice outside of C & F authority" );
+		MedicalPracticeAOP.setTooltip( "More than 25% Medical malpractice outside of C & F authority" );
 end

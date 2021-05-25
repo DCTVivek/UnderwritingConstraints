@@ -6,9 +6,9 @@ import com.outline.rules.pojo.PlaintiffSupp;
 rule "validatePlaintiffLargestCase_Lawyers"
 	dialect "mvel"
 	when
-		plainTiff : PlaintiffSupp( plaintiffLargestCaseSize >= 1000000 )
+		plainTiff : PlaintiffSupp( plaintiffLargestCaseSize > 3000000 )
 	then
 		plainTiff.setId( "validatePlaintiffLargestCase_Lawyers" );
-		plainTiff.setDescription( "Plaintiff largest case size above 1M." );
-		plainTiff.setTooltip( "What is the average case size? What are the three largest cases handled? " );
+		plainTiff.setDescription( "Largest plaintiff case size above 3M, outside of C & F authority" );
+		plainTiff.setTooltip( "Large plaintiff case size – needs to be referred to C & F.   Provide the next 3 largest case sizes." );
 end

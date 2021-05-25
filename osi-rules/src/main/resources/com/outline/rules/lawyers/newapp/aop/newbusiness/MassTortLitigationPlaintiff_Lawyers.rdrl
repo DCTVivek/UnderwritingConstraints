@@ -9,6 +9,6 @@ rule "MassTortLitigationPlaintiff_Lawyers"
 		MassTortLitigation : AopNew( massTortLitigationPlaintiffAOPPercentage > 0 )
 	then
 		MassTortLitigation.setId( "MassTortLitigationPlaintiff_Lawyers" );
-		MassTortLitigation.setDescription( "Mass Tort/Class Action/Toxic Tort." );
-		MassTortLitigation.setTooltip( "What category is the firm involved in and what is the firm's involvment in the engagment(s)?" );
+		MassTortLitigation.setDescription( "Mass Tort/Class Action/Toxic Tort Plaintiff greater than zero" );
+		MassTortLitigation.setTooltip( "Decline (Outside of C&F Authority Guidelines)" );
 end
